@@ -1,0 +1,80 @@
+% Definiciones de AMS-LaTeX: UFRO Thesis  Ramiro Donoso, Marzo 2017 *
+% ------------------------------------------------------------------------
+% Paquetes por instalar: srcltx, algorithms, algorithmic, algorithm e idioma espa�ol.
+\documentclass[12pt,notitlepage]{report}
+\usepackage[spanish]{babel}		% Silabeo en espa�ol. (corte de palabras!)
+\usepackage[lighttt]{lmodern}
+%\usepackage[latin1]{inputenc} 	% Caracteres con acentos.
+\usepackage{cite}
+\usepackage{graphicx}			% Para usar figuras JPG, PNG, etc...
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb} %letras matematicas (\mathbb{R})
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newlfont}
+\usepackage[inactive]{srcltx}  %SRC Specials for DVI search
+\usepackage{booktabs}
+\usepackage{nonfloat} % para usar tabcaption y figcaption.... tablas no flotantes.
+\usepackage{multirow} % para unir filas
+\usepackage{multicol} % para unir columnas
+\usepackage{dcolumn}
+\usepackage{subfigure} % permite la utilizacion de subfiguras en una misma figura
+\usepackage[subfigure]{tocloft}
+\usepackage{longtable} % para cortar tablas en mas de una pagina
+%\usepackage[justification=centering]{caption} % para caption largos y centrados.
+\usepackage[final]{pdfpages}
+%\usepackage{verbatim}
+
+% ESTILOS PROPIOS
+\usepackage{UFRO_Style} % Estilos propios de tablas, figuras y comandos.		
+\usepackage{UFRO_Tesis}	% Incorpora el uso del paquete UFRO_Tesis
+%\usepackage[noLinks]{UFRO_Tesis}	% Activa/Desactiva links en el documento.
+
+
+\overfullrule=2mm
+\hfuzz=2000pt
+
+
+%%% INICIO DE DOCUMENTO 
+\begin{document}
+\hypersetup{%
+ pdfborder = {0 0 0} 
+ }
+\ingCivTesis
+
+\dept{Ingeniería Matemática}
+\faculty{Ingeniería y Ciencias}
+\carrera{Ingeniero Civil Matemático}
+\title{Aumento de resolución de datos satelitales espacio-temporales a través del modelo Random Forest para el estudio de aguas subterráneas en Chile.}
+\titlefoot{Aumento de resolución  de datos satelitales a través del modelo Random Forest}
+\author{Matías Alfonso Palma Manterola}
+\profguia{Dr. Walter Gomez Bofill}
+% ------------------------------------------------------------------------
+
+\ack{capitulo_0/Agradecimientos}  
+\resumenesp{capitulo_0/Resumen}
+\resumening{capitulo_0/Abstract}
+
+\makeTitle{}
+% ------------------------------------------------------------------------
+
+\include{capitulo_1/Capitulo1}
+
+\include{capitulo_2/Capitulo2}
+
+\include{capitulo_3/Capitulo3}
+
+\include{capitulo_4/Capitulo4}
+
+\include{capitulo_6/Conclusion}
+
+%
+%
+%
+%
+% ------------------------------------------------------------------------
+\bibliography{bibliografia/Bibliografia}
+
+\end{document}

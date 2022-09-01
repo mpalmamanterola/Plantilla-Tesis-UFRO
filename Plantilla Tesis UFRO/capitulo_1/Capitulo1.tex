@@ -1,0 +1,117 @@
+\chapter{Introducción}
+
+\section{Contexto y descripción del problema}
+Las aguas subterráneas tienen una relación muy cercana con la sociedad humana gracias a que almacenan 
+agua de buena calidad en grandes cantidades, se encuentran ampliamente distribuidas, poseen estabilidad 
+y facilidad de uso por lo que se ha convertido en una fuente de suministro ideal y está siendo altamente 
+utilizada por las personas \cite{11} y mayoritariamente por industrias de manera contínua y persistente sin 
+fiscalización alguna. La sobreexplotación de los almacenes de agua subterránea ha generado que el nivel 
+continúe disminuyendo, provocando desastres como hundimientos de suelo, pérdida de volumen a través de la
+ separación de un acuífero y el secado de zonas húmedas.
+Las cuencas son monitoreadas en terreno a través de sondas, este estudio además de ser costoso requiere 
+una distribución uniforme lo suficientemente distanciada entre cada estación de medición para captar 
+detalles de los cambios de nivel de los acuíferos. 
+Con el surgimiento de algunas nuevas tecnologías de observación de la tierra, 
+se ha proporcionado un nuevo método de detección remota para el estudio de las variaciones 
+del almacenamiento de agua a nivel espacial, éste es el satélite GRACE, el cual a través de 
+diferencias gravitacionales logra estimar la cantidad de agua presente en un punto geográfico. 
+Muchos investigadores han demostrado que el satélite GRACE puede monitorear bien los cambios en áreas 
+a gran escala con un error mínimo \cite{11}. Debido a que el satélite proporciona datos a una baja resolución es 
+necesario realizar procesamiento de datos llamado reducción de escala que convierte datos de gran escala
+y baja resolución en datos de pequeña escala a una alta resolución. 
+%
+%
+%
+%
+\section{Satélite GRACE}
+La misón GRACE(por sus siglas en inglés \textit{Gravity Recovery and Climate Experiment}), lanzada el 17 de marzo del año 2002
+bajo el Programa Pathfinder de Ciencias del Sistema Terrestre de la NASA \cite{11}, consiste en dos satélites 
+que orbitan sobre la Tierra a una altitud aproximadamente de 500 Km y a una distancia entre ellos de 200 Km\cite{tws} para así detectar variaciones gravitacionales que resultan
+de los movimientos de las masas, en particular de agua en cualquiera de sus estados.
+Gracias a este par de satélites es posible detectar las variaciones de la fuerza de gravedad 
+mediante el traspaso de información del primer satélite hacia el segundo captando la diferencia de 
+masas que existen en el terreno. Debido a estas diferencias gravitatorias se provoca un aumento o 
+disminución de la distancia relativa entre un satélite y el otro logrando captar diferencias de hasta 
+$1\mu m$, estas mediciones se conocen como \textit{TerrestriaL Water Storage(TWS)}
+El gran objetivo de GRACE, es poder captar el movimiento de las aguas alrededor del globo para 
+contrarrestar riesgos como sequías, inundaciones, desprendimiento de suelos o socavones.
+
+\subsection{Almacenamiento de agua terrestre}
+El Almacenamiento de agua terrestre(en inglés \textit{TWS}) es definido como una estimación integrada del agua almacenada sobre y debajo de la superficie terrestre, 
+incluyendo el agua de dosel(\textit{canopy water}), ríos y lagos, humedad de suelo(\textit{soil moisture}) y aguas subterráneas \cite{tws}. Es calculado de la siguiente manera:
+\begin{equation}
+    \text{TWS Anomaly}_t = \frac{TWS_t-\bar{X}}{\delta}
+\end{equation}
+donde $TWS_t$ es el valor de TWS en el mes $t$, $\bar{X}$ es el valor promedio a largo plazo de TWS y $\delta$ es su desviación estándar. Ambas calculadas para el mismo mes $t$ utilizando 
+los datos temporales disponibles\cite{tws}.
+
+En base a las anomalías se pueden definir ciertos rangos de comportamientos de las mediciones que se detallan en la figura \ref{logo1}, en ella se puede observar que para la anomalía TWS, si ésta se encuentra en el intervalo $[-2,-1[$
+implica que  el contenido terrestre de agua está más seco de lo normal. Por el contrario si la observación se encuentra en el intervalo $[1,2[$ representa que el contenido de agua ha aumentado y finalmente si se encuentra entre
+$[-1,1[$ representa ``normalidad'' en el contenido de agua, es decir, la cantidad de agua presente no ha variado considerablemente.
+
+\begin{figure}[H]
+    \centering
+          \subfigure[Zonas con estrés hídrico en base a TWS]{\includegraphics[scale=0.25]{images/tws-example.png}\label{fig:tws}}
+          \subfigure[Descripción general del intervalo donde oscila TWS]{\includegraphics[scale=0.35]{images/tws-range.png }\label{fig:tws1}}\goodgap
+          \vskip -0.1in
+    \caption[Ejemplo de anomalías de TWS]{\footnotesize Ejemplo de anomalías de TWS donde se destacan las condiciones de estrés hídrico en Australia 2019}
+    \label{logo1}
+\end{figure}
+Este indicador juega un  papel crucial en el ciclo hidrológico mundial y el proceso de integración tierra-atmósfera. Las variaciones en \textit{TWS} son
+un fuerte indicador del equilibrio o desequilibrio de los flujos de agua afectados por las condiciones climáticas o geográficas
+regionales y es uno de los factores importantes que vinculan la circulación general de la atmósfera con los desastres naturales(por ejemplo, la sequía)\cite{15}.
+%
+%
+%
+%
+\section{(CR)$^2$}
+El Centro de Ciencia del Clima y la Resiliencia (CR)$^2$ es un centro de excelencia cuyo propósito es generar investigación
+sobre la ciencia del clima y la resilencia desde un enfoque interdisciplinario. 
+
+(CR)$^2$ nace en 2013 financiado por Fondap de la Agencia Nacional de Investigación y Desarrollo(Anid). En 2018 comienza una segunda etapa
+de investigación donde busca consolidarse como un actor clave para la ciencia del clima y así contribuir al tránsito del país hacia un desarrollo 
+bajo en carbono\cite{cr2}.
+
+%
+%
+%
+%
+\section{Dirección General de Aguas}
+La Dirección General de Aguas es el organismo del Estado de Chile que se encarga de gestionar, verificar y difundir la infromación 
+hídrica del país, en especial respecto a su cantidad y calidad, las personas naturales o jurídicas que están autorizadas a utilizarlas,
+las obras hidráulicas existentes y la seguridad de las mismas con el objetivo de contribuir a una mayor competitividad 
+del mercado y el resguardo de la certeza jurídica e hídrica para el desarrollo sustentable del país\cite{dga}.
+
+%
+%
+%
+%
+\section{Climate Data Operator}
+El software \textit{Climate Data Operator(CDO)} es una colección de operadores para procesamiento y predicción estándar de datos climatológicos.
+Los operadores incluyen funciones estadísticas y artimeticas simples, selección de datos, herramientas de submuestreo e interpolación espacial.
+\textit{CDO} fue desarrollado para tener el mismo conjunto de funciones de procesamiento para archivos con extensión GRIB y NetCDF. Las mayores característica
+de CDO son, entre otras, los más de 700 operadores disponibles, diseño modular y fácilmente extensible a nuevos operadores, interfaz de linea de comando UNIX muy simple,
+un conjunto de datos puede ser procesado mediante varios operadores sin la necesidad de almacenar los resultados provisionales en archivos y lo más importante un rápido procesamiento
+de conjuntos de datos muy grandes. \cite{16}.
+%\newpage
+%
+%
+%
+%
+\section{Objetivo General}
+
+Implementar \textit{Downscalling} a los datos satelitales GRACE a través de un modelo predictivo para obtener 
+productos grillados de \textit{Terrestrial Water Storage} en Chile a una alta resolución.
+%
+%
+%
+%
+\section{Objetivos Específicos}
+\begin{itemize}
+    \item Definir la metodología del \textit{Downscalling}.
+    \item Adquirir conocimientos acerca de tratamiento de datos satelitales georreferenciados utilizando Python.
+    \item Recolectar datos necesarios para implementar el aumento de resolución en el territorio.
+    \item Analizar y Pre-procesar los datos. 
+    \item Implementar el modelo predictivo y medir su rendimiento en base a métricas definidas.
+    \item Validar las predicciones del modelo en base a observaciones (datos de pozos?) [series de tiempo].
+\end{itemize}

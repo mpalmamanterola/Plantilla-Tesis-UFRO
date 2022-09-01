@@ -1,0 +1,385 @@
+\chapter{Metodología}
+\label{C3}
+Para cumplir el objetivo general se utilizó el lenguaje de programación Python debido a que es un lenguaje de \textbf{alto nivel}, por tanto es más fácil de utilizar como de leer debido a su sintaxis simple.
+Además, Python resulta ser un lenguaje \textbf{polivalente multiparadigma} lo que hace que sea de propósito general, en particular es una excelente herramienta para \textit{Data Science}. Otro aspecto importante es la
+\textbf{portabilidad}, la cual permite que el código no deba ser modificable de ninguna manera para ejecutarse en cualquier sistema operativo(macOS, Linux, UNIX y Windows) y finalmente que es un lenguaje
+\textbf{gratis y de código abierto} lo que permite que pueda ser usado, modificado y distribuido por cualquier persona.
+
+Tras un estudio exhaustivo de referencias y documentación se decide optar por aquella metodología
+que se acercase más a la problemática local con datos que puedan ser obtenidos fácilmente para agilizar
+el proceso. En base a esto se escoge el paper \textit{Downscaling of GRACE-Derived Groundwater Storage
+Based on the Random Forest Model}\cite{11}.
+
+Otra de las herramientas utilizadas durante todo el proceso fue la creación de una Máquina Vritual(VM por sus siglas en inlés \textit{Virtual Machine}) de acuerdo a las necesidaes mediante la instancia
+\textit{Google Cloud Plataform}(gcp) utilizando una conexión \textit{ssh} mediante \textit{GitHub}. En pocas palabras el proceso consiste primeramente crear las máquinas virtuales;
+En este caso se generaron 2 VM con diferentes características y funciones: La primera está destinada para el procesamiento más extenso y que necesite una alta capacidad de procesamiento, así
+las características de la máquina se resumen en el código \texttt{e2-highmem-16} que se traduce como un hardware de una CPU de 16 núcleos virtuales de 128 GB de memoria RAM y la segunda VM es la que se utilizará
+más constantemente con una capacidad menor pero que sea capaz de soportar el nivel de cálculo necesario, las carácterísticas de la máquina codifcadas son \texttt{e2-custom-6-21760} que consta de 6 núcleos virtuales,
+2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. Luego de haber generado los entornos en los cuales se procesarán y guardarán los datos se crea el repositorio en \textit{GitHub} en 
+donde se irá guardando y archivando el código generado para realizar el \textit{Downscalling}. La ventaja de utilizar \textit{git} es que proporciona un espacio en donde se van guardando cada una de las versiones del código 
+lo que nos permite acceder a código que puede haber sido borrado o extraviado de manera involuntaria o como una guía del paso a paso que se ha realizado en cierto intervalo de tiempo.
+La tercera parte consiste en configurar los datos globales de nombre de usuario y \textit{e-mail} en git para
+enlazar a la conexión, posteriormente crear una llave de conexión \textit{ssh} y agregarla al repositorio creado en \textit{GitHub} para lograr conectarse a cualquiera de las máquinas virtuales que se deseen utilizar y así poder realizar modificaciones 
+al repositorio y registrarlas mediante \textit{commits}.
+Finalmente, luego de haber activado la máquina virtual en \textit{gcp} que se desea utilizar se procede a conectar la máquina virtual con la dirección IP del computador personal o de quien realiza la consulta para la conexión
+mediante un archivo con extensión \textit{.sh} el cual solicita la información del usuario y de la máquina y la coteja.
+
+
+\begin{figure}[ht]
+    \centering
+          \includegraphics[scale=0.6]{images/ssh-conection.png}
+    \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX}
+\end{figure}
+
+Para finalizar, lo único que resta es elegir el puerto al cual el usuario desea conectarse en el navegador ya que posee múltiples entornos de ejecución de código Python, entre ellos \textit{Jupyter Notebook}, \textit{Jupyter Lab} y \textit{Dask Dashboard}
+los cuales entregan diferentes herramientas y formatos para realizar el Análisis de Datos. Para este trabajo se optó por utilizar \textit{Jupyter Lab} ya que es aquel que permite tener un control más detallado del directorio de archivos, acceso a la terminal
+de la VM de forma rápida lo cual aumenta su eficiencia a la hora de trabajar con la máquina remota. 
+%
+%
+%
+%
+\section{Métodología propuesta en el artículo}
+En base a \cite{11}, se procede a replicar la metodología propuesta en la figura 3.1, donde se detalla
+la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ}(\sim 111 \text{ Km})$
+para obtener datos georreferenciados a una resolución de $0.25^{\circ}(\sim 27.75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
+\textit{GRACE} para el \textit{Total Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas(\textit{canopy water}, \textit{soil moisture}, 
+\textit{snow water equivalent} y \textit{runoff}), \textit{GLEAM} para datos 
+de vapor de agua emanado por plantas, el suelo, etc y \textit{TRAMM} para datos de precipitación.
+
+La premisa del procedimiento se basa en que las variables explicativas se encuentran a una resolución mucho mayor que los datos recopilados por GRACE,
+por lo que en base al comportamiento de cada una de ellas es posible determinar las dinmámicas de la reserva de agua terrestre en puntos donde el satélite no 
+posee observaciones.
+
+El proceso de reducción de escala que se detalla en la figura \ref{metodologia}, en pocas palabras se puede describir
+como:
+\begin{itemize}
+
+    \item Las 6 variables explicativas se remuestrean a $1^{\circ}$(resolución 
+    nativa de GRACE) y además a la resolución que se busca estimar o resolución objetivo(en este caso $0.25^{\circ}$) mediante 
+    cierta interpolación, ya sea lineal, cúbica, etc.
+
+    \item Se instancia el modelo \textit{Random Forest} regresivo. Con las variables explicativas a 1$^{\circ}$ se entrena y se valida
+    con las observaciones de GRACE midiendo el error cuadrático medio y el error medio absoluto.
+    
+    \item Se generan las diferencias entre las predicciones del modelo y los valores reales para obtener
+    datos llamados \textit{residuales} para posteriormente interpolarlos a la resolución objetivo.
+
+    \item Con las 6 variables explicativas remuestradas a la resolución objetivo se predice el valor de \textit{TWS}
+    y posteriormente adicionar la data residual interpolada, esto como una estrategia para introducir entropía a la predicción.
+    
+    \item Finalmente, se substraen los valores de algunas variables explicativas para, según los autores, obtener el 
+    \textit{Ground Water Storage}, o almacén de agua subterránea en cada punto de la grilla y validar estos valores con
+    mediciones en terreno de pozos subterráneos u \textit{observations wells}.
+    
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+          \includegraphics[scale=0.6]{images/metodología_Chen_etal2019.png}
+          \vskip -0.1in
+    \caption[Metodología de reducción de dimensión propuesta]{\footnotesize Metodología propuesta en \cite{11}, pág. 7}
+    \label{metodologia}
+\end{figure}
+
+
+%
+%
+%
+%
+\section{Recolección y preprocesamiento de datos}
+
+
+La primera parte del trabajo consistió en la recolección de datos necesarios para replicar la metodología
+propuesta en la sección 3.1, para esto se recurren a diferentes fuentes de data que nos otorguen observaciones igual
+o de mejor calidad que las que se proponen.
+
+En base a las variables explicativas presentes en \cite{11}, se proceden a investigar múltiples fuentes de datos para finalmente
+elegir aquellas que posean más riquezas en los datos, es decir, no se utilizaron las mismas bases de datos que en el paper de referencia. 
+Las bases de datos seleccionadas fueron (CR)$^2$-met para los datos de precipitación, ERA5-Land para las 5 variables explicativas restantes,
+observaciones de pozos provienientes de la DGA y finalmente los datos de GRACE obtenidos en un sitio web de la NASA.
+
+El período de tiempo que considera el estudio comienza el mes de abril del año 2002 y culmina en junio del año 2017 en meses en los cuales existan mediciones en cada una
+de las bases de datos mencionadas.
+
+En cuanto a los límites espaciales, el estudio es realizado en el parche que tiene como límites para la longitud desde los 79.5°E hasta los 63.5°E y la latitud desde los 9°S hasta los
+69.5°S, el cual corresponde a todo el territorio continental chileno.
+
+    \subsection{GRACE}
+    Los datos satelitales georrefereenciados de GRACE se encuentran empaquetados mensualmente
+    para cualquier coordenada geográfica del globo. Por tanto el primer desafío ocurre al momento de extraer los datos de interés que son los datos 
+    del territorio chileno, el cual resulta ser un proceso heurístico exhaustivo debido a la configuración de copordenadas (latitud, longitud) del sitio web
+    ya que la longitud se encontraba entre el intervalo $[0,180]$ cuando normalmente ésta se encuentra entre los valores $[-90,90]$. Luego de múltiples intentos
+    se consigue dar con las coordenadas que localizan al territorio como se muestra en la figura 3.2(a).
+    
+    \begin{figure}[ht]
+        \centering
+              \subfigure[Datos de longitud y latitud para cada variable]{\includegraphics[height=3cm]{images/GRACE_webpage.png}\label{fig:vt:a}}
+              \subfigure[Gráfico de GRACE]{\includegraphics[height=4.6cm]{images/GRACE_init.png }\label{fig:vt:b}}\goodgap
+              \vskip -0.1in
+        \caption[Rutina para extracción de datos GRACE]{Gráfico preliminar de datos de GRACE para las coordenadas de Chile continental en mes particular.}
+        \label{logo}
+    \end{figure}
+
+    En la figura se aprecia que existen dos variables involucradas en el dataset, \textit{lwe\_thickness} (abreviación del inglés
+    \textit{level water equivalent thickness}) que se traduce como grosor de agua equivalente y \textit{uncertainty} la cual es la incertidumbre
+    o el grado de error sobre la predicción del modelo. Las variables mencionadas poseen 3 características: tiempo, latitud y longitud; Para el territorio 
+    chileno la latitud varía entre 20$^{\circ}$S y 80$^{\circ}$S y la longitud entre los 280$^{\circ}$O y los 295$^{\circ}$O, o de forma equivalente, entre 
+    -80$^{\circ}$E y -65$^{\circ}$E.
+
+    Entrando en el análisis cuantitativo, se puede graficar la distribución de datos de GRACE a baja resolución:
+    \begin{figure}[h]
+        \centering
+              \includegraphics[scale=0.6]{images/distGRACEnoproc-1deg.png}
+        \caption[Distribución de datos satelitales a baja resolución]{\footnotesize Distribución de datos satelitales GRACE sin procesar a baja resolución.}
+    \end{figure}
+    
+    Claramente se percibe una distribución muy semejante a la normal, los valores de la media son 0.002110 y una desviación estándar de 0.05371, con valores extremales -0.375 como mínimo y 
+    máximo de 0.484. Por ende, no es poible determinar el mismo criterio que en la figura \ref{logo1} ya que la escala de la zona de estudio es mucho menor, por esta razón, es mejor convenir las siguientes clasificaciones
+    de acuerdo al valor de la anomalía:
+
+    \begin{table}[H] 
+        \caption[Rangos de valores de la anomalía TWS en Chile]{Representaciones del valor de la anomalía TWS del satélite GRACE para todo su dominio}
+        \newcolumntype{C}{>{\centering\arraybackslash}X}
+        \begin{tabularx}{0.9\textwidth}{CCC}
+        \toprule
+        \textbf{Intervalo}	& \textbf{Categoría}	&\textbf{Método de cálculo}\\
+            \midrule
+            \textbf{$\left[-0\text{.}375,~-0\text{.}057\right[$}    & Más seco que el periodo anterior       & $\left[v_{min},~ \mu - \sigma\right[$\\
+            \textbf{$[-0\text{.}057,~0\text{.}0618]$}	            & Cercano a condiciones normales         & $[\mu - \sigma,~ \mu +\sigma]$ \\
+            \textbf{$\left]0\text{.}0618,~0\text{.}484\right] $}    & Más húmedo que el perídodo anterior    & $\left]\mu +\sigma,~v_{max}\right]$\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+    
+    \subsection{ERA5-L}
+    ERA5-Land es un conjunto de datos que proporciona una visión coherente de la evolución de las variables terrestres durante varias décadas 
+    con una resolución mejorada. ERA5-Land se ha producido reproduciendo el componente terrestre del reanálisis climático ECMWF ERA5. El reanálisis combina 
+    datos de modelos con observaciones de todo el mundo en un conjunto de datos globalmente completo y consistente utilizando las leyes de la física. 
+    Además, produce datos que se remontan varias décadas atrás en el tiempo, proporcionando una descripción precisa del clima del pasado\cite{ERA5-L}.
+
+    El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ}(\sim 9$ Km), 
+    para el proyecto en cuestión, de todo el territorio continental chileno.
+
+    Las variables utilizadas como explicativas del modelo \textit{Random Forest} fueron la humedad del suelo(\textit{soil moisture}), nieve equivalente en agua(\textit{snow water equivalent}),
+    evaporación por transpiración de la vegetación(\textit{evaporation from vegetation transpiration}), agua de dosel(\textit{canopy water}) y escorrentía(\textit{runoff}).
+    
+    \subsubsection{Escorrentía}
+    Parte del agua de la lluvia, de la nieve que se derrite o de lo profundo del suelo, permanece almacenada en el suelo. De lo contrario, el agua se escurre, ya sea sobre la superficie (escorrentía superficial)
+    o bajo tierra (escorrentía subterránea) y la suma de estos dos se denomina simplemente 'escorrentía'. Esta variable es la cantidad total de agua acumulada desde el comienzo del tiempo de pronóstico hasta el 
+    final del paso de pronóstico. Las unidades de escorrentía son la profundidad en metros. Esta es la profundidad que tendría el agua si se distribuyera uniformemente sobre la caja de rejilla.
+    La escorrentía es una medida de la disponibilidad de agua en el suelo y puede, por ejemplo, utilizarse como indicador de sequía o inundación.
+
+    \subsubsection{Nieve equivalente en agua}
+    Profundidad de la nieve desde el área cubierta de nieve de una cuadrícula. Sus unidades son metros de agua equivalente, por lo que es la profundidad que tendría el agua si la nieve se derritiera y se 
+    repartiera uniformemente por toda la cuadrícula. El Sistema de Pronóstico Integrado ECMWF representa la nieve como una sola capa adicional sobre el nivel superior del suelo. La nieve puede cubrir todo o parte de la caja de rejilla.
+
+    \subsubsection{Agua de dosel}
+    El dosel(\textit{canopy}), consiste en el área formada por las copas de los árboles en un bosque. Por lo tanto, el agua de dosel consiste en el agua presente en cada una de las hojas de los árboles, dicha agua proviene de 
+    la precipitación mayoritariamente, pero también se ve afectada por la humedad, la temperatura, entre otros factores.
+
+    \subsubsection{Humedad del suelo}
+    Esta variable explicativa consiste en la suma de 4 parámetros hidrológicos, éstos se definen como el volumen de agua presente en cada capa de suelo. La primera de ellas
+    hace referencia al volumen de agua presente en la superficie(0 m) hasta los 0.07 m. La segunda capa parte en los 0.07 m y culmina en los 0.28 m. La tercera capa llega hasta el metro de profundidad partiendo desde los 0.28 m
+    y la capa final, desde el metro hasta los 2.89 m \cite{ERA5-L_doc}. Con estos parámetros se genera la variable \textit{soil moisture}.
+
+    \subsection{Precipitación}
+    El conjunto de datos CR2-MET contiene información meteorológica (precipitación, temperaturas medias y extremas ) en un grilla rectangular de 0.05º latitud-longitud (aproximadamente 5km) para el territorio de Chile continental 
+    durante el periodo de 1979-2016. La técnica utilizada para la construcción del producto de precipitación se basa en una regionalización estadística de datos del reanálisis atmosférico ERA-Interim (datos disponibles en grillas de $\sim$70 Km). 
+    El método utiliza modelos estadísticos como funciones de transferencia para traducir precipitación, flujos de humedad y otras variables\cite{pr}.
+    
+    \subsection{Observaciones de pozos}
+    Las observaciones de pozos de bombeo fueron otorgadas por 2 bases de datos diferentes de la DGA. Ambas bases de datos constaban de una serie de variables útiles para muchos estudios.
+    Particularmente para el trabajo se utilizaron los códigos llamados \textbf{ESTID} \cite{gwl}, los cuales constan de códigos únicos los cuales poseen una coordenada geográfica asociada localizada dentro
+    del territorio chileno, la \textbf{fecha de la medición}, las cuales se encontraban distanciadas diariamente con valores faltantes y finalmente el valor de la \textbf{profundidad del pozo},
+    la cual se encontraba en metros.
+
+    Ambas bases de datos debieron corroborarse ya que éstas poseían códigos ESTID comunes y aquellos que diferían en medición se optaba por descartarse debido a la inconsistencia presente.
+    Finalmente el número final de códigos que fueron sujeto a estudio fue de 1036. 
+
+    \begin{figure}[H]
+        \centering
+              \includegraphics[scale=0.4]{images/Observacion_pozos.jpeg}
+        \caption[Datos de Pozos DGA sin procesar]{\footnotesize Gráfica del valor promedio de cada código único para todo el intervalo de tiempo.}
+        \label{pozosDGA}
+    \end{figure}
+
+    El objetivo de éstos datos recae en validar el contenido de agua terrestre(TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
+    Como se muestra en la figura \ref{pozosDGA}, los datos provenientes de la DGA consideran sólamente la zona norte y centro del país por lo que el estudio posterior de validación del
+    \textit{downscalling} deberá estuidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
+
+    La primera intervención realizada a esta nueva base de datos unificada consistió en relacionar estos datos que se encuentran repartidos de manera no uniforme en el territorio
+    lo cual dificulta demasiado su comparación. Es por esto que luego de aplicarle el remuestreo espacial detallado más adelante, el siguiente paso fue transformar los datos con un código asociado,
+    a datos grillados. Donde las grillas serán justamente la resolcuión objetivo(1$^{\circ}$) y la grilla de alta resolución(0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
+    habiten más de una estación de medición, es por esto que se debe adicionar nuevas variables, tales como \textbf{la densidad de pozos} por pixel, es decir, la cantidad de pozos presentes en el pixel y además
+    la \textbf{cantidad de observaciones}, es decir, la cantidad de datos presentes en cada punto de la grilla, esto para no perder aquellos píxeles que sean más representativos o que 
+    contengan una alta riqueza en sus mediciones.
+
+    \begin{figure}[H]
+        \centering
+              \subfigure[Densidad a 0.25$^{\circ}$]{\includegraphics[scale=0.4]{images/wells_density025.png}}
+              \subfigure[Densidad a 1$^{\circ}$]{\includegraphics[scale=0.4]{images/wells_density1.png }}\goodgap
+              \vskip -0.1in
+        \caption[Cantidad de pozos en cada grilla]{Gráfico de cantidad de pozos por píxel para grilla nativa y de alta resolución para el mes de enero del año 2005.}
+        \label{pixeldepth}
+    \end{figure}
+
+    \subsection{Remuestreo espacial}
+    
+    El remuestreo espacial fue una de las tareas más importantes a realizar durante el preprocesamiento. Éste consiste en que a partir de los datos a cierta
+    resolución nativa u original se buscan aumentar o disminuir dicha resolución. Para el rescalamiento espacial de los datos georreferenciados se optó por utilizar una herrmienta que sea capaz de convertir 
+    cuadrículas de datos a la resolución deseada de forma rápida y que pueda operar con grillas predefinidas según las necesidades, por lo tanto CDO es el software indicado. 
+
+    
+    El rescalamiento espacial se realiza sobre datos con una alta resolución espacial, en este caso las variables explicativas de ERA5-L y precipitación y luego, mediante interpolación bilinear a través de una rutina en \textit{bash} de CDO se consigue
+    la resolución objetivo(0.25$^\circ$) de\textit{Downscalling} y la resolución original de GRACE(1$^\circ$). Es claro que hay muchas maneras de formar las grillas de datos los cuales se encuentren a una resolución de 
+    1$^\circ$ y que éstas no necesariamente tienen que ser las mismas entre ellas, es por esto que se fija la grilla a baja resolución y alta resolución antes de realizar el remuestreo
+    para que todos los datos se encuentren remuestrados por una misma grilla. Lo más sencillo es extraer los datos de GRACE y de ellos obtener datos georreferenciados a resolución de 1$^\circ$ y así se disminuye la cantidad de
+    variables a remuestrar.
+
+    Aunque CDO entregue resultados mucho más rapido que Pyhon, la mayor desventaja recae en el hecho que el software es ajeno al código en el cual se han realizado todos y cada uno de los análisis anteriores, por tanto se deberían realizar otros procedimientos para poder integrar las operaciones a los archivos resultantes.
+    A partir de esto, se opta por realizar interpolación bilinear de forma interna en Python y, para corroborar los resultados, se recurre a CDO que al ser un software especializado nos entrega seguridad a la hora de realizar el remuestreo
+    espacial. Se escoge la variable hidrológica \textit{runoff} proveniente del conjunto de datos ERA5-L y se procede a realizar las interpolaciones para el mes de marzo del año 2009, para este mes se obtuvieron los siguientes resultados:
+    
+    \begin{table}[H] 
+        \caption[Comparación de interpolaciones Python/CDO]{Comparación de interpolación bilinear realizada en software especializado(CDO) versus Python desde la resolución original de 0.1° a 0.25°.}
+        \newcolumntype{C}{>{\centering\arraybackslash}X}
+        \begin{tabularx}{0.9\textwidth }{CCCC}
+        \toprule
+         \textbf{Datos}& \textbf{Intervalo}	&\textbf{Media($\mu$)}  &\textbf{Desviación estándar($\sigma$)}\\
+            \midrule
+            \textbf{Originales 0.1°}	&	[0, 0.01130]       &  0.0002417  & 0.000788\\
+            \textbf{CDO 0.25°}	        &   [0, 0.01058]       &  0.0002242  & 0.000755\\
+            \textbf{Python 0.25°}       &   [0.00024, 0.00083] &  0.0002430  & 0.000831\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+
+    Si bien las cotas de los datos para Python se ven mucho más restringidas, éste análisis no nos entrega información de qué tan cercanas son cada una de las interpolaciones entre sí. Claramente CDO será el punto de comparación debido a 
+    la función para la cual éste software fue diseñado es operar en grillas de datos, el objetivo ahora es calcular qué tan lejos se encuentra la interpolació de Python con la de CDO.
+    Así, se proceden a calcular los errores ya conocidos, MAE y RMSE. Obteniendo un valor de error medio absoluto de $1.93317\times 10^{-6}$ y un error cuadrático medio de $5.262181\times 10^{-10}$. Por lo tanto, 
+    la interpolación realizada en Python resulta ser válida en base a la interpolación que se realiza utilizando CDO.
+
+
+    \subsection{Remuestreo temporal}
+    Debido a la naturaleza de los datos de precipitación y de mediciones de pozos de bombeo, fue necesario realizar un preprocesamiento 
+    adicional al de ERA5-L ya que además del remuestreo espacial a 1$^\circ$ y 0.25$^\circ$ se debió realizar un remuestreo temporal
+    mensual para adicionar la variable al modelo.
+
+    Junto con la alta riqueza espacio-temporal de la base de los productos grillados de precipitación surge un problema no menor: la capacidad de procesamiento para los datos aumenta
+    exponencialmente, por este motivo se busca realizar el procesamiento temporal mediante la librería xarray de Python y no pandas como se había hecho con
+    ERA5, esto para dar paso al procesamiento espacial el cual se debió realizar mediante la librería de geopandas debido a la naturaleza misma de los datos
+    los cuales se encuentran georreferenciados mediante coordenadas de longitud y latitud.
+
+    Debido a que la naturaleza de las observaciones de pozos, el problema de capacidad de cómputo desaparece y no resulta problema remuestrear mensualmente el valor de la profundidad a través de 
+    un promedio simple mensual para cada código de medición.
+%   
+%
+%
+%
+%
+%
+%
+\section{Entrenamiento y Testeo}
+    Para entrenar el modelo Random Forest en primera instancia es necesario dividir el conjunto de datos en entrenamiento
+    y testeo para entrenar el modelo y luego verificar la predicción en base a observaciones que no han sido utilizadas para 
+    entrenarlo. Debido a que el territorio nacional contiene climas muy diferentes en base a la zona en la que nos encontremos
+    en conjunto con el hecho de que las variables explicativas son variables hidrológicas que se verán afectadas de mayor o menor manera
+    según la zona geográfica. Por ejemplo, la precipitación en el extremo sur es excesivamente alta comparada con la precipitación en 
+    la zona norte. Así surge la idea de estratificar los datos de entrenamiento y testeo para conseguir predicciones coherentes 
+    y que la división de conjuntos no se encuentre sesgada de ninguna manera.
+    \begin{figure}[ht]
+        \centering
+              \includegraphics[scale=0.5]{images/division_zonas.png}
+              \vskip -0.1in
+        \caption[División de datos por macrozonas de Chile]{\footnotesize División de datos en base a las zonas de Chile.}
+        \label{division}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+              \includegraphics[scale=0.5]{images/traintest.png}
+              \vskip -0.1in
+        \caption[Entrenamiento y testeo mediante macrozonas]{\footnotesize División en entrenamiento y testeo para cada macrozona de Chile.}
+        \label{traintest}
+    \end{figure}
+
+    En la figura \ref{division}, \texttt{DATA} constituye todas las variables explicativas para el modelo con mediciones remuestradas en la grilla de GRACE
+    a 1$^{\circ}$, el valor de la variable respuesta (\texttt{lwe\_thickness}), además de la respectiva fecha de medición(\texttt{time}) y 
+    coordenadas geográficas(\texttt{lon} y \texttt{lat})
+%
+%
+%
+%
+\section{Construcción del modelo Random Forest}
+Según el sitio web de sklearn\cite{rfskl}, un bosque aleatorio es un metaestimador 
+que ajusta una serie de árboles de decisión en varias submuestras 
+del conjunto de datos y utiliza el promedio para mejorar la precisión predictiva y controlar el sobreajuste. 
+El tamaño de la submuestra se controla con el parámetro \texttt{max\_samples}, si el parámetro \texttt{bootstrap=True}, el cual se encuentra predeterminado, 
+de lo contrario, se usa todo el conjunto de datos para construir cada árbol.
+
+Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza el error cuadrático medio(fig. \ref{logo2}) y el restante minimiza el error medio absoluto(fig. \ref{logo3}). En cuanto a la construcción misma, ambos modelos comparten los mismos hiperparámetros, 
+éstos son:
+\begin{itemize}
+    \item \texttt{n\_estimators}: Es la cantidad de árboles presentes en el \textit{ensemble}. 
+    \item \texttt{max\_depth}: Se define como la profundidad del árbol, es decir, la cantidad máxima de particiones de cada estimador.
+    \item \texttt{max\_features}: Es la cantidad de características que se consideran para encontrar la mejor división del árbol, o en otras palabras, el porcentaje de variables explicativas utilizadas para realizar la mejor división en cada árbol. \texttt{None} 
+    se refiere a que el algoritmo seleccione la profundidad del árbol de acuerdo a la minimización de su función objetivo.
+    \item \texttt{oob\_score}: La abreviación para \textit{out of bag score} definida como el porcentaje de observaciones las cuales no serán utilizadas para entrenar el modelo a la hora de hacer la muestra de \textit{boostrap} y por tanto sólo serán utilizadas para testear.
+    \texttt{False} significa que el modelo utilizará todo el conjunto para realizar el \textit{bagging}.
+    \item \texttt{n\_jobs}: Hace alusión a la cantidad de procesadores virtuales se utilizarán para entrenar el modelo gracias a que el \textit{bagging} es fácilmente paralelizable y en Python se encuentra implementada esta función, en este caso se le asigna el valor de  
+    $-1$ para que se utilicen todos los procesadores disponibles y así disminuir el tiempo de cómputo.
+    \item \texttt{random\_state}: Define la semilla con la cual se generarán las muestras aleatoreis, por lo que si se le otorga un valor se puede obtener un modelo replicable.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+          \includegraphics[scale=0.5]{images/RF_regressor.png}
+          \vskip -0.1in
+    \caption[Construcción y entrenamiento del modelo Random Forest con criterio de \textit{mse}]{\footnotesize Modelo Random Forest construído en Python con minimización del error cuadrático medio.}
+    \label{logo2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+          \includegraphics[scale=0.5]{images/RF_regressor_mae.png}
+          \vskip -0.1in
+    \caption[Construcción y entrenamiento del modelo Random Forest con criterio de \textit{mae}]{\footnotesize Modelo Random Forest construído en Python con minimización del error medio absoluto.}
+    \label{logo3}
+\end{figure}
+
+    \subsection{Interpolación de Residuos}
+
+    Posterior a instanciar cada uno los modelos y seleccionar el que mejor métricas de validación entregue en la resolución nativa, corresponde calcular la diferencia entre los valores reales y los valores predichos, es decir, los datos residuales.
+    Luego de obtener dichos datos es necesario remuestrearlos a la resolución objetivo, ésto mediante interpolación bilinear.
+ 
+    Mediante dos funciones creadas en Python y la clase \texttt{interpolate.interp2d} de la librería \texttt{scipy} es posible interpolar los datos a partir de sus 4 vecinos más cercanos resolviendo el sistema de ecuaciones
+    de la ecuación \ref{interp2d}, éstas funciones son:
+    \begin{itemize}
+        \item {\texttt{nearest\_coor\_patch}: Es una función que particiona la grilla de longitud(df\_\texttt{lon}) y de latitud(df\_\texttt{lat}) del \textit{dataframe} y retorna los 4 vecinos más cercanos en base a la distancia euclídea
+        de las coordenadas de longitud y latitud entregadas.}
+        \item {\texttt{bilinear\_interpolation}: Función que interpola el parche de coordenadas entregado(\texttt{patch}) de la variable \texttt{var\_name} en la longitud(\texttt{new\_lon}) y latitud(\texttt{new\_lat}) dadas. En el caso de haber un error cuantitativo de interpolación,
+         la función retorna el objeto nulo de la librería \texttt{numpy}.}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+              \includegraphics[scale=0.5]{images/res_interp.png}
+              \vskip -0.1in
+        \caption[Funciones utilizadas para la interpolación de residuos]{\footnotesize Funciones utilizadas para interpolar bilinearmente la data residual de 1$^{\circ}$ a 0.25$^{\circ}$.}
+        \label{logo4}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+              \includegraphics[scale=0.5]{images/res_interp_rutine.png}
+              \vskip -0.1in
+        \caption[Rutina de interpolación de residuos]{\footnotesize Rutina para interpolar bilinearmente la data residual de 1$^{\circ}$ a 0.25$^{\circ}$.}
+        \label{logo5}
+    \end{figure}
+
+    Posteriormente, se toman las grillas mensuales y para cada coordenada en la grilla a alta resolución se procede a interpolar en base a la funciones antes mencionadas. La rutina de interpolación de residuos se detalla en la figura \ref{logo5} para almacenar los valores residuales en la variable \texttt{data\_res}.
+    
+    Finalmente, los datos residuales interpolados son añadidos a la predicción a alta resolución como una forma de agregar entropía al modelo y así otorgarle un grado de intertidumbre al valor final.
+
+
+
+   

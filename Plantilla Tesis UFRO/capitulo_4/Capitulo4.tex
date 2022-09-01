@@ -1,0 +1,160 @@
+\chapter{Resultados y Discusión}
+\label{C4}
+Los resultados debieron ser analizados de dos formas: Una de ellas consiste en la medición del error de cada modelo en base al conjunto de test, éstos errores son la 
+raíz del error cuadrático medio, en inglés \textit{Root Mean Squared Error(RMSE)} y el error medio absoluto(\textit{MAE}), ésto significa una validación en la resolución nativa de 
+GRACE, es decir 1$^\circ$. La segunda manera es la validación en la alta resolución, es decir, posterior a realizar la predicción a 0.25$^\circ$; Está claro que no se posee
+un conjunto para validar los datos en este escenario debido a que sería un \textit{Downscalling} ya hecho. Por este motivo se deben optar por otras maneras de corroborar la información
+para que ésta sea fiable, aquí es donde las series de tiempo se ajustan a lo que buscamos validar.
+
+\section{Métricas de validación en el conjunto de prueba }
+Como se ha mencionado, la primera validación ocurre en la resolución nativa de GRACE. Ahora, en primera instancia se evalúa el rendimiento general de cada modelo, es decir, 
+se calcula el error medio absoluto y \textit{RMSE} para el conjunto entero de testeo. Con este procedimiento se obtuvieron los siguientes errores:
+
+\begin{itemize}
+    \item Para el modelo que \textbf{minimiza el error cuadrático medio}, la métrica \textit{MAE} es de aproximandamente 0,0056904 y un \textit{RMSE} con valor de 6,23$ \times 10^{-5}$.
+    \item Para el modelo que \textbf{minimiza el error medio absoluto}, la métrica \textit{MAE} es de 0,00615 aproximadamente y el \textit{RMSE} se obtiene un valor de 7,25$ \times 10^{-5}$.
+\end{itemize}
+
+Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon} y \textit{soil\_moisture}(\texttt{sm}), en ese orden. Claramente el porcentaje de importancia
+varía pero el orden se mantiene. Por lo tanto, se puede afirmar que los modelos se encuentran afectos al rendimiento mayoritariamente en base al criterio de minimización escogido.
+
+La siguiente validación en base a la resolución nativa de GRACE es con respecto a las macrozonas del país, es decir, aquellos datos que fueron estratificados y luego separados en entrenamiento y testeo (figura \ref{traintest}).
+En cada macrozona se calculan las métricas de error correspondiente en el conjunto test. Los resultados se muestran en la siguiente tabla:
+
+    \begin{table}[H] 
+        \caption[Métricas de validación para cada macrozona]{Métricas de validación para cada macrozona de Chile.}
+        \newcolumntype{C}{>{\centering\arraybackslash}X}
+        \begin{tabularx}{0.9\textwidth}{CCCCC}
+        \toprule
+        \textbf{zona}	& \textbf{MAE \texttt{mse\_model}}	& \textbf{MAE \texttt{mae\_model}} & \textbf{RMSE \texttt{mse\_model}} & \textbf{RMSE \texttt{mae\_model}}\\
+            \midrule
+            \textbf{N. grande}		& 0.004583 & 0.005005 & 0.000043 & 0.000050\\
+            \textbf{N. chico}		    & 0.005522 & 0.006020 & 0.000057 & 0.000068\\
+            \textbf{Centro}             & 0.006888 & 0.007355 & 0.000084 & 0.000096\\
+            \textbf{Sur}                 & 0.005722 & 0.005968 & 0.000061 & 0.000066\\
+            \textbf{Austral}            & 0.005963 & 0.006510 & 0.000068 & 0.000082\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+
+Para comparar cada modelo en base a las métricas de evaluación, conviene realizar un gráfico, en este caso se realiza uno por cada métrica debido a que el orden de los errores
+difieren para dejar una única gráfica. 
+
+\begin{figure}[H]
+    \centering
+          \includegraphics[scale=0.78]{images/RMSE_RFmodels.png}
+          \vskip -0.1in
+    \caption[Error cuadrático medio en cada macrozona del país]{\footnotesize Medición del error cuadrático medio en cada macrozona de Chile.}
+    \label{mserf}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+          \includegraphics[scale=0.78]{images/MAE_RFmodels.png}
+          \vskip -0.1in
+    \caption[Error medio absoluto en cada macrozona del país]{\footnotesize Medición del error medio absoluto en cada macrozona de Chile.}
+    \label{maerf}
+\end{figure}
+
+Es evidente que el modelo el cual minimiza el error cuadrático medio, además de reducir la varianza en la predicción, mejora la predicción misma otorgando un menor error tanto
+general como en cada macrozona del país, mostrando la superioridad de la minimización del error cuadrático medio por sobre el error medio absoluto. Es por esta razon, que el modelo escogido para 
+predecir valores de \textit{lwe\_thickness} provenientes de GRACE a una mayor resolución será el modelo que mejores métricas de evaluación presente.
+%
+%
+%
+%
+\section{Resultados Finales}
+Es necesario señalar que los resultados que se presentan a continuación son válidos para el territorio continental chileno, debido a la naturaleza de las bases de datos, específicamente de ERA5-LAND y precipitación, es 
+por este motivo que las observaciones presentes fuera del territorio continental chileno no deben utilizarse para estudios posteriores.
+
+Como se menciona en la metodología del paper base\cite{11}, luego de obtener el TWS final a éste se le deben substraer aquellas variables hidrológicas superficiales para así
+obtener el contenido de aguas subterráneas, no obstante, no se puede asegurar que realizando la substracción de variables hidrológicas superficiales se consiga el valor del almacenamiento de aguas subterráneas, o 
+\textit{Ground Water Storage}(GWS), ésto debido a muchos otros factores que se ignoran a la hora de realizar ese procedimiento, es por esta razón que se decide por omitir este paso y proceder a la validación con mediciones \textit{in situ} o mediciones en terreno con datos de pozos de bombeo que 
+se detalla más adelante.
+
+Luego de la adición de los residuos interpolados, son 156 las grillas de datos obtenidas desde abril del año 2002 hasta junio del año 2017. A continuación se muestran los datos con reducción de escala para
+uno de los primeros períodos de tiempo, específicamente septiembre del año 2002, a la mitad del período y para finales del mismo, es decir, abril del año 2017.
+
+\begin{figure}[H]
+    \centering
+          \subfigure[GRACE a 1$^{\circ}$]{\includegraphics[scale=0.53]{images/Before_Downscalling_v0-09-02.jpeg}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/Downscalling_v0-09-02.jpeg}}\goodgap
+          \vskip -0.1in
+    \caption[\textit{Downscalling} final para el mes 09/2002]{Gráfico del aumento de resolución de GRACE a resolución de 0.25$^{\circ}$ para septiembre del año 2002.}
+    \label{dsf02}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+          \subfigure[GRACE a 1$^{\circ}$]{\includegraphics[scale=0.53]{images/Before_Downscalling_v0-06-14.jpeg}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/Downscalling_v0-06-14.jpeg}}\goodgap
+          \vskip -0.1in
+    \caption[\textit{Downscalling} final para el mes 06/2014]{Gráfico del aumento de resolución de GRACE a resolución de 0.25$^{\circ}$ para junio del año 2014.}
+    \label{dsf14}
+\end{figure}
+
+A simple vista, se logra apreciar que los mapas de calor son coincidentes en cuanto a los valores de las anomalías se refiere, es decir, el modelo es capaz de capturar correctamente
+las zonas en las cuales existe un déficit o superhábit hidrológico en base a las mediciones originales. Ésto aunque parezca concluyente, aún no es suficiente para dterminar si el \textit{Downscalling}
+ha sido exitoso, es por esta razón que aún queda la validación de datos de GRACE a alta resolución pendiente.
+
+\begin{figure}[H]
+    \centering
+          \subfigure[GRACE a 1$^{\circ}$]{\includegraphics[scale=0.53]{images/GRACE_mapv1-04-17.jpeg}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/Downscalling_mapv1-04-17.jpeg}}\goodgap
+          \vskip -0.1in
+    \caption[\textit{Downscalling} final para el mes 06/2014]{Gráfico del aumento de resolución de GRACE a resolución de 0.25$^{\circ}$ para abril del año 2017.}
+    \label{dsf17}
+\end{figure}
+
+
+
+En base a la gráfica se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
+tienden a la baja en la zona norte y a la alza en la zona austral, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
+
+Finalmente, podemos comparar las distribuciones de la resolución nativa con el \textit{Downscalling} posterior a la adición de residuos, en base a ello se obtienen las siguientes gráficas.
+\begin{figure}[H]
+    \centering
+          \subfigure[Distribución TWS a 1$^{\circ}$]{\includegraphics[scale=0.6]{images/distGRACE1deg.png}}
+          \subfigure[Distribución TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.6]{images/distGRACE025deg.png}}\goodgap
+          \vskip -0.1in
+    \caption[Comparativa de distribuciones de GRACE]{Gráfico de las distribuciones de los datos originales de GRACE con los valores predichos a alta resolución con el modelo Random Forest}
+    \label{distcomp}
+\end{figure}
+
+Es evidente que el valor de las densiades(eje $y$) difieren en demasía debido al mayor volumen de datos presente en los datos a alta resolución, de todas maneras, ambas distribuciones
+se asemejan y mantienen un coportamiento normal. Ahora si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y curtosis podremos tener una idea más clara 
+en cuanto a la similitud de distribuciones se trata.
+
+\begin{table}[H] 
+    \caption[Comparación de distribuciones de TWS a baja y alta resolución]{Comparación de TWS a baja y alta resolución en distribución , media, desviación estándar y soporte.}
+    \newcolumntype{C}{>{\centering\arraybackslash}X}
+    \begin{tabularx}{0.9\textwidth}{CCCCC}
+    \toprule
+    \textbf{resolución}	& \textbf{valor mínimo}	& \textbf{valor máximo} & \textbf{media($\mu$)} & \textbf{desviación estándar($\sigma$)}\\
+        \midrule
+        \textbf{baja(1$^{\circ}$)}		& -0.284269 & 0.235858 & 0.001318 & 0.056551\\
+        \textbf{alta(0.25$^{\circ}$)}   & -0.263974 & 0.223713	& 0.001366 & 0.056020\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+De aquí se puede deducir que el \textit{Downscalling} ha sido realizado de manera correcta, manteniendo la distribución de los datos originales, disminuyendo ligeramente el rango en el que éstos se encuentran,
+aunque con la media desplazada más lejana del origen y con una pequeña disminución en la variabilidad.
+
+
+%
+%
+%
+%
+
+
+\section{Estudio y validación con series de tiempo}
+Debido a la extensa hidrografía presente en el territorio chileno y de los limitados datos de observaciones de pozos, la validación y la discusión mediante mediciones \textit{in situ} se centrará
+en la región de Coquimbo. En primera instancia se realiza un estudio general de datos promediados regionales para observar los comportamientos de la región y 
+posteriormente escoger un pixel en particular de pozos para estudiar series de tiempo particulares.
+%
+% 
+
+%
+%
