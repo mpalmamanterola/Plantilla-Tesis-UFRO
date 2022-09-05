@@ -1,0 +1,515 @@
+% Estilo de Tesis de la Universidad de La Frontera
+% Departamento de El�ctrica.
+% Creado por Ramiro Donoso Floody
+% Temuco, Chile
+% Ultima edici�n: 20 Mayo 2018
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{UFRO_Tesis}[2017]  %Estilo de Tesis de la UFRO
+\RequirePackage{ifthen}
+\RequirePackage{latexsym}
+\RequirePackage{tabularx}  
+\RequirePackage[subfigure]{tocloft}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+%\usepackage[usenames]{color}
+\RequirePackage{authordate1-4} % para uso exclusivo de % bibliografia alfabetica
+\RequirePackage[left=3cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+
+\newif\iflinks		\linkstrue
+\DeclareOption{noLinks}{\linksfalse}
+\ProcessOptions\relax
+
+
+
+%%% permite la activaci�n/desactivaci�n de los links en el documento
+	
+%\newcommand{\properpagestyle}{\pagestyle{plain}}
+
+% Lo primero que se hace es ver si el reporte ha sido cargado.
+\@ifundefined{chapter}{\@latexerr{La opci\'on de 'UFRO_Tesis' deber\'i�a ser usado
+con el estilo de documento 'report'}}{}
+
+% No permitir salto de p�ginas en hyphens (Esto dar� algunos underfull vbox's,
+% entonces una alternativa es usar \brokenpenalty=100 y manualmente buscar por
+% y arreglar tales saltos de p�ginas.)
+\brokenpenalty=100
+
+% Usar 1.37 veces el salto baseline-to-baseline normal 
+\renewcommand{\baselinestretch}{1.37}
+%espaciado simple y doble
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]{\setlength{\baselineskip}{#1 \defbaselineskip}}
+\newcommand{\doublespacing}{\setlength{\baselineskip}{2 \defbaselineskip}}
+\newcommand{\reducedspacing}{\setlength{\baselineskip}{1 \defbaselineskip}}
+\newcommand{\singlespacing}{\setlength{\baselineskip}{1.37 \defbaselineskip}}
+
+% New if constructs:    Default conditions:
+\newif\ifingEjTesis		\ingEjTesisfalse
+\newif\ifingTesis		\ingTesisfalse
+\newif\ifingCivTesis	\ingCivTesisfalse
+\newif\ifmagisterTesis	\magisterTesisfalse
+\newif\ifdoctorTesis	\doctorTesisfalse
+\newif\ifphdTesis       \phdTesisfalse %Master o Doctor
+
+\newif\ifdedic@tion     \dedic@tionfalse
+\newif\ifanexos			\anexosfalse
+\newif\ifack			\ackfalse
+\newif\ifresumenesp		\resumenespfalse
+\newif\ifresumening		\resumeningfalse
+\newif\ifsecondAuthor	\secondAuthorfalse
+\newif\ifthirdAuthor	\thirdAuthorfalse
+
+% front que definen macros.
+\definecolor{dorado}{rgb}{0.93,0.71,0}
+\def\university#1{\gdef\@university{#1}}
+\def\titlefoot#1{\gdef\@titlefoot{#1}}
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\secondAuthor#1{\gdef\@secondAuthor{#1}\secondAuthortrue}
+\def\thirdAuthor#1{\gdef\@thirdAuthor{#1}\thirdAuthortrue}
+\def\dept#1{\gdef\@dept{#1}}
+\def\faculty#1{\gdef\@faculty{#1}}
+\def\profguia#1{\gdef\@profguia{#1}}
+\def\profcorrA#1{\gdef\@profcorrA{#1}}
+\def\profcorrB#1{\gdef\@profcorrB{#1}}
+\def\profcorrC#1{\gdef\@profcorrC{#1}}
+\def\twosupervisors{\two@supervisorstrue}
+\def\ack#1{\gdef\@ack{#1}\acktrue}
+\def\resumenesp#1{\gdef\@resumenesp{#1}\resumenesptrue}
+\def\resumening#1{\gdef\@resumening{#1}\resumeningtrue}
+\def\submitdate#1{\gdef\@submitdate{#1}}
+\def\copyrightyear#1{\gdef\@copyrightyear{#1}} % \author, \title en reporte.
+\def\degree#1{\gdef\@degree{#1}}
+\def\degreeinitial#1{\gdef\@degreeinitial{#1}}
+\def\carrera#1{\gdef\@carrera{#1}}
+
+%TIPO DE DOCUMENTO DE TESIS
+\def\ingEjTesis{\degree{Ingeniero en Ejecuci�n}\degreeinitial{Ing.Ej.}\phdTesisfalse\ingEjTesistrue}
+\def\ingTesis{\degree{Ingeniero}\degreeinitial{Ing.}\phdTesisfalse\ingTesistrue}
+\def\ingCivTesis{\degree{Ingeniero Civil}\degreeinitial{Ing.Civ.}\phdTesisfalse\ingCivTesistrue}
+\def\magisterTesis{\degree{Mag��ster}\degreeinitial{Mg.}\phdTesistrue\magisterTesistrue}
+\def\doctorTesis{\degree{Doctor}\degreeinitial{Dr.}\phdTesistrue\doctorTesistrue}
+\ingCivTesis % grado por defecto
+
+\def\@carrera{Ingeniero Civil Telem�tico} % carrera por defecto
+\def\@title{Presentaci�n del informe final de la\\ actividad de titulaci�n.}
+\def\@titlefoot{\@title}
+\def\@author{Nombre Completo del Autor}
+\def\@secondAuthor{Nombre Completo del Autor 2}
+\def\@thirdAuthor{Nombre Completo del Autor 3}
+\def\@university{de La Frontera}
+\def\@dept{Ingenier��a El�ctrica}
+\def\@faculty{Ingenier��a y Ciencias}
+\def\@profguia{Dr. Profesor Gu�a}
+\def\@profcorrA{Dr. XXX Rev1}
+\def\@profcorrB{Dr. XXX Rev2}
+\def\@profcorrC{Dr. XXX Rev3}
+\def\@ack{}
+\def\@resumenesp{}
+\def\@resumening{}
+\def\@submitdate{\ifcase\the\month\or
+  Enero\or Febrero\or Marzo\or Abril\or Mayo\or Junio\or
+  Julio\or Agosto\or Septiembre\or Octubre\or Noviembre\or Diciembre\fi
+  \space \number\the\year}
+\def\@copyrightyear{\number\the\year}
+\def\dedicate#1{\dedic@tiontrue\gdef\dedication@text{#1}}
+
+%PORTADA POSTGRADO
+\def\phdTitlep{%
+	\thispagestyle{empty}%
+	\begin{center}
+	\textbf{{\Large UNIVERSIDAD \uppercase\expandafter{\@university}}}
+	\vskip 0.2in
+	{\Large Facultad de \@faculty }
+	\vskip 0.2in
+%	{\Large \@carrera }
+	\begin{tabular}{p{4 in}}
+	 \centering{\Large \@carrera}
+	\end{tabular}
+	\vfill
+	\includegraphics[width=4.7cm]{img/ufro.png}
+	\vfill
+	\textbf{\Large\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+
+	\begin{flushright}			
+	\begin{tabular}{p{3.4 in}}
+	\hline \vskip -0.6in
+	\textbf{\flushleft{\footnotesize TRABAJO PARA OPTAR AL GRADO\\ ACAD\'EMICO DE \uppercase\expandafter{\@carrera}}}
+	\\ \hline
+	\end{tabular}
+	\end{flushright}
+	
+	\vskip 0.6in
+	\begin{center}
+	\textbf{\uppercase\expandafter{\@author}}
+	\end{center}
+	
+	\vskip 0.2in
+	\begin{center}	
+	\singlespacing
+	\textbf{TEMUCO-CHILE } \\
+	\textbf{\uppercase\expandafter{\@copyrightyear}}
+	\end{center}\newpage
+}
+%PORTADA DE PREGRADO
+\def\ingTitlep{%
+	% Portada en dorado
+	\thispagestyle{empty}%
+	\textcolor{dorado}{
+	\begin{tabular}{p{2.5cm}c}
+	\multirow{3}{2.5cm}{\vspace{-2mm}\includegraphics[width=2.4cm]{img/dorado.png}} & 
+	   \textbf{UNIVERSIDAD \uppercase\expandafter{\@university}} \\
+	 & \textbf{FACULTAD DE \uppercase\expandafter{\@faculty}} \\
+	 & \textbf{DEPARTAMENTO DE \uppercase\expandafter{\@dept}} \\
+	\end{tabular}
+	}
+	\vfill
+	\textcolor{dorado}{
+	\begin{center}
+	\textbf{{\large ``\@title''}}
+	\end{center}
+	}
+	\vfill
+	\textcolor{dorado}{
+	\begin{center}
+	\singlespacing
+	\textbf{\uppercase\expandafter{\@author}}\\
+	\ifsecondAuthor
+		\textbf{\uppercase\expandafter{\@secondAuthor}}\\
+	\fi
+	\ifthirdAuthor
+		\textbf{\uppercase\expandafter{\@thirdAuthor}}\\
+	\fi
+	\textbf{\uppercase\expandafter{\@copyrightyear}}
+	\end{center}
+	}
+
+	%HOJA EN BLANCO	
+	\newpage
+	\newpage{\ }
+	\thispagestyle{empty}
+	\newpage
+	
+	%CARATULA
+	\thispagestyle{empty}%
+	\begin{tabular}{p{2.5cm}c}
+	\multirow{3}{2.5cm}{\vspace{-2mm}\includegraphics[width=2.4cm]{img/ufro.png}} & 
+	   \textbf{UNIVERSIDAD \uppercase\expandafter{\@university}} \\
+	 & \textbf{FACULTAD DE \uppercase\expandafter{\@faculty}} \\
+	 & \textbf{DEPARTAMENTO DE \uppercase\expandafter{\@dept}} \\
+	\end{tabular}
+	\vfill
+	\begin{center}
+	\textbf{{\large `` \@title ''}}
+	\end{center}
+	\vfill
+	\begin{flushright}
+	\textbf{	
+	\begin{tabular}{l}
+	\hline 	
+	TRABAJO PARA OPTAR AL T\'ITULO DE\\ \uppercase\expandafter{\@carrera}\\
+	\hline 
+	\end{tabular}}
+	\end{flushright}
+
+	\vskip 0.5in
+	\begin{flushright}
+	\textbf{Profesor Gu\'ia:} \@profguia
+	\end{flushright}
+	
+	\vskip 0.5in
+	\begin{center}
+	\singlespacing
+	\textbf{\uppercase\expandafter{\@author}}\\
+	\ifsecondAuthor
+		\textbf{\uppercase\expandafter{\@secondAuthor}}\\
+	\fi
+	\ifthirdAuthor
+		\textbf{\uppercase\expandafter{\@thirdAuthor}}\\
+	\fi
+	\textbf{\uppercase\expandafter{\@copyrightyear}}
+	\end{center}\newpage
+}
+
+\def\signature#1{
+
+	\begin{tabular}{p{2.7in}}
+	\toprule[0.4pt]
+	 \centering{\bfseries{#1}} \\
+	\end{tabular}
+}
+
+%PAGINA FIRMA POSTGRADO
+\def\phdSignaturepage{
+\thispagestyle{empty}%
+    Esta tesis fue realizada bajo la supervisi\'on del Director de tesis, \@profguia \- del Departamento de \@dept \- de La Universidad \@university, unidad acad\'emica adscrita a la Facultad de \@faculty, y ha sido aprobada por los miembros de la comisi\'on examinadora.      
+	\vfill
+    \begin{center}
+		\textbf{\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill 
+    \begin{multicols}{2}
+    	\begin{small}
+	    	\vskip 0.5in
+    		\signature{\hskip -0.09in DIRECTOR DEL PROGRAMA DE\\ \uppercase\expandafter{\@carrera}}
+    		\vskip 1in
+	   		\signature{DIRECCI\'ON DE POSTGRADO\\ UNIVERSIDAD DE LA FRONTERA}
+		\end{small}
+		\vskip 1in
+		\signature{\@profguia \\ Profesor Gu\'ia}
+		\vskip 0.2in
+		\signature{\@profcorrA \\ Evaluador Interno}	
+		\vskip 0.2in		
+    	\signature{\@profcorrB \\ Evaluador Externo}    
+		\vskip 0.2in    	
+	    \signature{\@profcorrC \\ Evaluador Externo}    
+	\end{multicols} 
+	 	     
+    \vskip 0.2in
+    \begin{flushright}
+    	\@submitdate. \\
+    	Temuco, Chile. 
+    \end{flushright}
+    \vfill
+}
+%PAGINA FIRMA PREGRADO
+\def\ingSignaturepage{%
+		\thispagestyle{empty}%
+		\vfill
+	    \begin{center}
+		\textbf{\uppercase\expandafter{\@title}}
+		\vskip 0.3in
+		\textbf{\small{\@author}}\\
+		\ifsecondAuthor
+			\textbf{\small{\@secondAuthor}}\\
+		\fi
+		\ifthirdAuthor
+			\textbf{\small{\@thirdAuthor}}\\
+		\fi
+		\vfill
+		\textbf{COMISI\'ON EXAMINADORA}
+		\vskip 1.5in
+		\signature{\@profguia \\ Profesor Gu\'ia} 
+    	\vskip 1.5in
+    	\hfill
+	    \begin{multicols}{2}
+			\signature{\@profcorrA \\ Acad\'emico Evaluador}	
+    		\signature{\@profcorrB \\ Acad\'emico Evaluador}        
+		\end{multicols} 
+		\end{center}
+		%\vskip 0.5in
+		\vfill
+		\begin{flushright}
+		\begin{tabular}{llp{5cm}}
+		\textbf{Nota trabajo escrito} & \textbf{:} & \\ 
+		\textbf{Nota examen} & \textbf{:} & \\ 
+		\textbf{Nota final} & \textbf{:} & \\ 
+		\end{tabular}
+		\end{flushright}
+}
+
+
+\def\makeTitle{
+	\renewcommand\leftmark{}
+    \pagenumbering{Roman}
+    \pagestyle{plain}
+    \ifphdTesis 
+    		\phdTitlep
+    		\phdSignaturepage
+    \else
+    		\ingTitlep
+    		\ingSignaturepage
+    \fi
+    \ifdedic@tion
+        \newpage 
+        \thispagestyle{empty}%
+        \vspace*{\fill}
+		\begin{flushright}
+        \textbf{\textit{\dedication@text}}
+        \end{flushright}
+		\vspace*{1cm}
+        
+    \fi
+      
+    % ------------------------------------------------------------------------
+    \doublespacing
+    \ifack
+	    \include{\@ack}
+    \fi
+    \ifresumenesp
+    		\include{\@resumenesp}
+    \fi
+    \ifresumening
+	    \include{\@resumening}
+    \fi
+	% Indice general
+	{
+	\renewcommand{\contentsname}{\'Indice de Contenidos}
+    \reducedspacing
+    	\iflinks
+			\hypertarget{indice}{}
+		\fi
+    \tableofcontents
+    }
+    
+    % Indice de tablas
+    \newpage\cleardoublepage\phantomsection
+	\renewcommand{\listtablename}{\'Indice de Tablas}
+	\reducedspacing	
+	\listoftables
+    \addcontentsline{toc}{chapter}{\listtablename}
+    
+	% Indice de figuras
+	\newpage\cleardoublepage\phantomsection
+	\renewcommand{\listfigurename}{\'Indice de Figuras}
+	\reducedspacing    
+    \listoffigures
+    \addcontentsline{toc}{chapter}{\listfigurename}
+	
+    % CUERPO DE LA TESIS  
+    \newpage
+    \pagenumbering{arabic}
+    \pagestyle{plain}
+    \singlespacing
+    \renewcommand{\figurename}{Figura} %Cambia la palabra "Fig" por "Figura"
+	\renewcommand{\tablename}{Tabla} %Cambia la palabra "Cuadro" por "Tabla"
+}
+
+\def\prefacesection#1{%
+    \oldChapter*{#1}
+    \addcontentsline{toc}{chapter}{#1}}
+
+% Comenzar Normal.
+%\properpagestyle
+
+% Add space to account for new chapter numbering schema
+%\renewcommand\cftchapnumwidth{9em}
+% Redefine representation for chapter (and section) counters
+%\renewcommand{\chaptername}{}
+%\renewcommand{\chaptertitlename}{Cap\'itulo}
+\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+\renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+%\renewcommand\thechapter{\chaptertitlename \hspace{0.2cm} \Roman{chapter}}
+
+%Define estilo de P�gina, encabezado y pie de p�gina.
+\fancypagestyle{plain}{
+\fancyhead[C]{}
+\fancyhead[L]{}
+\fancyhead[R]{\leftmark}
+\fancyfoot[L]{\scriptsize\uppercase\expandafter{\@titlefoot}}
+\fancyfoot[c]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.5 pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\headheight}{14.5pt}
+\renewcommand{\headsep}{0.6cm}
+}
+
+
+%Redefine el comando para el Cap�tulo, modifica nombres y p�ginas dedicadas y contadores.
+\let\oldChapter\chapter
+\renewcommand{\chapter}[1]{
+	%p�gina sin formato (en blanco) con titulo de capitulo
+	\newpage
+	\thispagestyle{empty}
+	{\bfseries\rmfamily
+	\vspace*{\fill}
+	\begin{center}
+	\renewcommand\thechapter{\arabic{chapter}}
+	\setcounter{chapter}{\thechapter + 1}
+	\renewcommand\thechapter{\Roman{chapter}}
+	\ifanexos
+		\renewcommand\thechapter{\Alph{chapter}}
+	\fi
+	{\huge\uppercase\expandafter{\chaptertitlename \hspace{0.2cm} \thechapter}}\\
+	\renewcommand\thechapter{\arabic{chapter}}
+	\setcounter{chapter}{\thechapter - 1}
+	\renewcommand\thechapter{\Roman{chapter}}
+	\vspace{0.3in}
+	\doublespacing{\huge\uppercase\expandafter{#1}}
+	\end{center}
+	\vspace*{\fill}
+	}
+	%reestablece contadores y formato de p�gina
+	\setcounter{page}{\thepage - 1}		
+	%\renewcommand\leftmark{
+		%\iflinks
+		%	\hyperlink{indice}{\chaptertitlename~\ \Roman{chapter}: #1}
+		%\else
+		%	\chaptertitlename \hspace{0.2cm} \Roman{chapter}: #1
+	%	\fi
+	%}
+	%\renewcommand\thechapter{\chaptertitlename~\ \Roman{chapter}}
+	\oldChapter{#1}
+	%\renewcommand\thechapter{\arabic{chapter}}
+}
+
+
+
+%formato de titulo
+\titleformat{\chapter}[display]
+{\bfseries\Large\rmfamily}
+{\vspace{1pc}\Huge{\chaptertitlename \hspace{0.2cm} \Roman{chapter}}}
+{1pc}
+{\vspace{1pc}\LARGE\it}
+%formato de Seccion
+\titleformat{\section}[hang]
+{\normalfont\Large\bfseries}{\thesection}{1cm}
+{}
+
+%formato de SubSeccion
+\titleformat{\subsection}[hang]
+{\normalfont\large\bfseries}{\thesubsection}{1cm}
+{}
+
+\def\abreviaciones#1{%
+	\singlespacing
+	\renewcommand\leftmark{}
+    \include{#1}    
+}
+
+% Redefine \bibliography para ir a una nueva p�gina y colocar la entrada en la 
+% tabla de contenidos
+\let\@ldthebibliography\bibliography
+\renewcommand{\bibliography}[1]{
+	\def\@bibName{Bibliograf\'ia}
+	\renewcommand{\bibtitle}{\@bibName} % para uso exclusivo de bibliografia alfabetica
+	\renewcommand\leftmark{}
+	\bibliographystyle{authordate1}% bibliografia alfabetica
+    \newpage
+    \reducedspacing
+    \def\baselinestretch{1}  
+    \let\newChapter\chapter
+    \let\chapter\oldChapter
+    \@ldthebibliography{#1}    
+    \let\chapter\newChapter
+}
+
+%Redefine el formato del anexo y contadores asociados
+\renewcommand{\appendix}{\par %
+\renewcommand{\appendixname}{Anexo}
+\anexostrue
+\doublespacing
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
+\renewcommand{\chaptername}{}
+\renewcommand{\chaptertitlename}{Anexo}
+%\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand\thechapter{\chaptertitlename \hspace{0.2cm} \Alph{chapter}}
+\renewcommand\thesection{\Alph{chapter}.\arabic{section}}
+\renewcommand\thefigure{\Alph{chapter}.\arabic{figure}}
+\renewcommand\thetable{\Alph{chapter}.\arabic{table}}
+\renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}}
+
+%necesario para reestablecer links en el ANEXO
+\iflinks
+	\RequirePackage[bookmarksopen]{hyperref}
+\fi	

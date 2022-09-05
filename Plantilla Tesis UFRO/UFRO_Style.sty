@@ -1,0 +1,74 @@
+\RequirePackage{ifthen}
+\RequirePackage{xstring}
+
+% Comandos de utilidad general
+\newcommand{\salto}{\vskip 0.2in}
+\newcommand{\grad}{\hspace{-2mm}$\phantom{a}^{\circ}$}
+\newcommand{\gradh}{\hspace{-2mm}$\phantom{a}^{\circ}$\hspace{1.5mm}}
+\newcommand{\tab}{\hskip 0.2in}
+%\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand{\nota}[1]{\footnote{\setlinespacing{0.8} #1}}
+\newcommand{\goodgap}{\hspace{\subfigtopskip} \hspace{\subfigbottomskip} }
+
+% MATH -----------------------------------------------------------
+%
+% Some standardly used items that I don't want to type repeatedly.
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\sym}{\bigtriangleup}
+%
+% Functions that I use commonly (mostly linear algebra)
+\newcommand{\spa}{\operatorname{span}}
+\newcommand{\nul}{\operatorname{null}}
+\newcommand{\range}{\operatorname{range}}
+%
+% Abbreviated commands for number sets
+\newcommand{\Real}{\ensuremath{\mathbb R}}
+\newcommand{\Complex}{\ensuremath{\mathbb C}}
+\newcommand{\Natural}{\ensuremath{\mathbb N}}
+%
+% Some common things from calculus that I've abbreviated.
+\newcommand{\To}{\ensuremath{\longrightarrow}}
+\newcommand{\dd}[2]{\ds\frac{d#1}{d#2}}
+\newcommand{\ddx}[1]{\frac{d#1}{dx}}
+\newcommand{\lh}{\stackrel{\text{\tiny LH}}{=}}
+%
+% Some symbols that I like to use somewhat frequently.
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\newcommand{\BX}{\ensuremath{\mathbf{B}(X)}}
+\newcommand{\FL}{\ensuremath{\mathscr{L}}}
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+%
+% I like a different end of proof symbol, so this changes it.
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% THEOREMS ---------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposición}
+\theoremstyle{definition}
+\newtheorem{defn}{Definición}[section]
+\theoremstyle{remark}
+\newtheorem{rem}{Observación}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comando:
+% \figura{nombre-fichero}{argumentos}{título}{etiqueta}
+% Resultado:
+% Inserta una figura. "La figura~\ref{etiqueta} muestra..." permite
+% referenciar la figura desde el texto.
+% argumentos: width=Xcm,height=Ycm,angle=Z
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\figura}[4]{
+    \begin{center}
+    \begin{tabular}{c}
+    	\includegraphics[#2]{#1}
+    \end{tabular}
+ 	  \figcaption{#3}
+    \label{#4}
+    \end{center}
+}
