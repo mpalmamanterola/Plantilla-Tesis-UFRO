@@ -165,8 +165,30 @@ poder realizar el regadío. Este es un factor que se tendrá presente a la hora 
     \caption[Zona de validación con series de tiempo]{\footnotesize Zona donde se valida el \textit{Downscalling} a través de series de tiempo con las observaciones de pozos medida en metros de profundidad y además las zonas de uso agrícola resaltadas con tonalidad rosa.}
     \label{szcoq}
 \end{figure}
+\subsection{Validación con series de tiempo}
+El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
+\textbf{precipitación} promedio y finalmente las observaciones de pozos individuales de la región en color gris y su promedio mensual.
 
-\section{Correlación Temporal}
+\begin{figure}[H]
+    \centering
+          \includegraphics[width=\linewidth]{images/Anomalies_coq_reg.png}
+          \vskip -0.1in
+    \caption[Series de tiempo para la región de Coquimbo]{\footnotesize Anomalías porcentuales del promedio mensual de la región de Coquimbo}
+    \label{tscoq}
+\end{figure}
+
+En base a la figura \ref{szcoq} es posible identificar aquellas zonas en las cuales existen actividades que requieren un constante y a la vez considerable suministro de agua. Es posible identificar la zona donde existe una alta cantidad de pozos, zonas agrícolas y comparar
+tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identificar el píxel a baja resolución y los píxeles a alta resolución que se encuentren contenidos.
+
+\begin{figure}[H]
+    \centering
+          \includegraphics[scale=0.6]{images/Pixel1_and_pixels025_to_validate.png}
+          \vskip -0.1in
+    \caption[Píxeles a 0.25° y 1° que contienen zonas agrícolas y alta densidad de pozos]{\footnotesize Píxeles a 0.25° y 1° que contienen zonas agrícolas y alta densidad de pozos para validar a través de series de tiempo.}
+    \label{pixelscoq}
+\end{figure}
+
+\subsection{Correlación Temporal}
 Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo, se calcula el índice de correlación temporal definido en la ecuación \ref{eqn:cort}
 para el promedio de Grace original a baja resolución y los datos con aumento de resolución, ambos normalizados mediante la normalización min-max. El valor del índice 
 fue de \textbf{0.65441778}, valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y vicebersa.
