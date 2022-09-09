@@ -25,9 +25,9 @@ Finalmente, luego de haber activado la máquina virtual en \textit{gcp} que se d
 mediante un archivo con extensión \textit{.sh} el cual solicita la información del usuario y de la máquina y la coteja.
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-          \includegraphics[scale=0.6]{images/ssh-conection.png}
+          \includegraphics[scale=0.3]{images/ssh-conection.png}
     \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX}
 \end{figure}
 
@@ -163,6 +163,11 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     Las variables utilizadas como explicativas del modelo \textit{Random Forest} fueron la humedad del suelo(\textit{soil moisture}), nieve equivalente en agua(\textit{snow water equivalent}),
     evaporación por transpiración de la vegetación(\textit{evaporation from vegetation transpiration}), agua de dosel(\textit{canopy water}) y escorrentía(\textit{runoff}).
     
+    \subsubsection{Evaporación por transpiración de la vegentación}
+    Cantidad de evaporación de la transpiración de la vegetación. Esto tiene el mismo significado que la extracción de raíces, 
+    es decir, la cantidad de agua extraída de las diferentes capas del suelo. 
+    Esta variable se acumula desde el comienzo del tiempo de pronóstico hasta el final del paso de pronóstico y está medida en metros de agua equivalente \cite{ERA5-L}.
+
     \subsubsection{Escorrentía}
     Parte del agua de la lluvia, de la nieve que se derrite o de lo profundo del suelo, permanece almacenada en el suelo. De lo contrario, el agua se escurre, ya sea sobre la superficie (escorrentía superficial)
     o bajo tierra (escorrentía subterránea) y la suma de estos dos se denomina simplemente 'escorrentía'. Esta variable es la cantidad total de agua acumulada desde el comienzo del tiempo de pronóstico hasta el 
@@ -287,17 +292,17 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     según la zona geográfica. Por ejemplo, la precipitación en el extremo sur es excesivamente alta comparada con la precipitación en 
     la zona norte. Así surge la idea de estratificar los datos de entrenamiento y testeo para conseguir predicciones coherentes 
     y que la división de conjuntos no se encuentre sesgada de ninguna manera.
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
-              \includegraphics[scale=0.5]{images/division_zonas.png}
+              \includegraphics[width=\textwidth]{images/division_zonas.png}
               \vskip -0.1in
         \caption[División de datos por macrozonas de Chile]{\footnotesize División de datos en base a las zonas de Chile.}
         \label{division}
     \end{figure}
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
-              \includegraphics[scale=0.5]{images/traintest.png}
+            \includegraphics[width=\textwidth]{images/traintest.png}
               \vskip -0.1in
         \caption[Entrenamiento y testeo mediante macrozonas]{\footnotesize División en entrenamiento y testeo para cada macrozona de Chile.}
         \label{traintest}
@@ -331,17 +336,17 @@ Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza
     \item \texttt{random\_state}: Define la semilla con la cual se generarán las muestras aleatoreis, por lo que si se le otorga un valor se puede obtener un modelo replicable.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-          \includegraphics[scale=0.5]{images/RF_regressor.png}
+          \includegraphics[width=\textwidth]{images/RF_regressor.png}
           \vskip -0.1in
     \caption[Construcción y entrenamiento del modelo Random Forest con criterio de \textit{mse}]{\footnotesize Modelo Random Forest construído en Python con minimización del error cuadrático medio.}
     \label{logo2}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-          \includegraphics[scale=0.5]{images/RF_regressor_mae.png}
+          \includegraphics[width=\textwidth]{images/RF_regressor_mae.png}
           \vskip -0.1in
     \caption[Construcción y entrenamiento del modelo Random Forest con criterio de \textit{mae}]{\footnotesize Modelo Random Forest construído en Python con minimización del error medio absoluto.}
     \label{logo3}
@@ -362,7 +367,7 @@ Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza
     \end{itemize}
     \begin{figure}[H]
         \centering
-              \includegraphics[scale=0.5]{images/res_interp.png}
+              \includegraphics[width=\textwidth]{images/res_interp.png}
               \vskip -0.1in
         \caption[Funciones utilizadas para la interpolación de residuos]{\footnotesize Funciones utilizadas para interpolar bilinearmente la data residual de 1$^{\circ}$ a 0.25$^{\circ}$.}
         \label{logo4}
@@ -370,7 +375,7 @@ Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza
 
     \begin{figure}[H]
         \centering
-              \includegraphics[scale=0.5]{images/res_interp_rutine.png}
+              \includegraphics[width=\textwidth]{images/res_interp_rutine.png}
               \vskip -0.1in
         \caption[Rutina de interpolación de residuos]{\footnotesize Rutina para interpolar bilinearmente la data residual de 1$^{\circ}$ a 0.25$^{\circ}$.}
         \label{logo5}
