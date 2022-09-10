@@ -123,7 +123,7 @@ Finalmente, podemos comparar las distribuciones de la resolución nativa con el 
 \end{figure}
 
 Es evidente que el valor de las densiades(eje $y$) difieren en demasía debido al mayor volumen de datos presente en los datos a alta resolución, de todas maneras, ambas distribuciones
-se asemejan y mantienen un coportamiento normal. Ahora si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y curtosis podremos tener una idea más clara 
+se asemejan y mantienen un coportamiento normal. Ahora si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y el rango donde se mueve las anomalías a alta y baja resolución podremos tener una idea más clara 
 en cuanto a la similitud de distribuciones se trata.
 
 \begin{table}[H] 
@@ -165,8 +165,9 @@ poder realizar el regadío. Este es un factor que se tendrá presente a la hora 
     \caption[Zona de validación con series de tiempo]{\footnotesize Zona donde se valida el \textit{Downscalling} a través de series de tiempo con las observaciones de pozos medida en metros de profundidad y además las zonas de uso agrícola resaltadas con tonalidad rosa.}
     \label{szcoq}
 \end{figure}
+
 \subsection{Validación con series de tiempo}
-El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
+El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las anomalías porcentuales \ref{pct_anomalies} de las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
 \textbf{precipitación} promedio y finalmente las observaciones de pozos individuales de la región en color gris y su promedio mensual.
 
 \begin{figure}[H]
@@ -176,6 +177,10 @@ El estudio tendencial de las series de tiempo comienza de forma general, es deci
     \caption[Series de tiempo para la región de Coquimbo]{\footnotesize Anomalías porcentuales del promedio mensual de la región de Coquimbo}
     \label{tscoq}
 \end{figure}
+En la serie temporal se puede apreciar que las tendencias de GRACE original y GRACE escalado son muy similares aunque no del todo; Se puede observar que los cambios porcentuales difieren, sobre todo desde el año 2010 hasta principios de año 2013. Para la precipitación,
+es esperable encontrarse con la estacionalidad que presenta para los periodos invernales en el cono sur del globo, además, comienza con una tendencia en descenso y finaliza con un aumento notorio desde principios del 2013, al igual que las anomalías de TWS. Para los datos promediados de pozos, 
+se puede observar la tendencia señala un vaciado constante de los depósitos de aguas subterráneas con un aumento considerable al mediados del año 2015, tendencia la cual se puede explicar con el aumento tendencial del contenido de 
+agua terrestre para la región, aún así, la región en general presenta un déficit anual en las aguas subterráneas que es consistente con la localización de las observaciones \textit{in situ} dentro o muy cercanas a las zonas agrícolas. 
 
 En base a la figura \ref{szcoq} es posible identificar aquellas zonas en las cuales existen actividades que requieren un constante y a la vez considerable suministro de agua. Es posible identificar la zona donde existe una alta cantidad de pozos, zonas agrícolas y comparar
 tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identificar el píxel a baja resolución y los píxeles a alta resolución que se encuentren contenidos.
@@ -188,20 +193,24 @@ tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identif
     \label{pixelscoq}
 \end{figure}
 
+En la figura \ref{pixelscoq}, se puede apreciar el píxel escogido a baja resolución que posee como centroide las coordenadas (-71.5,-30.5) el cual contiene 27 códicos únicos de pozos, con observaciones en su mayoría dentro de zonas agrícolas. Además, se destacan dos píxeles a alta resolución con centroide en las coordenadas (-71.25,-30.75) y (-71.25,-30.5) 
+destacadas en color azulado que contienen una densidad de pozos de (desnidad1) y de (densidad2) respectivamente, por tanto, es posible determinar el impacto
+que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comportamiento tendencial de las anomalías de TWS con el objetivo de dilusidar con más detalle las dinámicas granulares de las variables.
 
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_0.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-30.75,-71.25) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-71.25,-30.75) contenido}
     \label{tspixel0}
 \end{figure}
+
 
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_1.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-30.5,-71.25) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-71.25, -30.5) contenido}
     \label{tspixel1}
 \end{figure}
 
