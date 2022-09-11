@@ -8,16 +8,16 @@ Además, Python resulta ser un lenguaje \textbf{polivalente multiparadigma} lo q
 Tras un estudio exhaustivo de referencias y documentación se decide optar por aquella metodología
 que se acercase más a la problemática local con datos que puedan ser obtenidos fácilmente para agilizar
 el proceso. En base a esto se escoge el paper \textit{Downscaling of GRACE-Derived Groundwater Storage
-Based on the Random Forest Model}\cite{11}.
+Based on the Random Forest Model} \cite{11}.
 
-Otra de las herramientas utilizadas durante todo el proceso fue la creación de una Máquina Vritual(VM por sus siglas en inlés \textit{Virtual Machine}) de acuerdo a las necesidaes mediante la instancia
-\textit{Google Cloud Plataform}(gcp) utilizando una conexión \textit{ssh} mediante \textit{GitHub}. En pocas palabras el proceso consiste primeramente crear las máquinas virtuales;
-En este caso se generaron 2 VM con diferentes características y funciones: La primera está destinada para el procesamiento más extenso y que necesite una alta capacidad de procesamiento, así
-las características de la máquina se resumen en el código \texttt{e2-highmem-16} que se traduce como un hardware de una CPU de 16 núcleos virtuales de 128 GB de memoria RAM y la segunda VM es la que se utilizará
+Otra de las herramientas utilizadas durante todo el proceso fue la creación de una Máquina Vritual (VM por sus siglas en inlés \textit{Virtual Machine}) de acuerdo a las necesidaes en la instancia
+\textit{Google Cloud Plataform} (gcp) utilizando una conexión \textit{ssh} mediante \textit{GitHub}. En pocas palabras el proceso consiste, en primer lugar, crear las máquinas virtuales;
+En este caso se generaron 2 VM con diferentes características y funciones, la primera está destinada para el procesamiento más extenso y que necesite una alta capacidad de procesamiento para llevar a cabo las tareas más complejas en menos tiempo,
+así, las características de la máquina se resumen en el código \texttt{e2-highmem-16} que se traduce como un hardware de una CPU de 16 núcleos virtuales de 128 GB de memoria RAM y la segunda VM es la que se utilizará
 más constantemente con una capacidad menor pero que sea capaz de soportar el nivel de cálculo necesario, las carácterísticas de la máquina codifcadas son \texttt{e2-custom-6-21760} que consta de 6 núcleos virtuales,
-2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. Luego de haber generado los entornos en los cuales se procesarán y guardarán los datos se crea el repositorio en \textit{GitHub} en 
+2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. En segundo lugar, luego de haber generado los entornos en los cuales se procesarán y guardarán los datos, se crea el repositorio en \textit{GitHub} en 
 donde se irá guardando y archivando el código generado para realizar el \textit{Downscalling}. La ventaja de utilizar \textit{git} es que proporciona un espacio en donde se van guardando cada una de las versiones del código 
-lo que nos permite acceder a código que puede haber sido borrado o extraviado de manera involuntaria o como una guía del paso a paso que se ha realizado en cierto intervalo de tiempo.
+lo que nos permite acceder a código que puede haber sido borrado o extraviado de manera involuntaria o como una especie de bitácora donde se registra cada cambio.
 La tercera parte consiste en configurar los datos globales de nombre de usuario y \textit{e-mail} en git para
 enlazar a la conexión, posteriormente crear una llave de conexión \textit{ssh} y agregarla al repositorio creado en \textit{GitHub} para lograr conectarse a cualquiera de las máquinas virtuales que se deseen utilizar y así poder realizar modificaciones 
 al repositorio y registrarlas mediante \textit{commits}.
@@ -48,14 +48,14 @@ de vapor de agua emanado por plantas, el suelo, etc y \textit{TRAMM} para datos 
 
 La premisa del procedimiento se basa en que las variables explicativas se encuentran a una resolución mucho mayor que los datos recopilados por GRACE,
 por lo que en base al comportamiento de cada una de ellas es posible determinar las dinmámicas de la reserva de agua terrestre en puntos donde el satélite no 
-posee observaciones.
+logra captar anomalías más granulares.
 
 El proceso de reducción de escala que se detalla en la figura \ref{metodologia}, en pocas palabras se puede describir
 como:
 \begin{itemize}
 
-    \item Las 6 variables explicativas se remuestrean a $1^{\circ}$(resolución 
-    nativa de GRACE) y además a la resolución que se busca estimar o resolución objetivo(en este caso $0.25^{\circ}$) mediante 
+    \item Las 6 variables explicativas se remuestrean a $1^{\circ}$ (resolución 
+    nativa de GRACE) y además a la resolución que se busca estimar o resolución objetivo (en este caso $0.25^{\circ}$) mediante 
     cierta interpolación, ya sea lineal, cúbica, etc.
 
     \item Se instancia el modelo \textit{Random Forest} regresivo. Con las variables explicativas a 1$^{\circ}$ se entrena y se valida
@@ -65,9 +65,9 @@ como:
     datos llamados \textit{residuales} para posteriormente interpolarlos a la resolución objetivo.
 
     \item Con las 6 variables explicativas remuestradas a la resolución objetivo se predice el valor de \textit{TWS}
-    y posteriormente adicionar la data residual interpolada, esto como una estrategia para introducir entropía a la predicción.
+    y posteriormente se adiciona la data residual interpolada a la predicción, esto como una estrategia para introducir entropía.
     
-    \item Finalmente, se substraen los valores de algunas variables explicativas para, según los autores, obtener el 
+    \item Finalmente, se substraen los valores de algunas variables explicativas para obtener el 
     \textit{Ground Water Storage}, o almacén de agua subterránea en cada punto de la grilla y validar estos valores con
     mediciones en terreno de pozos subterráneos u \textit{observations wells}.
     
@@ -101,7 +101,7 @@ observaciones de pozos provienientes de la DGA y finalmente los datos de GRACE o
 El período de tiempo que considera el estudio comienza el mes de abril del año 2002 y culmina en junio del año 2017 en meses en los cuales existan mediciones en cada una
 de las bases de datos mencionadas.
 
-En cuanto a los límites espaciales, el estudio es realizado en el parche que tiene como límites para la longitud desde los 79.5°E hasta los 63.5°E y la latitud desde los 9°S hasta los
+En cuanto a los límites espaciales, el estudio es realizado en el parche que tiene como límites para la longitud desde los 79.5°E hasta los 63.5°E y la latitud desde los 16.5°S hasta los
 69.5°S, el cual corresponde a todo el territorio continental chileno.
 
     \subsection{GRACE}
@@ -120,8 +120,8 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \label{logo}
     \end{figure}
 
-    En la figura se aprecia que existen dos variables involucradas en el dataset, \textit{lwe\_thickness} (abreviación del inglés
-    \textit{level water equivalent thickness}) que se traduce como grosor de agua equivalente y \textit{uncertainty} la cual es la incertidumbre
+    En la figura se aprecia que existen dos variables involucradas en el conjunto de datos: \textit{lwe\_thickness}, que es la abreviación del inglés
+    \textit{level water equivalent thickness}, que se traduce como grosor de agua equivalente y \textit{uncertainty} la cual es la incertidumbre
     o el grado de error sobre la predicción del modelo. Las variables mencionadas poseen 3 características: tiempo, latitud y longitud; Para el territorio 
     chileno la latitud varía entre 20$^{\circ}$S y 80$^{\circ}$S y la longitud entre los 280$^{\circ}$O y los 295$^{\circ}$O, o de forma equivalente, entre 
     80$^{\circ}$E y 65$^{\circ}$E.
@@ -157,11 +157,11 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     datos de modelos con observaciones de todo el mundo en un conjunto de datos globalmente completo y consistente utilizando las leyes de la física. 
     Además, produce datos que se remontan varias décadas atrás en el tiempo, proporcionando una descripción precisa del clima del pasado\cite{ERA5-L}.
 
-    El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ}(\sim 9$ Km), 
+    El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ} (\sim 9$ Km), 
     para el proyecto en cuestión, de todo el territorio continental chileno.
 
-    Las variables utilizadas como explicativas del modelo \textit{Random Forest} fueron la humedad del suelo(\textit{soil moisture}), nieve equivalente en agua(\textit{snow water equivalent}),
-    evaporación por transpiración de la vegetación(\textit{evaporation from vegetation transpiration}), agua de dosel(\textit{canopy water}) y escorrentía(\textit{runoff}).
+    Las variables utilizadas como explicativas del modelo \textit{Random Forest} fueron la humedad del suelo (\textit{soil moisture}), nieve equivalente en agua (\textit{snow water equivalent}),
+    evaporación por transpiración de la vegetación (\textit{evaporation from vegetation transpiration}), agua de dosel (\textit{canopy water}) y escorrentía (\textit{runoff}).
     
     \subsubsection{Evaporación por transpiración de la vegentación}
     Cantidad de evaporación de la transpiración de la vegetación. Esto tiene el mismo significado que la extracción de raíces, 
@@ -179,12 +179,12 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     repartiera uniformemente por toda la cuadrícula. El Sistema de Pronóstico Integrado ECMWF representa la nieve como una sola capa adicional sobre el nivel superior del suelo. La nieve puede cubrir todo o parte de la caja de rejilla.
 
     \subsubsection{Agua de dosel}
-    El dosel(\textit{canopy}), consiste en el área formada por las copas de los árboles en un bosque. Por lo tanto, el agua de dosel consiste en el agua presente en cada una de las hojas de los árboles, dicha agua proviene de 
+    El dosel (\textit{canopy}), consiste en el área formada por las copas de los árboles en un bosque. Por lo tanto, el agua de dosel consiste en el agua presente en cada una de las hojas de los árboles, dicha agua proviene de 
     la precipitación mayoritariamente, pero también se ve afectada por la humedad, la temperatura, entre otros factores.
 
     \subsubsection{Humedad del suelo}
     Esta variable explicativa consiste en la suma de 4 parámetros hidrológicos, éstos se definen como el volumen de agua presente en cada capa de suelo. La primera de ellas
-    hace referencia al volumen de agua presente en la superficie(0 m) hasta los 0.07 m. La segunda capa parte en los 0.07 m y culmina en los 0.28 m. La tercera capa llega hasta el metro de profundidad partiendo desde los 0.28 m
+    hace referencia al volumen de agua presente en la superficie (0 m) hasta los 0.07 m. La segunda capa parte en los 0.07 m y culmina en los 0.28 m. La tercera capa llega hasta el metro de profundidad partiendo desde los 0.28 m
     y la capa final, desde el metro hasta los 2.89 m \cite{ERA5-L_doc}. Con estos parámetros se genera la variable \textit{soil moisture}.
 
     \subsection{Precipitación}
@@ -214,7 +214,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
 
     La primera intervención realizada a esta nueva base de datos unificada consistió en relacionar estos datos que se encuentran repartidos de manera no uniforme en el territorio
     lo cual dificulta demasiado su comparación. Es por esto que luego de aplicarle el remuestreo espacial detallado más adelante, el siguiente paso fue transformar los datos con un código asociado,
-    a datos grillados. Donde las grillas serán justamente la resolcuión objetivo(1$^{\circ}$) y la grilla de alta resolución(0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
+    a datos grillados. Donde las grillas serán justamente la resolcuión objetivo (1$^{\circ}$) y la grilla de alta resolución (0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
     habiten más de una estación de medición, es por esto que se debe adicionar nuevas variables, tales como \textbf{la densidad de pozos} por pixel, es decir, la cantidad de pozos presentes en el pixel y además
     la \textbf{cantidad de observaciones}, es decir, la cantidad de datos presentes en cada punto de la grilla, esto para no perder aquellos píxeles que sean más representativos o que 
     contengan una alta riqueza en sus mediciones.
@@ -236,7 +236,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
 
     
     El rescalamiento espacial se realiza sobre datos con una alta resolución espacial, en este caso las variables explicativas de ERA5-L y precipitación y luego, mediante interpolación bilinear a través de una rutina en \textit{bash} de CDO se consigue
-    la resolución objetivo(0.25$^\circ$) de\textit{Downscalling} y la resolución original de GRACE(1$^\circ$). Es claro que hay muchas maneras de formar las grillas de datos los cuales se encuentren a una resolución de 
+    la resolución objetivo (0.25$^\circ$) de\textit{Downscalling} y la resolución original de GRACE (1$^\circ$). Es claro que hay muchas maneras de formar las grillas de datos los cuales se encuentren a una resolución de 
     1$^\circ$ y que éstas no necesariamente tienen que ser las mismas entre ellas, es por esto que se fija la grilla a baja resolución y alta resolución antes de realizar el remuestreo
     para que todos los datos se encuentren remuestrados por una misma grilla. Lo más sencillo es extraer los datos de GRACE y de ellos obtener datos georreferenciados a resolución de 1$^\circ$ y así se disminuye la cantidad de
     variables a remuestrar.
@@ -309,20 +309,20 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     \end{figure}
 
     En la figura \ref{division}, \texttt{DATA} constituye todas las variables explicativas para el modelo con mediciones remuestradas en la grilla de GRACE
-    a 1$^{\circ}$, el valor de la variable respuesta (\texttt{lwe\_thickness}), además de la respectiva fecha de medición(\texttt{time}) y 
-    coordenadas geográficas(\texttt{lon} y \texttt{lat})
+    a 1$^{\circ}$, el valor de la variable respuesta (\texttt{lwe\_thickness}), además de la respectiva fecha de medición (\texttt{time}) y 
+    coordenadas geográficas (\texttt{lon} y \texttt{lat})
 %
 %
 %
 %
 \section{Construcción del modelo Random Forest}
-Según el sitio web de sklearn\cite{rfskl}, un bosque aleatorio es un metaestimador 
+Según el sitio web de sklearn \cite{rfskl}, un bosque aleatorio es un metaestimador 
 que ajusta una serie de árboles de decisión en varias submuestras 
 del conjunto de datos y utiliza el promedio para mejorar la precisión predictiva y controlar el sobreajuste. 
 El tamaño de la submuestra se controla con el parámetro \texttt{max\_samples}, si el parámetro \texttt{bootstrap=True}, el cual se encuentra predeterminado, 
 de lo contrario, se usa todo el conjunto de datos para construir cada árbol.
 
-Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza el error cuadrático medio(fig. \ref{logo2}) y el restante minimiza el error medio absoluto(fig. \ref{logo3}). En cuanto a la construcción misma, ambos modelos comparten los mismos hiperparámetros, 
+Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza el error cuadrático medio(fig. \ref{logo2}) y el restante minimiza el error medio absoluto (fig. \ref{logo3}). En cuanto a la construcción misma, ambos modelos comparten los mismos hiperparámetros, 
 éstos son:
 \begin{itemize}
     \item \texttt{n\_estimators}: Es la cantidad de árboles presentes en el \textit{ensemble}. 
