@@ -131,10 +131,10 @@ en cuanto a la similitud de distribuciones se trata.
     \newcolumntype{C}{>{\centering\arraybackslash}X}
     \begin{tabularx}{0.9\textwidth}{CCCCC}
     \toprule
-    \textbf{resolución}	& \textbf{valor mínimo}	& \textbf{valor máximo} & \textbf{media($\mu$)} & \textbf{desviación estándar($\sigma$)}\\
+    \textbf{resolución}	& \textbf{mínimo}	& \textbf{máximo} & \textbf{media($\mu$)} & \textbf{desviación estándar($\sigma$)}\\
         \midrule
-        \textbf{baja(1$^{\circ}$)}		& -0.284269 & 0.235858 & 0.001318 & 0.056551\\
-        \textbf{alta(0.25$^{\circ}$)}   & -0.263974 & 0.223713	& 0.001366 & 0.056020\\
+        \textbf{baja(1$^{\circ}$)}		& -0.282633 & 0.229261  & 0.000818 & 0.058005\\
+        \textbf{alta(0.25$^{\circ}$)}   & -0.284269 & 0.233349	& 0.001885 & 0.057145\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -193,32 +193,38 @@ tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identif
     \label{pixelscoq}
 \end{figure}
 
-En la figura \ref{pixelscoq}, se puede apreciar el píxel escogido a baja resolución que posee como centroide las coordenadas (-71.5,-30.5) el cual contiene 27 códicos únicos de pozos, con observaciones en su mayoría dentro de zonas agrícolas. Además, se destacan dos píxeles a alta resolución con centroide en las coordenadas (-71.25,-30.75) y (-71.25,-30.5) 
-destacadas en color azulado que contienen una densidad de pozos de (desnidad1) y de (densidad2) respectivamente, por tanto, es posible determinar el impacto
+En la figura \ref{pixelscoq}, se muestra el píxel escogido a baja resolución que posee como centroide las coordenadas (-71.5,-30.5) el cual contiene 27 códicos únicos de pozos, con observaciones en su mayoría dentro de zonas agrícolas. Además, se destacan dos píxeles a alta resolución con centroide en las coordenadas 
+(-71.25,-30.75) y (-71.25,-30.5) en color azulado que contienen una densidad de pozos de (desnidad1) y de (densidad2) respectivamente, por tanto, es posible determinar el impacto
 que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comportamiento tendencial de las anomalías de TWS con el objetivo de dilusidar con más detalle las dinámicas granulares de las variables.
 
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_0.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-71.25,-30.75) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25,-30.75) contenido}
     \label{tspixel0}
 \end{figure}
+
+En cuanto al primer pixel a alta resolución
 
 
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_1.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1°(-71.25, -30.75) con pixel a 0.25°(-71.25, -30.5) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25, -30.5) contenido}
     \label{tspixel1}
 \end{figure}
 
 
 \subsection{Correlación Temporal}
+En cuanto al territorio continental chileno se trata, el coeficiente de correlación para los datos promediados mensuales entre la resolución original y la resolución objetivo fue De
+\textbf{0.6544517} valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y vicebersa.
+
 Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo, se calcula el índice de correlación temporal definido en la ecuación \ref{eqn:cort}
 para el promedio de Grace original a baja resolución y los datos con aumento de resolución, ambos normalizados mediante la normalización min-max. El valor del índice 
-fue de \textbf{0.65441778}, valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y vicebersa.
+fue de \textbf{0.65441778}, un poco más bajo que el coeficiente naccional pero es más que aceptable para mencionar que los comportamientos tendenciales del \textit{Downscalling} se mantienen
+en base al satélite GRACE original.
 
 % 
 
