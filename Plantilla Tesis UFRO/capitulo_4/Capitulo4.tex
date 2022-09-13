@@ -95,7 +95,7 @@ uno de los primeros períodos de tiempo, específicamente septiembre del año 20
 \end{figure}
 
 A simple vista, se logra apreciar que los mapas de calor son coincidentes en cuanto a los valores de las anomalías se refiere, es decir, el modelo es capaz de capturar correctamente
-las zonas en las cuales existe un déficit o superhábit hidrológico en base a las mediciones originales. Ésto aunque parezca concluyente, aún no es suficiente para dterminar si el \textit{Downscalling}
+las zonas en las cuales existe un déficit o superhábit hidrológico en base a las mediciones originales y las variables hidrológicas. Esto aunque parezca concluyente, aún no es suficiente para dterminar si el \textit{Downscalling}
 ha sido exitoso, es por esta razón que aún queda la validación de datos de GRACE a alta resolución pendiente.
 
 \begin{figure}[H]
@@ -108,9 +108,6 @@ ha sido exitoso, es por esta razón que aún queda la validación de datos de GR
 \end{figure}
 
 
-
-En base a la gráfica se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
-tienden a la baja en la zona norte y a la alza en la zona austral, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
 
 Finalmente, podemos comparar las distribuciones de la resolución nativa con el \textit{Downscalling} posterior a la adición de residuos, en base a ello se obtienen las siguientes gráficas.
 \begin{figure}[H]
@@ -192,10 +189,10 @@ tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identif
     \caption[Píxeles a 0.25° y 1° que contienen zonas agrícolas y alta densidad de pozos]{\footnotesize Píxeles a 0.25° y 1° que contienen zonas agrícolas y alta densidad de pozos para validar a través de series de tiempo.}
     \label{pixelscoq}
 \end{figure}
-
 En la figura \ref{pixelscoq}, se muestra el píxel escogido a baja resolución que posee como centroide las coordenadas (-71.5,-30.5) el cual contiene 27 códicos únicos de pozos, con observaciones en su mayoría dentro de zonas agrícolas. Además, se destacan dos píxeles a alta resolución con centroide en las coordenadas 
-(-71.25,-30.75) y (-71.25,-30.5) en color azulado que contienen una densidad de pozos de (desnidad1) y de (densidad2) respectivamente, por tanto, es posible determinar el impacto
+(-71.25,-30.75) y (-71.25,-30.5) en color azulado que contienen una densidad de pozos de 9 y 4 respectivamente, por tanto, es posible determinar el impacto
 que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comportamiento tendencial de las anomalías de TWS con el objetivo de dilusidar con más detalle las dinámicas granulares de las variables.
+
 
 \begin{figure}[H]
     \centering
@@ -205,9 +202,6 @@ que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comp
     \label{tspixel0}
 \end{figure}
 
-En cuanto al primer pixel a alta resolución
-
-
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_1.png}
@@ -215,6 +209,17 @@ En cuanto al primer pixel a alta resolución
     \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25, -30.5) contenido}
     \label{tspixel1}
 \end{figure}
+
+En cuanto al primer pixel a alta resolución \ref{tspixel0}, a pesar de que la tendencia de precipitación desde el año 2013 presenta un aumento, no se logra apreciar el impacto que esta tiene sobre las observaciones de GRACE
+ya que para el período en cuestión, las anomalías de GRACE dan a entender la disminución en el contenido de agua terrestre, información que es corroborable con las observaciones de pozos, donde en el píxel a baja resolución se tiene una 
+tendencia de vaciado del pozo inclusive cuando en el periodo inicial, es decir, desde el 2002 hasta el 2004 tanto TWS como la profundidad de pozos muestran un aumento en la cantidad de agua. Un comportamiento más inusual sucede con el pozo a alta resolución,
+el cual presenta un nivel tendencial constante hasta el comienzo del período de sequía de GRACE (2012) donde el nivel del pozo tiende a disminuir rápidamente hasta el año 2015, donde el nivel aumenta aproximadamente en un $120\%$ en tan solo un año. 
+
+Al analizar la figura \ref{tspixel1} la gran diferencia recae en las observaciones de pozos, donde éstas presentan una tendencia negativa desde el año 2011, lo que se traduce en una disminución en el nivel de agua, tendencia que se puede
+explicar por la sequía presente desde el año 2002 que experimenta GRACE.
+
+Finalmente, en ambas figuras se puede apreciar que las tendencias entre GRACE a 1° se mantienen en cualquiera de los pixel a 0.25°, por lo que el \textit{Downscalling} además de asemejarse en distribución, también lo hace 
+en la media temporal de las observaciones.
 
 
 \subsection{Correlación Temporal}
@@ -225,6 +230,15 @@ Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo
 para el promedio de Grace original a baja resolución y los datos con aumento de resolución, ambos normalizados mediante la normalización min-max. El valor del índice 
 fue de \textbf{0.65441778}, un poco más bajo que el coeficiente naccional pero es más que aceptable para mencionar que los comportamientos tendenciales del \textit{Downscalling} se mantienen
 en base al satélite GRACE original.
+
+\section{Discusión}
+
+En base a la gráfica \ref{dsf17} se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
+tienden a la baja en la zona norte y a la alza en la zona austral, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
+
+Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde existen cultivos agrícolas de cualquier índole existe una tendencia de vaciado de pozos, ésto claro por el
+uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
+
 
 % 
 
