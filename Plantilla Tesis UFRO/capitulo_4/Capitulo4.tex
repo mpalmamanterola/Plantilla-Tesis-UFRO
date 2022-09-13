@@ -15,7 +15,7 @@ se calcula el error medio absoluto y \textit{RMSE} para el conjunto entero de te
     \item Para el modelo que \textbf{minimiza el error medio absoluto}, la métrica \textit{MAE} es de 0,00615 aproximadamente y el \textit{RMSE} se obtiene un valor de 7,25$ \times 10^{-5}$.
 \end{itemize}
 
-Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon} y \textit{soil\_moisture}(\texttt{sm}), en ese orden. Claramente el porcentaje de importancia
+Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon}, humedad de suelo(\texttt{sm}) y la evaporación por transpiración de la vegetación(\texttt{e}), en ese orden. Claramente el porcentaje de importancia
 varía pero el orden se mantiene. Por lo tanto, se puede afirmar que los modelos se encuentran afectos al rendimiento mayoritariamente en base al criterio de minimización escogido.
 
 La siguiente validación en base a la resolución nativa de GRACE es con respecto a las macrozonas del país, es decir, aquellos datos que fueron estratificados y luego separados en entrenamiento y testeo (figura \ref{traintest}).
@@ -231,6 +231,34 @@ para el promedio de Grace original a baja resolución y los datos con aumento de
 fue de \textbf{0.65441778}, un poco más bajo que el coeficiente naccional pero es más que aceptable para mencionar que los comportamientos tendenciales del \textit{Downscalling} se mantienen
 en base al satélite GRACE original.
 
+\section{}
+El último componente del estudio del \textit{Downscalling} mediante un método de \textit{ensemble} basado en Árboles de decisión, es la comparación de una interpolación bilinear de los datos de GRACE a la resolución objetivo
+con el aumento de resolución realizada mediante el método de Random Forest. Para realizar la interpolación se opta por utilizar el software CDO y como un estudio \textit{a priori} del \textit{Downscalling} se miden los tiempos de remuestreo
+espacial de CDO y la predicción realizada por el modelo predictivo en la máquina virtual \texttt{ e2-custom-6-2176}, los tiempos de ejecución fueron de 0.37 y de 4.96 segundos respectivamente.
+
+\begin{figure}[H]
+    \centering
+          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/Downscalling_cdo-09-02.jpeg}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/Downscalling_v0-09-02.jpeg}}\goodgap
+          \vskip -0.1in
+    \caption[Comparación de interpolación bilinear y \textit{Random Forest}]{Gráfico de interpolación bilinear con CDI y la predicción de TWS del modelo \textit{Random Forest} para septiembre del año 2002.}
+    \label{interp02}
+\end{figure}
+
+Posterior a realizar la interpolación bilinear, los productos grillados obtenidos mediante CDO y el modelo predictivo son poromedidados por cada píxel en el territorio para así obtener una única grilla que representa los comportamientos temporales promedio. Luego,
+se calculan las diferencias absolutas por píxel entre ambas grillas y así poder obtener el $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ de los píxeles se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
+Es posible aislar la zona donde se encuentra el mayor error y poder realizar una comparativa de las dinámicas presentes.
+
+\begin{figure}[H]
+    \centering
+          \includegraphics[width=\textwidth]{images/area_with_high_differences_cdorf.png}
+          \vskip -0.1in
+    \caption[Área donde la interpolación bilinear y el modelo predictivo difieren considerablemente]{Píxeles donde existe una alta diferencia (destacados en rojo) entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest}}
+    \label{high_diff}
+\end{figure}
+En la zona delimitada en la figura \ref{high_diff}, se aprecia que en las zonas donde el modelo difiere de la interpolación es mayoritariamente en zonas marítimas. Para obtener un marco de referencia, se escoge el parche en el cual no existen diferencias 
+considerables y así estudiar las varianzas de cada variable explicativa, la interpolación bilinear y la prediccón del modelo  \textit{Random Forest}.
+
 \section{Discusión}
 
 En base a la gráfica \ref{dsf17} se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
@@ -239,7 +267,8 @@ tienden a la baja en la zona norte y a la alza en la zona austral, comportamient
 Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde existen cultivos agrícolas de cualquier índole existe una tendencia de vaciado de pozos, ésto claro por el
 uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
 
-
+CDO sin duda que es un software muy bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
+al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replicable en CDO. 
 % 
 
 %
