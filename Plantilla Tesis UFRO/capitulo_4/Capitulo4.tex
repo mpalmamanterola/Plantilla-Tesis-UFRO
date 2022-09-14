@@ -257,7 +257,7 @@ Es posible aislar la zona donde se encuentra el mayor error y poder realizar una
 
 \begin{figure}[H]
     \centering
-          \includegraphics[width=\textwidth]{images/area_with_high_differences_cdorf.png}
+          \includegraphics[width=0.8\textwidth]{images/area_with_high_differences_cdorf.png}
           \vskip -0.1in
     \caption[Área donde la interpolación bilinear y el modelo predictivo difieren considerablemente]{Píxeles donde existe una alta diferencia (destacados en rojo) entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest}}
     \label{high_diff}
@@ -290,6 +290,9 @@ la variabilidad del modelo predictivo como de la interpolación bilinear se mant
     \label{bilrf2002}
 \end{figure}
 
+Al momento de observar un mes particular del parche de píxeles de la figura \ref{high_diff} es posible identificar las zonas donde la regresión difiere de la interpolación, por ejemplo para el mes de septiembre del año 2002 (fig. \ref{bilrf2002})
+los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indicando una mayor estabilidad del contenido de agua en esas zonas. El mismo comportamiento también es capturado para el mes de junio del año 2014 (fig. ref{bilrf2014}).
+
 \begin{figure}[H]
     \centering
           \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/rfvbil_2014.png}}
@@ -298,10 +301,6 @@ la variabilidad del modelo predictivo como de la interpolación bilinear se mant
     \caption[Área donde la interpolación bilinear y el modelo predictivo difieren en el periodo 06/2014]{Píxeles donde existe una alta diferencia entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest} para junio del año 2014.}
     \label{bilrf2014}
 \end{figure}
-
-
-Al momento de observar un mes particular del parche de píxeles de la figura \ref{high_diff} es posible identificar las zonas donde la regresión difiere de la interpolación, por ejemplo para el mes de septiembre del año 2002 (fig. \ref{bilrf2002})
-los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indicando una mayor estabilidad del contenido de agua en esas zonas. El mismo comportamiento también es capturado para el mes de junio del año 2014 (fig. ref{bilrf2014}).
 
 \section{Discusión}
 
