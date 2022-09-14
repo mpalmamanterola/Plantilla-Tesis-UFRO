@@ -2,16 +2,16 @@
 \label{C3}
 Para cumplir el objetivo general se utilizó el lenguaje de programación Python debido a que es un lenguaje de \textbf{alto nivel}, por tanto es más fácil de utilizar como de leer debido a su sintaxis simple.
 Además, Python resulta ser un lenguaje \textbf{polivalente multiparadigma} lo que hace que sea de propósito general, en particular es una excelente herramienta para \textit{Data Science}. Otro aspecto importante es la
-\textbf{portabilidad}, la cual permite que el código no deba ser modificable de ninguna manera para ejecutarse en cualquier sistema operativo(macOS, Linux, UNIX y Windows) y finalmente que es un lenguaje
+\textbf{portabilidad}, la cual permite que el código no deba ser modificable de ninguna manera para ejecutarse en cualquier sistema operativo (macOS, Linux, UNIX y Windows) y finalmente que es un lenguaje
 \textbf{gratis y de código abierto} lo que permite que pueda ser usado, modificado y distribuido por cualquier persona.
 
 Tras un estudio exhaustivo de referencias y documentación se decide optar por aquella metodología
 que se acercase más a la problemática local con datos que puedan ser obtenidos fácilmente para agilizar
 el proceso. En base a esto se escoge el paper \textit{Downscaling of GRACE-Derived Groundwater Storage
-Based on the Random Forest Model} \cite{11}.
+Based on the Random Forest Model} \cite{11}. 
 
 Otra de las herramientas utilizadas durante todo el proceso fue la creación de una Máquina Vritual (VM por sus siglas en inlés \textit{Virtual Machine}) de acuerdo a las necesidaes en la instancia
-\textit{Google Cloud Plataform} (gcp) utilizando una conexión \textit{ssh} mediante \textit{GitHub}. En pocas palabras el proceso consiste, en primer lugar, crear las máquinas virtuales;
+\textit{Google Cloud Plataform (gcp)}  utilizando una conexión \textit{ssh} mediante \textit{GitHub}. En pocas palabras el proceso consiste, en primer lugar, crear las máquinas virtuales;
 En este caso se generaron 2 VM con diferentes características y funciones, la primera está destinada para el procesamiento más extenso y que necesite una alta capacidad de procesamiento para llevar a cabo las tareas más complejas en menos tiempo,
 así, las características de la máquina se resumen en el código \texttt{e2-highmem-16} que se traduce como un hardware de una CPU de 16 núcleos virtuales de 128 GB de memoria RAM y la segunda VM es la que se utilizará
 más constantemente con una capacidad menor pero que sea capaz de soportar el nivel de cálculo necesario, las carácterísticas de la máquina codifcadas son \texttt{e2-custom-6-21760} que consta de 6 núcleos virtuales,
@@ -28,7 +28,7 @@ mediante un archivo con extensión \textit{.sh} el cual solicita la información
 \begin{figure}[H]
     \centering
           \includegraphics[width=\linewidth]{images/ssh-conection.png}
-    \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX}
+    \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX.}
 \end{figure}
 
 Para finalizar, lo único que resta es elegir el puerto al cual el usuario desea conectarse en el navegador ya que posee múltiples entornos de ejecución de código Python, entre ellos \textit{Jupyter Notebook}, \textit{Jupyter Lab} y \textit{Dask Dashboard}
@@ -42,7 +42,7 @@ de la VM de forma rápida lo cual aumenta su eficiencia a la hora de trabajar co
 En base a \cite{11}, se procede a replicar la metodología propuesta en la figura 3.1, donde se detalla
 la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ}(\sim 111 \text{ Km})$
 para obtener datos georreferenciados a una resolución de $0.25^{\circ}(\sim 27.75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
-\textit{GRACE} para el \textit{Total Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas(\textit{canopy water}, \textit{soil moisture}, 
+\textit{GRACE} para el \textit{Total Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas (\textit{canopy water}, \textit{soil moisture}, 
 \textit{snow water equivalent} y \textit{runoff}), \textit{GLEAM} para datos 
 de vapor de agua emanado por plantas, el suelo, etc y \textit{TRAMM} para datos de precipitación.
 
@@ -77,7 +77,7 @@ como:
     \centering
           \includegraphics[scale=0.6]{images/metodología_Chen_etal2019.png}
           \vskip -0.1in
-    \caption[Metodología de reducción de dimensión propuesta]{\footnotesize Metodología propuesta en \cite{11}, pág. 7}
+    \caption[Metodología de reducción de dimensión propuesta]{\footnotesize Metodología propuesta en \cite{11}, pág. 7.}
     \label{metodologia}
 \end{figure}
 
@@ -185,12 +185,12 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     \subsubsection{Humedad del suelo}
     Esta variable explicativa consiste en la suma de 4 parámetros hidrológicos, éstos se definen como el volumen de agua presente en cada capa de suelo. La primera de ellas
     hace referencia al volumen de agua presente en la superficie (0 m) hasta los 0.07 m. La segunda capa parte en los 0.07 m y culmina en los 0.28 m. La tercera capa llega hasta el metro de profundidad partiendo desde los 0.28 m
-    y la capa final, desde el metro hasta los 2.89 m \cite{ERA5-L_doc}. Con estos parámetros se genera la variable \textit{soil moisture}.
+    y la capa final, desde 1 metro hasta los 2.89 metros \cite{ERA5-L_doc}. Con estos parámetros se genera la variable \textit{soil moisture}.
 
     \subsection{Precipitación}
     El conjunto de datos CR2-MET contiene información meteorológica (precipitación, temperaturas medias y extremas ) en un grilla rectangular de 0.05º latitud-longitud (aproximadamente 5km) para el territorio de Chile continental 
     durante el periodo de 1979-2016. La técnica utilizada para la construcción del producto de precipitación se basa en una regionalización estadística de datos del reanálisis atmosférico ERA-Interim (datos disponibles en grillas de $\sim$70 Km). 
-    El método utiliza modelos estadísticos como funciones de transferencia para traducir precipitación, flujos de humedad y otras variables\cite{pr}.
+    El método utiliza modelos estadísticos como funciones de transferencia para traducir precipitación, flujos de humedad y otras variables \cite{pr}.
     
     \subsection{Observaciones de pozos}
     Las observaciones de pozos de bombeo fueron otorgadas por 2 bases de datos diferentes de la DGA. Ambas bases de datos constaban de una serie de variables útiles para muchos estudios.

@@ -63,7 +63,7 @@ el \textbf{error medio absoluto(MAE)} y el \textbf{error cuadrático medio(RMSE)
     El error medio absoluto, o \textit{MAE} por sus siglas del inglés \textit{Mean Absolute Error} es una métrica de evaluación de un modelo utilizada
     en modelos regresivos. El error medio absoluto de un modelo respecto a un conjunto de prueba(o \textit{test}) resulta ser, como su nombre lo indica, la media de los
     valores absolutos de los errores de predicción individuales en todas las instancias del conjunto \textit{test}. Cada error de predicción es la diferencia entre la estimación 
-    y el valor real de cada instancia\cite{5}.
+    y el valor real de cada instancia \cite{5}.
     
     \begin{equation}\label{eqn:mae}
         mae = \frac{1}{n} \sum_{i=1}^n|~y_i - \bar{y}_i~|
@@ -75,7 +75,7 @@ el \textbf{error medio absoluto(MAE)} y el \textbf{error cuadrático medio(RMSE)
     \subsection{Error cuadrático medio}
     El error cuadrático medio, o \textit{MSE} por sus siglas del inglés \textit{Mean Squared Error} es una métrica de evaluación de un modelo utilizada
     en modelos regresivos. El error cuadrático medio de un modelo respecto al conjunto de prueba es la media del cuadrado de los errores de predicción 
-    en cada instancia del conjunto\cite{4}.
+    en cada instancia del conjunto \cite{4}.
 
     \begin{equation}\label{eqn:mse}
         mse = \frac{1}{n} \sum_{i=1}^n(y_i - \bar{y}_i)^2
@@ -92,7 +92,7 @@ En el contexto de estadísticas y ciencia de datos, el \textit{bootstrapping} es
 de una población a partir de resultados obtenidos de una colección aleatoria igual o más pequeña de esa población. Por tanto, 
 el método requiere la noción de \textit{bootstrap sample}, la cual se define como una \textbf{muestra aleatoria con reposición}
 \cite{17}. Esto significa que, luego de que una observación de los datos ha sido elegido del conjunto para obtener la muestra, éste sigue 
-estando disponible para una selección posterior. La \textit{muestra de bootstrap} debe ser del mismo tamaño que el conjunto de datos original\cite{18}, debido a esto, 
+estando disponible para una selección posterior. La \textit{muestra de bootstrap} debe ser del mismo tamaño que el conjunto de datos original \cite{18}, debido a esto, 
 algunas muestras serán consideradas múltiples veces mientras que otras no serán seleccionadas. Las muestras que no han sido seleccionadas 
 se conocen como \textit{out of bag samples}, o muestras fuera de la bolsa, ya que éstas no se incluirán dentro del modelo.
 
@@ -136,7 +136,7 @@ y una variación del \textit{Bootstrap} para mejorar el rendimiento.
     \textit{Clasification And Regresion Tree}, el cual comienza buscando todos los posibles valores de cada predictor para poder encontrar a cada uno,
     o en otras palabras poder conocer su comportamiento, y determinar el valor que divide los datos en dos subconjuntos de modo que la suma de errores 
     cuadrados de cada subconjunto sea minimizada \cite{18}. Entonces, si denotamos como $X$ el conjunto de todos los datos y a $X_1 \text{ y } X_2$ a la
-    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma del error cuadrático medio(\ref{eqn:mse}) en cada partición, esto es
+    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma del error cuadrático medio(\ref{eqn:mse}) en cada partición, esto es:
     \begin{equation*} 
         SSE = \sum_{i\in X_1}(y_i-\bar{y}_1)^2+ \sum_{j\in X_2}(y_j-\bar{y}_2)^2
     \end{equation*}
@@ -144,7 +144,7 @@ y una variación del \textit{Bootstrap} para mejorar el rendimiento.
 
     Este método utiliza una división a partir del conjunto entero de datos aumentando la profundidad del modelo. En la práctica el proceso continúa
     dentro de los conjuntos $X_1$ y $X_2$ hasta que el número de divisiones en la muestra cae debajo de cierto umbral, ahí culmina el proceso de
-    \textit{paso de crecimiento del árbol}\cite{18} o también llamada profundidad del árbol.
+    \textit{paso de crecimiento del árbol} \cite{18} o también llamada profundidad del árbol.
     Por esta razón este método es comúnmente conocido como \textbf{partición recursiva}. Sin duda el mayor de los problemas es debido a la inestabilidad que conduce a una alta varianza. 
     A menudo un pequeño cambio en los datos podría resultar en una series de divisiones muy diferente, precarizando la predicción. La mayor razón de inestabilidad es la naturaleza 
     jerárquica del proceso; El efecto de un pequeño error en una de las primeras divisiones es propagada hacia abajo por todas las divisiones siguientes \cite{13}.
@@ -161,7 +161,7 @@ El principio es que la decisión del comité, con las predicciones individuales 
 Numerosos estudios empíricos y teóricos han demostrado que los modelos de conjuntos muy a menudo alcanzan una mayor precisión que los modelos individuales.
 Los miembros del conjunto pueden estar prediciendo números con valores reales, etiquetas de clase, probabilidades, clasificaciones, agrupaciones o cualquier otra cantidad. Por lo tanto, 
 sus decisiones se pueden combinar mediante muchos métodos, incluidos los métodos de promediación, votación y probabilísticos. La mayoría de los métodos de aprendizaje por conjuntos son genéricos, 
-aplicables en amplias clases de tipos de modelos y tareas de aprendizaje\cite{6}.
+aplicables en amplias clases de tipos de modelos y tareas de aprendizaje \cite{6}.
 
 
 \section{Bagging}
@@ -246,7 +246,7 @@ función bilinear $g(n_1, n_2)$ que aproxima la observación como
     g(n_1, n_2) = A_0 + A_1 n_1 + A_2n_2 + A_3n_1n_2
 \end{equation}
 
-Los llamados ``pesos bilineares''\cite{26} $A_0,~A_1,~A_2\text{ y }A_3$, son calculados resolviendo el sistemma de ecuaciones
+Los llamados ``pesos bilineares''\cite{26} $A_0,~A_1,~A_2\text{ y }A_3$, son calculados resolviendo el siguiente sistema de ecuaciones:
 \begin{equation}\label{interp2d}
     \begin{bmatrix}
         A_0 \\
@@ -277,7 +277,7 @@ Por lo tanto $g(n_1,n_2)$ está definido para ser una combinación linear de los
 Una serie de tiempo consite en un conjunto de observaciones $x_t$, cada una es registrada en un tiempo fijo $t$.
 Una serie de tiempo a \textbf{tiempo discreto} es en la cual el conjunto de tiempos $T_0$ en donde se llevan a cabo las observaciones
 es un conjunto discreto, por ejemplo, cuando las observaciones se realizan en intervalos de tiempos fijos (mediciones diarias, mensuales, anuales, etc.). 
-En cambio, las series de tiempo a \textbf{tiempo continuo } son obtenidas cuando las observaciones recopiladas se encuentran medidas sobre un intervalo
+En cambio, las series de tiempo a \textbf{tiempo continuo} son obtenidas cuando las observaciones recopiladas se encuentran medidas sobre un intervalo
 contínuo de tiempo, por ejemplo $T_0=[0,1]$ \cite{21}. Una serie de tiempo representa la relación entre dos variables. El tiempo es una de esas variables 
 y la segunda es cualquier variable cuantitativa. No es necesario que la relación muestre siempre incremento en el cambio de la variable con referencia al tiempo. 
 
@@ -308,7 +308,7 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
     y la venta de ventiladores eléctricos y aire acondicionado se dispara en temporadas de verano.
 
     Las variaciones en una serie de tiempo que operan en un lapso de más de un año son las \textbf{variaciones cíclicas}. Este movimiento oscilatorio tiene un período de oscilación de más de un año.
-    Un período completo es un ciclo. Este movimiento cíclico a veces se denomina "Ciclo económico".
+    Un período completo es un ciclo. Este movimiento cíclico a veces se denomina "ciclo económico".
 
     Es un ciclo de cuatro fases que comprende las fases de prosperidad, recesión, depresión y recuperación. La variación cíclica puede ser regular no periódica.
 
@@ -323,7 +323,7 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
     cada uno representando uno de los patrones subyacentes \cite{20}.
 
     La forma más sencilla y popular de descomponer una serie de tiempo es pensar que la serie de tiempo $y_t$ se encuentra compuesta por 
-    3 componentes: el componente estacional, la componente tendencial-cíclica(que contiene a la tendencia y variaciones cíclicas) y la componente residual que resulta ser
+    3 componentes: el componente estacional, la componente tendencial-cíclica (que contiene a la tendencia y variaciones cíclicas) y la componente residual que resulta ser
     todo lo restante para completar la serie \cite{20}.
 
     Si se asume que la serie de tiempo se puede descomponer de forma aditiva, entonces

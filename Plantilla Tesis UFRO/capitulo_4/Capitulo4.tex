@@ -1,7 +1,7 @@
 \chapter{Resultados y Discusión}
 \label{C4}
 Los resultados debieron ser analizados de dos formas: Una de ellas consiste en la medición del error de cada modelo en base al conjunto de test, éstos errores son la 
-raíz del error cuadrático medio, en inglés \textit{Root Mean Squared Error(RMSE)} y el error medio absoluto(\textit{MAE}), ésto significa una validación en la resolución nativa de 
+raíz del error cuadrático medio \ref{eqn:mae}, en inglés \textit{Root Mean Squared Error (RMSE)} y el error medio absoluto (\textit{MAE}), ésto significa una validación en la resolución nativa de 
 GRACE, es decir 1$^\circ$. La segunda manera es la validación en la alta resolución, es decir, posterior a realizar la predicción a 0.25$^\circ$; Está claro que no se posee
 un conjunto para validar los datos en este escenario debido a que sería un \textit{Downscalling} ya hecho. Por este motivo se deben optar por otras maneras de corroborar la información
 para que ésta sea fiable, aquí es donde las series de tiempo se ajustan a lo que buscamos validar.
@@ -15,7 +15,7 @@ se calcula el error medio absoluto y \textit{RMSE} para el conjunto entero de te
     \item Para el modelo que \textbf{minimiza el error medio absoluto}, la métrica \textit{MAE} es de 0,00615 aproximadamente y el \textit{RMSE} se obtiene un valor de 7,25$ \times 10^{-5}$.
 \end{itemize}
 
-Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon}, humedad de suelo(\texttt{sm}) y la evaporación por transpiración de la vegetación(\texttt{e}), en ese orden. Claramente el porcentaje de importancia
+Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon}, humedad de suelo (\texttt{sm}) y la evaporación por transpiración de la vegetación (\texttt{e}), en ese orden. Claramente el porcentaje de importancia
 varía pero el orden se mantiene. Por lo tanto, se puede afirmar que los modelos se encuentran afectos al rendimiento mayoritariamente en base al criterio de minimización escogido.
 
 La siguiente validación en base a la resolución nativa de GRACE es con respecto a las macrozonas del país, es decir, aquellos datos que fueron estratificados y luego separados en entrenamiento y testeo (figura \ref{traintest}).
@@ -67,9 +67,9 @@ predecir valores de \textit{lwe\_thickness} provenientes de GRACE a una mayor re
 Es necesario señalar que los resultados que se presentan a continuación son válidos para el territorio continental chileno, debido a la naturaleza de las bases de datos, específicamente de ERA5-LAND y precipitación, es 
 por este motivo que las observaciones presentes fuera del territorio continental chileno no deben utilizarse para estudios posteriores.
 
-Como se menciona en la metodología del paper base\cite{11}, luego de obtener el TWS final a éste se le deben substraer aquellas variables hidrológicas superficiales para así
+Como se menciona en la metodología del paper base \cite{11}, luego de obtener el TWS final a éste se le deben substraer aquellas variables hidrológicas superficiales para así
 obtener el contenido de aguas subterráneas, no obstante, no se puede asegurar que realizando la substracción de variables hidrológicas superficiales se consiga el valor del almacenamiento de aguas subterráneas, o 
-\textit{Ground Water Storage}(GWS), ésto debido a muchos otros factores que se ignoran a la hora de realizar ese procedimiento, es por esta razón que se decide por omitir este paso y proceder a la validación con mediciones \textit{in situ} o mediciones en terreno con datos de pozos de bombeo que 
+\textit{Ground Water Storage}, ésto debido a muchos otros factores que se ignoran a la hora de realizar ese procedimiento, es por esta razón que se decide por omitir este paso y proceder a la validación con mediciones \textit{in situ} o mediciones en terreno con datos de pozos de bombeo que 
 se detalla más adelante.
 
 Luego de la adición de los residuos interpolados, son 156 las grillas de datos obtenidas desde abril del año 2002 hasta junio del año 2017. A continuación se muestran los datos con reducción de escala para
@@ -115,7 +115,7 @@ Finalmente, podemos comparar las distribuciones de la resolución nativa con el 
           \subfigure[Distribución TWS a 1$^{\circ}$]{\includegraphics[scale=0.6]{images/distGRACE1deg.png}}
           \subfigure[Distribución TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.6]{images/distGRACE025deg.png}}\goodgap
           \vskip -0.1in
-    \caption[Comparativa de distribuciones de GRACE]{Gráfico de las distribuciones de los datos originales de GRACE con los valores predichos a alta resolución con el modelo Random Forest}
+    \caption[Comparativa de distribuciones de GRACE]{Gráfico de las distribuciones de los datos originales de GRACE con los valores predichos a alta resolución con el modelo Random Forest.}
     \label{distcomp}
 \end{figure}
 
@@ -171,7 +171,7 @@ El estudio tendencial de las series de tiempo comienza de forma general, es deci
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_coq_reg.png}
           \vskip -0.1in
-    \caption[Series de tiempo para la región de Coquimbo]{\footnotesize Anomalías porcentuales del promedio mensual de la región de Coquimbo}
+    \caption[Series de tiempo para la región de Coquimbo]{\footnotesize Anomalías porcentuales del promedio mensual de la región de Coquimbo.}
     \label{tscoq}
 \end{figure}
 En la serie temporal se puede apreciar que las tendencias de GRACE original y GRACE escalado son muy similares aunque no del todo; Se puede observar que los cambios porcentuales difieren, sobre todo desde el año 2010 hasta principios de año 2013. Para la precipitación,
@@ -198,7 +198,7 @@ que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comp
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_0.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25,-30.75) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25,-30.75) contenido.}
     \label{tspixel0}
 \end{figure}
 
@@ -206,7 +206,7 @@ que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comp
     \centering
           \includegraphics[width=\linewidth]{images/Anomalies_pixel-7125S-3075W_1.png}
           \vskip -0.1in
-    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25, -30.5) contenido}
+    \caption[Series de tiempo para pixel particular a 1° con pixel a 0.25° contenido]{\footnotesize Anomalías porcentuales para pixel particular a 1° (-71.25, -30.75) con pixel a 0.25° (-71.25, -30.5) contenido.}
     \label{tspixel1}
 \end{figure}
 
@@ -320,6 +320,7 @@ al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replica
 Aunque se hayan podido capturar de manera correcta las anomalías de GRACE a alta resolución, no sería problema agregar variables explicativas adicionales al modelo que puedan tener incidencia en los niveles de agua, por ejemplo las observaciones de pozos, aunque éstas no sean regulares en el espacio, se puede
 agregar en zonas donde exista una grilla lo suficientemente regular y realizar un aumento de resolución local. Otra variable a considerar puede ser la actividad sismológica del territorio, por ejemplo la profundidad del sismo y su magnitud, es probable que se logren obtener resultados aún más concretos considerando la 
 alta actividad sísimica del territorio. Finalmente, adicionar información acerca de la geología presente en el territorio puede dar información de los movimientos o filtraciones que puede poseer alguna capa en especial. 
+
 % 
 
 %
