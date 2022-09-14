@@ -15,25 +15,29 @@ Otra de las herramientas utilizadas durante todo el proceso fue la creación de 
 En este caso se generaron 2 VM con diferentes características y funciones, la primera está destinada para el procesamiento más extenso y que necesite una alta capacidad de procesamiento para llevar a cabo las tareas más complejas en menos tiempo,
 así, las características de la máquina se resumen en el código \texttt{e2-highmem-16} que se traduce como un hardware de una CPU de 16 núcleos virtuales de 128 GB de memoria RAM y la segunda VM es la que se utilizará
 más constantemente con una capacidad menor pero que sea capaz de soportar el nivel de cálculo necesario, las carácterísticas de la máquina codifcadas son \texttt{e2-custom-6-21760} que consta de 6 núcleos virtuales,
-2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. En segundo lugar, luego de haber generado los entornos en los cuales se procesarán y guardarán los datos, se crea el repositorio en \textit{GitHub} en 
+2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. 
+
+Luego de haber generado los entornos en los cuales se procesarán y guardarán los datos, se crea el repositorio en \textit{GitHub} en 
 donde se irá guardando y archivando el código generado para realizar el \textit{Downscalling}. La ventaja de utilizar \textit{git} es que proporciona un espacio en donde se van guardando cada una de las versiones del código 
 lo que nos permite acceder a código que puede haber sido borrado o extraviado de manera involuntaria o como una especie de bitácora donde se registra cada cambio.
+
 La tercera parte consiste en configurar los datos globales de nombre de usuario y \textit{e-mail} en git para
 enlazar a la conexión, posteriormente crear una llave de conexión \textit{ssh} y agregarla al repositorio creado en \textit{GitHub} para lograr conectarse a cualquiera de las máquinas virtuales que se deseen utilizar y así poder realizar modificaciones 
 al repositorio y registrarlas mediante \textit{commits}.
-Finalmente, luego de haber activado la máquina virtual en \textit{gcp} que se desea utilizar se procede a conectar la máquina virtual con la dirección IP del computador personal o de quien realiza la consulta para la conexión
+Finalmente, luego de haber activado la máquina virtual en \textit{gcp} que se desea utilizar se procede a conectar la máquina virtual \ref{sshconec} con la dirección IP del computador personal o de quien realiza la consulta para la conexión
 mediante un archivo con extensión \textit{.sh} el cual solicita la información del usuario y de la máquina y la coteja.
-
-
-\begin{figure}[H]
-    \centering
-          \includegraphics[width=\linewidth]{images/ssh-conection.png}
-    \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX.}
-\end{figure}
 
 Para finalizar, lo único que resta es elegir el puerto al cual el usuario desea conectarse en el navegador ya que posee múltiples entornos de ejecución de código Python, entre ellos \textit{Jupyter Notebook}, \textit{Jupyter Lab} y \textit{Dask Dashboard}
 los cuales entregan diferentes herramientas y formatos para realizar el Análisis de Datos. Para este trabajo se optó por utilizar \textit{Jupyter Lab} ya que es aquel que permite tener un control más detallado del directorio de archivos, acceso a la terminal
 de la VM de forma rápida lo cual aumenta su eficiencia a la hora de trabajar con la máquina remota. 
+
+\begin{figure}[H]\label{sshconec}
+    \centering
+          \includegraphics[width=0.8\linewidth]{images/ssh-conection.png}
+    \caption[Conexión ssh de máquina virtual]{\footnotesize Conexión ssh de máquina virtual ``matias-exploracion-4'' con el \textit{e-mail} ``m.palma14'' asociado usuario de \textit{GitHub} mediante el archivo \textit{google-connect-docker.sh} en LINUX.}
+\end{figure}
+
+
 %
 %
 %
@@ -75,7 +79,7 @@ como:
 
 \begin{figure}[ht]
     \centering
-          \includegraphics[scale=0.6]{images/metodología_Chen_etal2019.png}
+          \includegraphics[scale=0.7]{images/metodología_Chen_etal2019.png}
           \vskip -0.1in
     \caption[Metodología de reducción de dimensión propuesta]{\footnotesize Metodología propuesta en \cite{11}, pág. 7.}
     \label{metodologia}
