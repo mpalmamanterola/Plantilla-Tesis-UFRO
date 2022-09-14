@@ -231,6 +231,11 @@ para el promedio de Grace original a baja resolución y los datos con aumento de
 fue de \textbf{0.65441778}, un poco más bajo que el coeficiente naccional pero es más que aceptable para mencionar que los comportamientos tendenciales del \textit{Downscalling} se mantienen
 en base al satélite GRACE original.
 
+%
+%
+%
+%
+
 \section{}
 El último componente del estudio del \textit{Downscalling} mediante un método de \textit{ensemble} basado en Árboles de decisión, es la comparación de una interpolación bilinear de los datos de GRACE a la resolución objetivo
 con el aumento de resolución realizada mediante el método de Random Forest. Para realizar la interpolación se opta por utilizar el software CDO y como un estudio \textit{a priori} del \textit{Downscalling} se miden los tiempos de remuestreo
@@ -241,11 +246,12 @@ espacial de CDO y la predicción realizada por el modelo predictivo en la máqui
           \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/Downscalling_cdo-09-02.jpeg}}
           \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/Downscalling_v0-09-02.jpeg}}\goodgap
           \vskip -0.1in
-    \caption[Comparación de interpolación bilinear y \textit{Random Forest}]{Gráfico de interpolación bilinear con CDI y la predicción de TWS del modelo \textit{Random Forest} para septiembre del año 2002.}
+    \caption[Comparación de interpolación bilinear y \textit{Random Forest}]{Gráfico de interpolación bilinear con CDO y la predicción de TWS del modelo \textit{Random Forest} para septiembre del año 2002.}
     \label{interp02}
 \end{figure}
 
-Posterior a realizar la interpolación bilinear, los productos grillados obtenidos mediante CDO y el modelo predictivo son poromedidados por cada píxel en el territorio para así obtener una única grilla que representa los comportamientos temporales promedio. Luego,
+Posterior a realizar la interpolación bilinear, los productos grillados obtenidos mediante CDO y el modelo predictivo son poromedidados por cada píxel en el territorio para así obtener una única grilla que representa los comportamientos temporales promedio, para la interpolación bilinear se 
+obtuvo una varianza de 1,7963$\times 10^{-4}$ y para la regresión 1,3850$\times 10^{-4}$. Luego,
 se calculan las diferencias absolutas por píxel entre ambas grillas y así poder obtener el $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ de los píxeles se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
 Es posible aislar la zona donde se encuentra el mayor error y poder realizar una comparativa de las dinámicas presentes.
 
@@ -256,19 +262,64 @@ Es posible aislar la zona donde se encuentra el mayor error y poder realizar una
     \caption[Área donde la interpolación bilinear y el modelo predictivo difieren considerablemente]{Píxeles donde existe una alta diferencia (destacados en rojo) entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest}}
     \label{high_diff}
 \end{figure}
-En la zona delimitada en la figura \ref{high_diff}, se aprecia que en las zonas donde el modelo difiere de la interpolación es mayoritariamente en zonas marítimas. Para obtener un marco de referencia, se escoge el parche en el cual no existen diferencias 
+En la zona delimitada en la figura \ref{high_diff}, se aprecia que en los píxeles donde el modelo difiere de la interpolación es mayoritariamente en donde existe océano. Para obtener un marco de referencia, se escoge el parche en el cual no existen diferencias 
 considerables y así estudiar las varianzas de cada variable explicativa, la interpolación bilinear y la prediccón del modelo  \textit{Random Forest}.
+
+\begin{table}[H] 
+    \caption[Varianzas en parche con altas diferencias entre CDO y RF]{Varianzas en parche con altas diferencias entre interpolación bilinear con CDO y regresión mediante RF}
+    \newcolumntype{C}{>{\centering\arraybackslash}X}
+    \begin{tabularx}{0.9\textwidth}{CCC}
+    \toprule
+    \textbf{Parche}	& \textbf{Varianza CDO}	& \textbf{Varianza \textit{Random Forest}} \\
+        \midrule
+        \textbf{Altas diferencias}		& 1,1664$\times 10^{-6}$ &3,03805$\times 10^{-6}$  \\
+        \textbf{Bajas diferencias}		 & 9,665881$\times 10^{-6}$ & 9,351364 $\times 10^{-6}$\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Es claro que en el parche en cuestión, las anomalías de TWS a baja resolución que entrega el modelo \textit{Random Forest} entrega mucha más variabilidad en la predicción que la interpolación bilinear, pero fuera de ésta zona
+la variabilidad del modelo predictivo como de la interpolación bilinear se mantienen cercanas.
+
+\begin{figure}[H]
+    \centering
+          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/rfvbil_2002.png}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/bilvrf_2002.png}}
+          \vskip -0.1in
+    \caption[Área donde la interpolación bilinear y el modelo predictivo difieren en el periodo 09/2002]{Píxeles donde existe una alta diferencia entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest} para septiembre del año 2002.}
+    \label{bilrf2002}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/rfvbil_2014.png}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/bilvrf_2014.png}}
+          \vskip -0.1in
+    \caption[Área donde la interpolación bilinear y el modelo predictivo difieren en el periodo 06/2014]{Píxeles donde existe una alta diferencia entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest} para junio del año 2014.}
+    \label{bilrf2014}
+\end{figure}
+
+
+Al momento de observar un mes particular del parche de píxeles de la figura \ref{high_diff} es posible identificar las zonas donde la regresión difiere de la interpolación, por ejemplo para el mes de septiembre del año 2002 (fig. \ref{bilrf2002})
+los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indicando una mayor estabilidad del contenido de agua en esas zonas. El mismo comportamiento también es capturado para el mes de junio del año 2014 (fig. ref{bilrf2014}).
 
 \section{Discusión}
 
 En base a la gráfica \ref{dsf17} se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
-tienden a la baja en la zona norte y a la alza en la zona austral, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
+tienden a la baja en la zona norte, la cual es una zona con alta demanda hídrica pero en general bastante árida, y a la alza en la zona austral, donde existe más precipitación, humedad y menor temperatura, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
 
 Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde existen cultivos agrícolas de cualquier índole existe una tendencia de vaciado de pozos, ésto claro por el
 uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
 
-CDO sin duda que es un software muy bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
+Es claro que no es posible determinar a ciencia cierta si el aumento de resolución espacial mediante \textit{Random Forest} se ha realizado de manera 100$\%$ efectiva
+Si bien existen zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relaión a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
+la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución y además, su variabilidad. CDO sin duda que es un software muy 
+bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
 al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replicable en CDO. 
+
+Aunque se hayan podido capturar de manera correcta las anomalías de GRACE a alta resolución, no sería problema agregar variables explicativas adicionales al modelo que puedan tener incidencia en los niveles de agua, por ejemplo las observaciones de pozos, aunque éstas no sean regulares en el espacio, se puede
+agregar en zonas donde exista una grilla lo suficientemente regular y realizar un aumento de resolución local. Otra variable a considerar puede ser la actividad sismológica del territorio, por ejemplo la profundidad del sismo y su magnitud, es probable que se logren obtener resultados aún más concretos considerando la 
+alta actividad sísimica del territorio. Finalmente, adicionar información acerca de la geología presente en el territorio puede dar información de los movimientos o filtraciones que puede poseer alguna capa en especial. 
 % 
 
 %
