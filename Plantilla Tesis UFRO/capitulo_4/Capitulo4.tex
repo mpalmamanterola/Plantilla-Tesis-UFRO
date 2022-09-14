@@ -64,7 +64,7 @@ predecir valores de \textit{lwe\_thickness} provenientes de GRACE a una mayor re
 %
 %
 \section{Resultados Finales}
-Es necesario señalar que los resultados que se presentan a continuación son válidos para el territorio continental chileno, debido a la naturaleza de las bases de datos, específicamente de ERA5-LAND y precipitación, es 
+Es necesario señalar que los resultados que se presentan a continuación son válidos para el territorio continental chileno, debido a la naturaleza de las bases de datos, específicamente de ERA5-Land y precipitación, es 
 por este motivo que las observaciones presentes fuera del territorio continental chileno no deben utilizarse para estudios posteriores.
 
 Como se menciona en la metodología del paper base \cite{11}, luego de obtener el TWS final a éste se le deben substraer aquellas variables hidrológicas superficiales para así
@@ -152,7 +152,9 @@ aunque con la media desplazada más lejana del origen y con una pequeña disminu
 \subsection{Zona de estudio}
 
 Debido a la extensa hidrografía presente en el territorio chileno y de los limitados datos de observaciones de pozos, la validación mediante mediciones \textit{in situ} se centrará
-en la región de Coquimbo. En primera instancia se realiza un estudio general de datos promediados regionales, 
+en la región de Coquimbo en el periodo donde se puedan comparar las tendencias de GRACE con las observaciones de pozos, es decir, desde abril del año 2002 hasta enero del año 2016. 
+
+En primera instancia se realiza un estudio general de datos promediados regionales, 
 posteriormente se escoge un píxel de baja resolución el cual contiene las observaciones de pozos remuestradas para finalmente estudiar aquellos píxeles a alta resolución que contengan zonas agrícolas \cite{LC}, las cuales necesitan agua para 
 poder realizar el regadío. Este es un factor que se tendrá presente a la hora de realizar el estudio de tendencias para GRACE escalado y las observaciones de pozos.
 
@@ -237,7 +239,7 @@ en base al satélite GRACE original.
 %
 %
 
-\section{}
+\section{Inerpolación bilinear y estudio de variabilidad}
 El último componente del estudio del \textit{Downscalling} mediante un método de \textit{ensemble} basado en Árboles de decisión, es la comparación de una interpolación bilinear de los datos de GRACE a la resolución objetivo
 con el aumento de resolución realizada mediante el método de Random Forest. Para realizar la interpolación se opta por utilizar el software CDO y como un estudio \textit{a priori} del \textit{Downscalling} se miden los tiempos de remuestreo
 espacial de CDO y la predicción realizada por el modelo predictivo en la máquina virtual \texttt{ e2-custom-6-2176}, los tiempos de ejecución fueron de 0.37 y de 4.96 segundos respectivamente.
@@ -267,7 +269,7 @@ En la zona delimitada en la figura \ref{high_diff}, se aprecia que en los píxel
 considerables y así estudiar las varianzas de cada variable explicativa, la interpolación bilinear y la prediccón del modelo  \textit{Random Forest}.
 
 \begin{table}[H] 
-    \caption[Varianzas en parche con altas diferencias entre CDO y RF]{Varianzas en parche con altas diferencias entre interpolación bilinear con CDO y regresión mediante RF}
+    \caption[Varianzas en diferentes parches de CDO y RF]{Varianzas en parches con altas y bajas diferencias promedio entre interpolación bilinear con CDO y regresión mediante RF}
     \newcolumntype{C}{>{\centering\arraybackslash}X}
     \begin{tabularx}{0.9\textwidth}{CCC}
     \toprule
@@ -284,24 +286,49 @@ la variabilidad del modelo predictivo como de la interpolación bilinear se mant
 
 \begin{figure}[H]
     \centering
-          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/rfvbil_2002.png}}
-          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/bilvrf_2002.png}}
+          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.75]{images/rfvbil_2002.png}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.75]{images/bilvrf_2002.png}}
           \vskip -0.1in
     \caption[Área donde la interpolación bilinear y el modelo predictivo difieren en el periodo 09/2002]{Píxeles donde existe una alta diferencia entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest} para septiembre del año 2002.}
     \label{bilrf2002}
 \end{figure}
 
 Al momento de observar un mes particular del parche de píxeles de la figura \ref{high_diff} es posible identificar las zonas donde la regresión difiere de la interpolación, por ejemplo para el mes de septiembre del año 2002 (fig. \ref{bilrf2002})
-los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indicando una mayor estabilidad del contenido de agua en esas zonas. El mismo comportamiento también es capturado para el mes de junio del año 2014 (fig. ref{bilrf2014}).
+los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indicando una mayor estabilidad del contenido de agua en esas zonas. El mismo comportamiento también es capturado para el mes de junio del año 2014 (fig. \ref{bilrf2014}).
 
 \begin{figure}[H]
     \centering
-          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.53]{images/rfvbil_2014.png}}
-          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.53]{images/bilvrf_2014.png}}
+          \subfigure[Interpoalción bilinear]{\includegraphics[scale=0.75]{images/rfvbil_2014.png}}
+          \subfigure[TWS a 0.25$^{\circ}$ ]{\includegraphics[scale=0.75]{images/bilvrf_2014.png}}
           \vskip -0.1in
     \caption[Área donde la interpolación bilinear y el modelo predictivo difieren en el periodo 06/2014]{Píxeles donde existe una alta diferencia entre la interpolación bilinear con CDO y el modelo predictivo \textit{Random Forest} para junio del año 2014.}
     \label{bilrf2014}
 \end{figure}
+
+Finalmente, un estudio comparativo de la variabilidad de las variables explicativas en los parches de altas y bajas diferencias promedio nos puede entregar 
+una idea de qué tanto afecta la varianza de cada variable a la predicción. 
+\begin{table}[H] 
+    \caption[Varianzas de las variables explicativas de RF]{Varianzas de las 6 variables explicativas para los parches con altas diferencias y bajas diferencias promedio entre interpolación mediante CDO y predicción del modelo \textit{Random Forest}}
+    \newcolumntype{C}{>{\centering\arraybackslash}X}
+    \begin{tabularx}{0.9\textwidth}{CCC}
+    \toprule
+    \textbf{Variable}	& \textbf{Parche altas diferencias}	& \textbf{Parche bajas diferencias} \\
+        \midrule
+        \textbf{runoff}		                 & 1.11489$\times 10^{-5}$  & 1.5682$\times 10^{-5}$  \\
+        \textbf{soil moisture}		         & 0.0973583                & 0.1291611\\
+        \textbf{precipitation}		         & 6.109682                 & 5.185894\\
+        \textbf{evapotranspiration}	         & 7.9032$\times 10^{-7}$   & 8.68624 $\times 10^{-7}$\\
+        \textbf{canopy water}		         & 9.409$\times 10^{-9}$    & 8.836 $\times 10^{-9}$\\
+        \textbf{snow water equivalent}	     & 15.23432                 & 9.04167 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Es claro que existe mayor varianza en las variables explicativas en donde las predicciones entre la interpolación bilinear y la regresión mediante \textit{Random Forest} en el parche de píxeles donde existe mayor diferencia. Éstas grandes diferencias
+pueden ser explicadas por este aumento en la varianza de las componentes hidrológicas del modelo.
+%
+%
+% Las varianzas de las 6 variables explicativas para cada 
 
 \section{Discusión}
 
@@ -313,13 +340,18 @@ uso constante requerido de aguas para realizar regadío. Además, en zonas donde
 
 Es claro que no es posible determinar a ciencia cierta si el aumento de resolución espacial mediante \textit{Random Forest} se ha realizado de manera 100$\%$ efectiva
 Si bien existen zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relaión a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
-la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución y además, su variabilidad. CDO sin duda que es un software muy 
+la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución y cuando éstas presentan una alta variabilidad, es 
+posible señalar que esa varianza influye en la predicción como una información adicional al modelo. CDO sin duda que es un software muy 
 bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
-al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replicable en CDO. 
+al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replicable en CDO, es por esto que es mejor utilizarlo como una herramienta para utilizar en algoritmos más sofisticados. 
 
 Aunque se hayan podido capturar de manera correcta las anomalías de GRACE a alta resolución, no sería problema agregar variables explicativas adicionales al modelo que puedan tener incidencia en los niveles de agua, por ejemplo las observaciones de pozos, aunque éstas no sean regulares en el espacio, se puede
 agregar en zonas donde exista una grilla lo suficientemente regular y realizar un aumento de resolución local. Otra variable a considerar puede ser la actividad sismológica del territorio, por ejemplo la profundidad del sismo y su magnitud, es probable que se logren obtener resultados aún más concretos considerando la 
 alta actividad sísimica del territorio. Finalmente, adicionar información acerca de la geología presente en el territorio puede dar información de los movimientos o filtraciones que puede poseer alguna capa en especial. 
+
+Existen anomalías en la serie de tiempo de GRACE original que el modelo \textit{Random Forest} no logra capturar, por ejemplo a inicios del período (año 2002), principios del año 2010 y mediados del 2015. Es sabido que Chile es un país con alto índice de sismos, no es una coincidencia que éstas grandes diferencias entre las anomalías ocurran 
+en períodos donde han existido actividad sismológica en la cuarta región, como lo son el terremoto de Coquimbo el 18 de junio del 2002 con una magnitud de 6.6, el famoso terremoto ocurrido el 27 de febrero del 2010 que afectó a varias regiones con magnitud de 8.8 y finalmente el terremoto en Coquimbo el 16 de septiembre del 2015 con magnitud 8.4,
+es por esta razón que se propone introducir una variable explicativa sismológica para entrenar y predecir las anomalías de GRACE. No se debe descartar que ésta información adicional pueda generar mayor correlación lineal entre las series de tiempo.
 
 % 
 
