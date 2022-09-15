@@ -44,8 +44,8 @@ de la VM de forma rápida lo cual aumenta su eficiencia a la hora de trabajar co
 %
 \section{Métodología propuesta en el artículo}
 En base a \cite{11}, se procede a replicar la metodología propuesta en la figura 3.1, donde se detalla
-la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ}(\sim 111 \text{ Km})$
-para obtener datos georreferenciados a una resolución de $0.25^{\circ}(\sim 27.75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
+la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ} (\sim 111 \text{ Km})$
+para obtener datos georreferenciados a una resolución de $0.25^{\circ} (\sim 27.75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
 \textit{GRACE} para el \textit{Total Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas (\textit{canopy water}, \textit{soil moisture}, 
 \textit{snow water equivalent} y \textit{runoff}), \textit{GLEAM} para datos 
 de vapor de agua emanado por plantas, el suelo, etc y \textit{TRAMM} para datos de precipitación.
@@ -155,11 +155,11 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \end{tabularx}
     \end{table}
     
-    \subsection{ERA5-L}
+    \subsection{ERA5-Land}
     ERA5-Land es un conjunto de datos que proporciona una visión coherente de la evolución de las variables terrestres durante varias décadas 
     con una resolución mejorada. ERA5-Land se ha producido reproduciendo el componente terrestre del reanálisis climático ECMWF ERA5. El reanálisis combina 
     datos de modelos con observaciones de todo el mundo en un conjunto de datos globalmente completo y consistente utilizando las leyes de la física. 
-    Además, produce datos que se remontan varias décadas atrás en el tiempo, proporcionando una descripción precisa del clima del pasado\cite{ERA5-L}.
+    Además, produce datos que se remontan varias décadas atrás en el tiempo, proporcionando una descripción precisa del clima del pasado \cite{ERA5-L}.
 
     El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ} (\sim 9$ Km), 
     para el proyecto en cuestión, de todo el territorio continental chileno.
@@ -212,14 +212,14 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \label{pozosDGA}
     \end{figure}
 
-    El objetivo de éstos datos recae en validar el contenido de agua terrestre(TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
+    El objetivo de éstos datos recae en validar el contenido de agua terrestre (TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
     Como se muestra en la figura \ref{pozosDGA}, los datos provenientes de la DGA consideran sólamente la zona norte y centro del país por lo que el estudio posterior de validación del
-    \textit{downscalling} deberá estuidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
+    \textit{downscalling} deberá estudidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
 
     La primera intervención realizada a esta nueva base de datos unificada consistió en relacionar estos datos que se encuentran repartidos de manera no uniforme en el territorio
     lo cual dificulta demasiado su comparación. Es por esto que luego de aplicarle el remuestreo espacial detallado más adelante, el siguiente paso fue transformar los datos con un código asociado,
-    a datos grillados. Donde las grillas serán justamente la resolcuión objetivo (1$^{\circ}$) y la grilla de alta resolución (0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
-    habiten más de una estación de medición, es por esto que se debe adicionar nuevas variables, tales como \textbf{la densidad de pozos} por pixel, es decir, la cantidad de pozos presentes en el pixel y además
+    a datos grillados. Donde las grillas serán justamente la resolución objetivo (1$^{\circ}$) y la grilla de alta resolución (0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
+    se encuentren más de una estación de medición y en otras donde no existan observaciones, es por esto que se debe adicionar nuevas variables, tales como \textbf{la densidad de pozos} por pixel, es decir, la cantidad de pozos presentes en el pixel y además
     la \textbf{cantidad de observaciones}, es decir, la cantidad de datos presentes en cada punto de la grilla, esto para no perder aquellos píxeles que sean más representativos o que 
     contengan una alta riqueza en sus mediciones.
 
@@ -250,7 +250,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     espacial. Se escoge la variable hidrológica \textit{runoff} proveniente del conjunto de datos ERA5-L y se procede a realizar las interpolaciones para el mes de marzo del año 2009, para este mes se obtuvieron los siguientes resultados:
     
     \begin{table}[H] 
-        \caption[Comparación de interpolaciones Python/CDO]{Comparación de interpolación bilinear realizada en software especializado(CDO) versus Python desde la resolución original de 0.1° a 0.25°.}
+        \caption[Comparación de interpolaciones Python/CDO]{Comparación de interpolación bilinear realizada en software especializado (CDO) versus Python desde la resolución original de 0.1° a 0.25°.}
         \newcolumntype{C}{>{\centering\arraybackslash}X}
         \begin{tabularx}{0.9\textwidth }{CCCC}
         \toprule
@@ -326,7 +326,7 @@ del conjunto de datos y utiliza el promedio para mejorar la precisión predictiv
 El tamaño de la submuestra se controla con el parámetro \texttt{max\_samples}, si el parámetro \texttt{bootstrap=True}, el cual se encuentra predeterminado, 
 de lo contrario, se usa todo el conjunto de datos para construir cada árbol.
 
-Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza el error cuadrático medio(fig. \ref{logo2}) y el restante minimiza el error medio absoluto (fig. \ref{logo3}). En cuanto a la construcción misma, ambos modelos comparten los mismos hiperparámetros, 
+Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza el error cuadrático medio (fig. \ref{logo2}) y el restante minimiza el error medio absoluto (fig. \ref{logo3}). En cuanto a la construcción misma, ambos modelos comparten los mismos hiperparámetros, 
 éstos son:
 \begin{itemize}
     \item \texttt{n\_estimators}: Es la cantidad de árboles presentes en el \textit{ensemble}. 
@@ -364,9 +364,9 @@ Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza
     Mediante dos funciones creadas en Python y la clase \texttt{interpolate.interp2d} de la librería \texttt{scipy} es posible interpolar los datos a partir de sus 4 vecinos más cercanos resolviendo el sistema de ecuaciones
     de la ecuación \ref{interp2d}, éstas funciones son:
     \begin{itemize}
-        \item {\texttt{nearest\_coor\_patch}: Es una función que particiona la grilla de longitud(df\_\texttt{lon}) y de latitud(df\_\texttt{lat}) del \textit{dataframe} y retorna los 4 vecinos más cercanos en base a la distancia euclídea
+        \item {\texttt{nearest\_coor\_patch}: Es una función que particiona la grilla de longitud (\texttt{df\_lon}) y de latitud(\texttt{df\_lat}) del \textit{dataframe} y retorna los 4 vecinos más cercanos en base a la distancia euclídea
         de las coordenadas de longitud y latitud entregadas.}
-        \item {\texttt{bilinear\_interpolation}: Función que interpola el parche de coordenadas entregado(\texttt{patch}) de la variable \texttt{var\_name} en la longitud(\texttt{new\_lon}) y latitud(\texttt{new\_lat}) dadas. En el caso de haber un error cuantitativo de interpolación,
+        \item {\texttt{bilinear\_interpolation}: Función que interpola el parche de coordenadas entregado (\texttt{patch}) de la variable \texttt{var\_name} en la longitud (\texttt{new\_lon}) y latitud (\texttt{new\_lat}) dadas. En el caso de haber un error cuantitativo de interpolación,
          la función retorna el objeto nulo de la librería \texttt{numpy}.}
     \end{itemize}
     \begin{figure}[H]

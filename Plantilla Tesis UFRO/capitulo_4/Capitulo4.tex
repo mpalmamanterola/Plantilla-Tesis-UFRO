@@ -120,12 +120,12 @@ utilizando la librería \texttt{seaborn} es poisble obtener dichas densidades, e
     \label{distcomp}
 \end{figure}
 
-Es evidente que el valor de las densiades(eje $y$) difieren en demasía debido al mayor volumen de datos presente en los datos a alta resolución, de todas maneras, ambas distribuciones
+Es evidente que el valor de las densiades (eje $y$) difieren en demasía debido al mayor volumen de datos presente en los datos a alta resolución, de todas maneras, ambas distribuciones
 se asemejan y mantienen un coportamiento normal. Ahora si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y el rango donde se mueve las anomalías a alta y baja resolución podremos tener una idea más clara 
 en cuanto a la similitud de distribuciones se trata.
 
 \begin{table}[H] 
-    \caption[Comparación de distribuciones de TWS a baja y alta resolución]{Comparación de TWS a baja y alta resolución en distribución , media, desviación estándar y soporte.}
+    \caption[Comparación de distribuciones de TWS a baja y alta resolución]{Comparación de TWS a baja y alta resolución en distribución, media, desviación estándar y soporte.}
     \newcolumntype{C}{>{\centering\arraybackslash}X}
     \begin{tabularx}{0.9\textwidth}{CCCCC}
     \toprule
@@ -168,7 +168,7 @@ poder realizar el regadío. Este es un factor que se tendrá presente a la hora 
 
 \subsection{Validación con series de tiempo}
 El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las anomalías porcentuales \ref{pct_anomalies} de las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
-\textbf{precipitación} promedio y finalmente las observaciones de pozos individuales de la región en color gris y su promedio mensual.
+\textbf{precipitación} promedio y finalmente las \textbf{observaciones de pozos} individuales de la región en color gris y su promedio mensual.
 
 \begin{figure}[H]
     \centering
@@ -338,8 +338,7 @@ tienden a la baja en la zona norte, la cual es una zona con alta demanda hídric
 Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde existen cultivos agrícolas de cualquier índole existe una tendencia de vaciado de pozos, ésto claro por el
 uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
 
-Es claro que no es posible determinar a ciencia cierta si el aumento de resolución espacial mediante \textit{Random Forest} se ha realizado de manera 100$\%$ efectiva
-Si bien existen zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relaión a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
+Aunque se pueden encontrar ciertas zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relación a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
 la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución y cuando éstas presentan una alta variabilidad, es 
 posible señalar que esa varianza influye en la predicción como una información adicional al modelo. CDO sin duda que es un software muy 
 bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
@@ -353,6 +352,9 @@ Existen anomalías en la serie de tiempo de GRACE original que el modelo \textit
 en períodos donde han existido actividad sismológica en la cuarta región, como lo son el terremoto de Coquimbo el 18 de junio del 2002 con una magnitud de 6.6, el famoso terremoto ocurrido el 27 de febrero del 2010 que afectó a varias regiones con magnitud de 8.8 y finalmente el terremoto en Coquimbo el 16 de septiembre del 2015 con magnitud 8.4,
 es por esta razón que se propone introducir una variable explicativa sismológica para entrenar y predecir las anomalías de GRACE. No se debe descartar que ésta información adicional pueda generar mayor correlación lineal entre las series de tiempo.
 
+Random Forest no es uno de los modelos predictivos más contemporáneo, si bien otorga buena generalización, es posible mejorar los resultados con un modelo basado en árboles más actual, como por ejemplo \texttt{XGBoost} el cual, además de ajustar árboles,
+también ajusta los hiperparámetros de forma óptima a través de múltiples herramientas, como la \textbf{paralelización}, el \textit{\textbf{tree pruning}} e inclusive
+la \textbf{optimización de hardware}.
 % 
 
 %
