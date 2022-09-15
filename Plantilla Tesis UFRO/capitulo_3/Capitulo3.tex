@@ -24,7 +24,7 @@ lo que nos permite acceder a código que puede haber sido borrado o extraviado d
 La tercera parte consiste en configurar los datos globales de nombre de usuario y \textit{e-mail} en git para
 enlazar a la conexión, posteriormente crear una llave de conexión \textit{ssh} y agregarla al repositorio creado en \textit{GitHub} para lograr conectarse a cualquiera de las máquinas virtuales que se deseen utilizar y así poder realizar modificaciones 
 al repositorio y registrarlas mediante \textit{commits}.
-Finalmente, luego de haber activado la máquina virtual en \textit{gcp} que se desea utilizar se procede a conectar la máquina virtual \ref{sshconec} con la dirección IP del computador personal o de quien realiza la consulta para la conexión
+Luego de haber activado la máquina virtual en \textit{gcp} que se desea utilizar se procede a conectarla (fig. \ref{sshconec}.1) con la dirección IP del computador personal o de quien realiza la consulta para la conexión
 mediante un archivo con extensión \textit{.sh} el cual solicita la información del usuario y de la máquina y la coteja.
 
 Para finalizar, lo único que resta es elegir el puerto al cual el usuario desea conectarse en el navegador ya que posee múltiples entornos de ejecución de código Python, entre ellos \textit{Jupyter Notebook}, \textit{Jupyter Lab} y \textit{Dask Dashboard}
@@ -192,7 +192,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     y la capa final, desde 1 metro hasta los 2.89 metros \cite{ERA5-L_doc}. Con estos parámetros se genera la variable \textit{soil moisture}.
 
     \subsection{Precipitación}
-    El conjunto de datos CR2-MET contiene información meteorológica (precipitación, temperaturas medias y extremas ) en un grilla rectangular de 0.05º latitud-longitud (aproximadamente 5km) para el territorio de Chile continental 
+    El conjunto de datos CR2-MET contiene información meteorológica (precipitación, temperaturas medias y extremas) en un grilla rectangular de 0.05º latitud-longitud (aproximadamente 5 Km) para el territorio de Chile continental 
     durante el periodo de 1979-2016. La técnica utilizada para la construcción del producto de precipitación se basa en una regionalización estadística de datos del reanálisis atmosférico ERA-Interim (datos disponibles en grillas de $\sim$70 Km). 
     El método utiliza modelos estadísticos como funciones de transferencia para traducir precipitación, flujos de humedad y otras variables \cite{pr}.
     

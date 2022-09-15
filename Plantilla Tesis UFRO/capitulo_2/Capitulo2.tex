@@ -1,10 +1,10 @@
 \chapter{Fundamentos Teóricos}
 \label{C2}
 \section{Reducción de escala}
-La reducción de escala(en inglés, \textit{Downscalling}) es un procedimiento utilizado para inferir 
+La reducción de escala (en inglés, \textit{Downscalling}) es un procedimiento utilizado para inferir 
 información de alta resolución, como por ejemplo datos satelitales, a partir de variables de baja 
 resolución. Esta técnica se basa en enfoques dinámicos o estadísticos comúnmente utilizados en varias 
-disciplinas, especialmente la meteorología, la climatología y la teledetección . El término reducción 
+disciplinas, especialmente la meteorología, la climatología y la teledetección. El término reducción 
 de escala generalmente se refiere a un aumento en la resolución espacial, pero a menudo se usa para la 
 resolución temporal.
 %
@@ -26,7 +26,7 @@ es posible generar observaciones equidistantes entre sí lo cual entrega regular
 
     \subsection{Longitud y Latitud}
     Un método para describir la posición de una observación en alguna de las superficies (comúnmente llamadas \textit{capas}) consiste en utilizar 
-    mediciones esféricas de latitud y longitud. Estas son mediciones de los ángulos(en grados) desde el centro de la Tierra hasta un punto de una determinada
+    mediciones esféricas de latitud y longitud. Estas son mediciones de los ángulos (en grados) desde el centro de la Tierra hasta un punto de una determinada
     capa. Este tipo de coordenadas se denominan coordenadas geográficas.
 
     La \textbf{longitud} mide ángulos en una dirección este-oeste. Las mediciones de longitud usualmente se basan en el meridiano de Greenwich, que es una línea
@@ -61,7 +61,7 @@ el \textbf{error medio absoluto(MAE)} y el \textbf{error cuadrático medio(RMSE)
     
     \subsection{Error medio absoluto}
     El error medio absoluto, o \textit{MAE} por sus siglas del inglés \textit{Mean Absolute Error} es una métrica de evaluación de un modelo utilizada
-    en modelos regresivos. El error medio absoluto de un modelo respecto a un conjunto de prueba(o \textit{test}) resulta ser, como su nombre lo indica, la media de los
+    en modelos regresivos. El error medio absoluto de un modelo respecto a un conjunto de prueba (o \textit{test}) resulta ser, como su nombre lo indica, la media de los
     valores absolutos de los errores de predicción individuales en todas las instancias del conjunto \textit{test}. Cada error de predicción es la diferencia entre la estimación 
     y el valor real de cada instancia \cite{5}.
     
@@ -106,14 +106,14 @@ Los métodos basados en árboles son algoritmos de Machine Learning del tipo sup
 clasificación o predicción se puede ver como una dividisión de los datos en un conjunto de rectángulos \cite{13} y en
 cada uno se ajusta un modelo tomando una decisión de acuerdo a una serie de consultas, el modelo
 aprende la respuesta a una serie de interrogantes para inferir la etiqueta de clase de los
-ejemplos(clasificación) o también la predicción de números reales(regresión). En otras palabras, 
+ejemplos (clasificación) o también la predicción de números reales (regresión). En otras palabras, 
 Los modelos basados en árboles involucran \textit{estratificación} o \textit{segmentación} del 
 espacio de predicción dentro de un número de regiones simples, donde la predicción se lleva a cabo 
 en base a la media o la moda de las observaciones de entrenamiento de la región a la que pertenece \cite{14}, según las necesidades.
 
 Los métodos basados en reglas y los métodos basados en árboles son herramientas populares debido a varias razones,
 una de ellas es debido a su construcción lógica \cite{18}, la cual permite manejar eficientemente muchos tipos de predictores
-, por ejemplo predictores continuos(regresión) o categóricos sin la necesidad de procesar datos. Además,
+, por ejemplo predictores continuos (regresión) o categóricos sin la necesidad de procesar datos. Además,
 estos modelos logran lidiar de forma eficiente los valores faltantes e implicitamente llevan a cabo una selección de características,
 lo cual resulta importante para problemas de modelación de la vida real.
 
@@ -136,7 +136,7 @@ y una variación del \textit{Bootstrap} para mejorar el rendimiento.
     \textit{Clasification And Regresion Tree}, el cual comienza buscando todos los posibles valores de cada predictor para poder encontrar a cada uno,
     o en otras palabras poder conocer su comportamiento, y determinar el valor que divide los datos en dos subconjuntos de modo que la suma de errores 
     cuadrados de cada subconjunto sea minimizada \cite{18}. Entonces, si denotamos como $X$ el conjunto de todos los datos y a $X_1 \text{ y } X_2$ a la
-    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma del error cuadrático medio(\ref{eqn:mse}) en cada partición, esto es:
+    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma del error cuadrático medio (ec. \ref{eqn:mse}) en cada partición, esto es:
     \begin{equation*} 
         SSE = \sum_{i\in X_1}(y_i-\bar{y}_1)^2+ \sum_{j\in X_2}(y_j-\bar{y}_2)^2
     \end{equation*}
@@ -308,7 +308,7 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
     y la venta de ventiladores eléctricos y aire acondicionado se dispara en temporadas de verano.
 
     Las variaciones en una serie de tiempo que operan en un lapso de más de un año son las \textbf{variaciones cíclicas}. Este movimiento oscilatorio tiene un período de oscilación de más de un año.
-    Un período completo es un ciclo. Este movimiento cíclico a veces se denomina "ciclo económico".
+    Un período completo es un ciclo. Este movimiento cíclico a veces se denomina ''ciclo económico".
 
     Es un ciclo de cuatro fases que comprende las fases de prosperidad, recesión, depresión y recuperación. La variación cíclica puede ser regular no periódica.
 
@@ -326,7 +326,7 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
     3 componentes: el componente estacional, la componente tendencial-cíclica (que contiene a la tendencia y variaciones cíclicas) y la componente residual que resulta ser
     todo lo restante para completar la serie \cite{20}.
 
-    Si se asume que la serie de tiempo se puede descomponer de forma aditiva, entonces
+    Si se asume que la serie de tiempo se puede descomponer de forma aditiva, entonces:
     \begin{equation}
         y_t = S_t + T_t + E_t
      \end{equation}
@@ -334,13 +334,13 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
      En la ecuación,  $y_t$ es la data en el instante $t$, $S_t$ es la componente estacional en el instante $t$, $T_t$ es la componente tendencial cíclica en el tiempo $t$
      y $E_t$ es la serie de tiempo residual o también llamado \textit{irregular} \cite{20}.
 
-     De manera alternativa, una descomposición multiplicativa de la serie de tiempo puede escribirse como
+     De manera alternativa, una descomposición multiplicativa de la serie de tiempo puede escribirse como:
      \begin{equation}
         y_t = S_t 
         \times T_t 
         \times E_t
      \end{equation}
-     la cual es equivalente a una doscomposición logarítimca de la serie ya que 
+     la cual es equivalente a una doscomposición logarítimca de la serie, ya que:
      \begin{equation*}
         y_t = S_t 
         \times T_t 
@@ -364,9 +364,9 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
      Una de las medidas convencionales de proximidad es la distancia euclídea. Si bien estas medidas son muy utilizadas, ignoran la interdependencia entre
      las mediciones de una serie temporal y basan la similitud entre dos series únicamente en la proximidad entre valores observados de ambas en los mismos instantes de
      tiempo \cite{27}.
-     \subsubsection{Correlación Temporal}
-     La correlación temporal es un índice que tiene por objetivo poder medir de algún modo la similitud en las tasas de crecimiento de dos series en períodos de
-     tiempo de la forma $[t_i; t_{i+1}]$. El índice se define como:
+     \subsubsection{Índice de correlación de Pearson}
+     La correlación temporal, o índice de correlación de Pearson, es un índice que tiene por objetivo poder medir de algún modo la similitud en las tasas de crecimiento de dos series en períodos de
+     tiempo de la forma $[t_i; t_{i+1}]$, se define como:
      \begin{equation}\label{eqn:cort}
         CorrT(S_1,S_2) = \frac{\sum_{j=1}^p\sum_{i=1}^p(u_i-u_j)(v_i-v_j)} {\sqrt{\sum_{i=1}^p(u_i-u_j)^2}\sqrt{\sum_{i=1}^p(v_i-v_j)^2}}
      \end{equation}
@@ -375,7 +375,7 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
 
      El coeficiente de correlación temporal oscila en el intervalo $[-1,1]$. Si el coeficiente posee un valor de 1 quiere decir que en cualquier período de tiempo $[t_i,t_{i+1}]$ las series
      que se están comparando han aumentado o disminuído de manera simultánea con la misma tasa de creciemiento. En cambio, si el valor del índice alcanza el valor de -1 quiere decir que en cualquier periodo, si una de ellas ha
-     aumentado, la otra ha disminuído o viceversa. Finalmente, si alcanza el valor de 0 significa que las tasas de crecimiento o decrecimiento son estocásticamente linealmente independientes\cite{27}.
+     aumentado, la otra ha disminuído o viceversa. Finalmente, si alcanza el valor de 0 significa que las tasas de crecimiento o decrecimiento son estocásticamente linealmente independientes \cite{27}.
 
      \subsubsection{Anomalías porcentuales}
      Una manera de poder realizar comparaciones en series de tiempo es mediante el cálculo de anomalías porcentuales. La gran ventaja que posee ésta es que el recorrido de la serie de tiempo
