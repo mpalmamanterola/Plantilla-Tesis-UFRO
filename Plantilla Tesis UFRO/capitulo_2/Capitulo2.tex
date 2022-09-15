@@ -21,7 +21,7 @@ se utiliza para asignar ubicaciones georreferenciadas a los datos. El sistema de
 Otro marco muy utilizado resulta ser el sistema de coordenadas cartesianas que surge a partir del marco global a través de ciertas transformaciones
 en el cuerpo de los números complejos ($\mathbb{C}$).
 
-La ventaja de trabajar con datos que contengan georreferencias, es que con éstos pueden generarse grillas cuadriculadas regulares, es decir, mediante una distancia arbitraria (generalmente determinada en grados $[^{\circ}]$)
+La ventaja de trabajar con datos que contengan georreferencias, es que con estos pueden generarse grillas cuadriculadas regulares, es decir, mediante una distancia arbitraria (generalmente determinada en grados $[^{\circ}]$)
 es posible generar observaciones equidistantes entre sí lo cual entrega regularidad para remuestrear y analizar datos.
 
     \subsection{Longitud y Latitud}
@@ -33,37 +33,36 @@ es posible generar observaciones equidistantes entre sí lo cual entrega regular
     imaginaria que realiza un recorrido desde el Polo Norte hasta el Polo Sur, en este meridiano la longitud es 0$^{\circ}$. El oeste del meridiano de Greenwich por lo general 
     se registra como longitud negativa y el este, como longitud positiva.
 
-    La \textbf{latitud} mide ángulos en una dirección norte-sur. Las mediciones de latitud comienzan desde la línea del Ecuador, que es el círculo máximo perpendicular
+    La \textbf{latitud} mide ángulos en una dirección norte-sur. Las mediciones de latitud comienzan desde la línea del Ecuador, que es la máxima circunferencia perpendicular
     al eje de rotación del planeta Tierra, en este paralelo la latitud es 0$^{\circ}$. El norte de la línea ecuatorial por lo general 
     se describe como latitud positiva y al sur, como latitud negativa.
 
-    Si bien la longitud y latitud se pueden ubicar en posiciones exactas de la superficie de la Tierra, éstas no proporcionan
-    unidades de medicion uniformes de longitud y latitud. Sólo a lo largo del ecuador la distancia que representa un grado de longitud se aproxima a la distancia
-    en un grado de latitud. Esto se debe a que el ecuador es el único paralelo tan extenso como cualquier meridiano, ya que si nos alejamos del ecuador, el tamaño circular de
+    Si bien la longitud y latitud se pueden ubicar en posiciones exactas de la superficie de la Tierra, estas no proporcionan
+    unidades de medicion uniformes de longitud y latitud. Solo a lo largo del ecuador la distancia que representa un grado de longitud se aproxima a la distancia
+    en un grado de latitud. Esto se debe a que el ecuador es el único paralelo tan extenso como cualquier meridiano, ya que si nos alejamos del ecuador, el tamaño circunferencial de
     los paralelos disminuye hasta transformarse en un punto en los polos donde los meridianos convergen.
 %    
 %
 %
 %
 \section{Error}
-En modelos predictivos, la diferencia entre un valor real y una estimación, o aproximación se conoce como error, por lo tanto, mientras más pequeño sea el error
-la estimación se vuelve más verídica. Más generalmente, una métrica de error es un tipo de métrica utilizada para medir el rendimiento de un modelo predictivo y así poder
-realizar comparaciones entre rendimientos de diferentes estimadores y así seleccionar el mejor.
+En modelos predictivos, la diferencia entre un valor real y una estimación, o aproximación se conoce como error, por lo tanto, mientras más pequeño sea
+la estimación se vuelve más verídica. En otras palabras, el error es utilizado para medir el rendimiento de un modelo predictivo y así poder
+realizar comparaciones entre diferentes estimadores con el fin de seleccionar el mejor.
 Hay muchas maneras de medir el error de acuerdo a las necesidades que se dispongan.
 
 
-En un modelo de clasificación el error y la exactitud van de la mano, ya que el error se puede definir como el porcentaje de clasificaciones erradas que realiza el modelo 
-y la exactitud es el porcentaje de aciertos de clasificación, por tanto si se posee la exactitud, también se conoce el error ya que éstos deben sumar un 100\% o muy cercano a este valor.
-En cambio, en un modelo regresivo no podemos establecer una relacion tan directa entre el error y la exactitud ya que la predicción se encuentra en un dominio continuo, por lo que si se mide el 
-error de la misma forma que para un modelo de clasificación la mayoría de las veces entregará un error muy cercano al 100\%. Es por esto que e recurren a nuevas maneras de medir el error: 
-el \textbf{error medio absoluto (MAE)} y el \textbf{error cuadrático medio (RMSE)}.
+En un modelo de clasificación el error y la exactitud van de la mano, ya que el primero se puede definir como el porcentaje de clasificaciones erradas que realiza el modelo 
+y la exactitud es el porcentaje de aciertos de clasificación.
+En cambio, en un modelo regresivo no podemos establecer una relacion tan directa ya que la predicción se encuentra en un dominio continuo, por lo tanto, si se mide el 
+error de la misma forma que para un modelo de clasificación, la mayoría de las veces entregará un valor muy cercano al 100\%, es por esto que se recurre a otras maneras de medirlo: 
+el \textbf{error medio absoluto} y el \textbf{error cuadrático medio}, en inglés \textit{mean absolute error (MAE)} y \textit{mean squared error (MSE)}, respectivamente.
 
     
     \subsection{Error medio absoluto}
-    El error medio absoluto, o \textit{MAE} por sus siglas del inglés \textit{Mean Absolute Error} es una métrica de evaluación de un modelo utilizada
+    El error medio absoluto, o \textit{MAE}, es una métrica de evaluación utilizada
     en modelos regresivos. El error medio absoluto de un modelo respecto a un conjunto de prueba (o \textit{test}) resulta ser, como su nombre lo indica, la media de los
-    valores absolutos de los errores de predicción individuales en todas las instancias del conjunto \textit{test}. Cada error de predicción es la diferencia entre la estimación 
-    y el valor real de cada instancia \cite{5}.
+    valores absolutos de los errores de predicción individuales en todas las instancias del conjunto \textit{test} \cite{5}.
     
     \begin{equation}\label{eqn:mae}
         mae = \frac{1}{n} \sum_{i=1}^n|~y_i - \bar{y}_i~|
@@ -73,7 +72,7 @@ el \textbf{error medio absoluto (MAE)} y el \textbf{error cuadrático medio (RMS
     y $n$ es la cantidad de elementos en el conjunto de prueba.
 
     \subsection{Error cuadrático medio}
-    El error cuadrático medio, o \textit{MSE} por sus siglas del inglés \textit{Mean Squared Error} es una métrica de evaluación de un modelo utilizada
+    El error cuadrático medio, o \textit{MSE}, es una métrica de evaluación utilizada
     en modelos regresivos. El error cuadrático medio de un modelo respecto al conjunto de prueba es la media del cuadrado de los errores de predicción 
     en cada instancia del conjunto \cite{4}.
 
@@ -91,7 +90,7 @@ el \textbf{error medio absoluto (MAE)} y el \textbf{error cuadrático medio (RMS
 En el contexto de estadísticas y ciencia de datos, el \textit{bootstrapping} es un método para inferir resultados
 de una población a partir de resultados obtenidos de una colección aleatoria igual o más pequeña de esa población. Por tanto, 
 el método requiere la noción de \textit{bootstrap sample}, la cual se define como una \textbf{muestra aleatoria con reposición}
-\cite{17}. Esto significa que, luego de que una observación de los datos ha sido elegido del conjunto para obtener la muestra, éste sigue 
+\cite{17}. Esto significa que, luego de que una observación de los datos ha sido elegida del conjunto para obtener la muestra, éste sigue 
 estando disponible para una selección posterior. La \textit{muestra de bootstrap} debe ser del mismo tamaño que el conjunto de datos original \cite{18}, debido a esto, 
 algunas muestras serán consideradas múltiples veces mientras que otras no serán seleccionadas. Las muestras que no han sido seleccionadas 
 se conocen como \textit{out of bag samples}, o muestras fuera de la bolsa, ya que éstas no se incluirán dentro del modelo.
@@ -102,8 +101,8 @@ se conocen como \textit{out of bag samples}, o muestras fuera de la bolsa, ya qu
 %
 \section{Métodos basados en árboles}
 
-Los métodos basados en árboles son algoritmos de Machine Learning del tipo supervisado donde la  
-clasificación o predicción se puede ver como una dividisión de los datos en un conjunto de rectángulos \cite{13} y en
+Los métodos basados en árboles son algoritmos de \textit{Machine Learning} del tipo supervisado donde la  
+clasificación o predicción se puede ver como una división de los datos en un conjunto de rectángulos \cite{13} y en
 cada uno se ajusta un modelo tomando una decisión de acuerdo a una serie de consultas, el modelo
 aprende la respuesta a una serie de interrogantes para inferir la etiqueta de clase de los
 ejemplos (clasificación) o también la predicción de números reales (regresión). En otras palabras, 
@@ -119,9 +118,9 @@ lo cual resulta importante para problemas de modelación de la vida real.
 
 Estos modelos poseen ciertas falencias, dos de ellas en particular bien estudiadas:
 \begin{enumerate}
-    \item La \textbf{inestabiliad} del modelo, es decir, ligeros cambios en las variables explicativas conllevan
-          pueden llevar a granes cambios en la estructura del árbol.
-    \item \textbf{Rendimiento predictivo menor} que el optimal, esto debido a que el modelo define estructuras rectangulares y si 
+    \item La \textbf{inestabiliad} del modelo, es decir, ligeros cambios en las variables explicativas 
+          pueden llevar a grandes cambios en la estructura del árbol.
+    \item El \textbf{Rendimiento predictivo menor} que el optimal, esto debido a que el modelo define estructuras rectangulares y si 
           la relación entre las variables explicativas y la variable respuesta no puede ser definida adecuadamente por
           subespacios rectangulares de los predictores, entonces el modelo tendrá un mayor error de predicción.
 \end{enumerate} 
@@ -131,12 +130,12 @@ Para lidiar con estos inconvenientes, investigadores desarrollaron conjuntos de 
 y una variación del \textit{Bootstrap} para mejorar el rendimiento.
 
     \subsection{Árboles de Regresión}
-    Existen muchas formas de construir arboles de regresión, una de los más antiguos y más utilizados
+    Existen muchas formas de construir árboles de regresión, una de las más antiguas y más utilizadas
     resulta ser el árbol de clasificación y regresión \textit{CART}, por sus siglas en inglés 
     \textit{Clasification And Regresion Tree}, el cual comienza buscando todos los posibles valores de cada predictor para poder encontrar a cada uno,
-    o en otras palabras poder conocer su comportamiento, y determinar el valor que divide los datos en dos subconjuntos de modo que la suma de errores 
-    cuadrados de cada subconjunto sea minimizada \cite{18}. Entonces, si denotamos como $X$ el conjunto de todos los datos y a $X_1 \text{ y } X_2$ a la
-    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma del error cuadrático medio (ec. \ref{eqn:mse}) en cada partición, esto es:
+    o en otras palabras, poder conocer su comportamiento y determinar el valor que divide los datos en dos subconjuntos, de modo que la suma de errores 
+    cuadrados de cada subconjunto sea minimizada \cite{18}. Entonces, si denotamos como $X$ el conjunto de todos los datos y como $X_1 \text{ y } X_2$ a la
+    partición de este mediante \textit{CART}, entonces el error que se busca minimizar es la suma de \textit{MSE} (ec. \ref{eqn:mse}) en cada partición, esto es:
     \begin{equation*} 
         SSE = \sum_{i\in X_1}(y_i-\bar{y}_1)^2+ \sum_{j\in X_2}(y_j-\bar{y}_2)^2
     \end{equation*}
@@ -146,7 +145,7 @@ y una variación del \textit{Bootstrap} para mejorar el rendimiento.
     dentro de los conjuntos $X_1$ y $X_2$ hasta que el número de divisiones en la muestra cae debajo de cierto umbral, ahí culmina el proceso de
     \textit{paso de crecimiento del árbol} \cite{18} o también llamada profundidad del árbol.
     Por esta razón este método es comúnmente conocido como \textbf{partición recursiva}. Sin duda el mayor de los problemas es debido a la inestabilidad que conduce a una alta varianza. 
-    A menudo un pequeño cambio en los datos podría resultar en una series de divisiones muy diferente, precarizando la predicción. La mayor razón de inestabilidad es la naturaleza 
+    A menudo un pequeño cambio en los datos podría resultar en una serie de divisiones muy diferente, precarizando la predicción. La mayor razón de inestabilidad es la naturaleza 
     jerárquica del proceso; El efecto de un pequeño error en una de las primeras divisiones es propagada hacia abajo por todas las divisiones siguientes \cite{13}.
 %
 %
@@ -161,7 +160,7 @@ El principio es que la decisión del comité, con las predicciones individuales 
 Numerosos estudios empíricos y teóricos han demostrado que los modelos de conjuntos muy a menudo alcanzan una mayor precisión que los modelos individuales.
 Los miembros del conjunto pueden estar prediciendo números con valores reales, etiquetas de clase, probabilidades, clasificaciones, agrupaciones o cualquier otra cantidad. Por lo tanto, 
 sus decisiones se pueden combinar mediante muchos métodos, incluidos los métodos de promediación, votación y probabilísticos. La mayoría de los métodos de aprendizaje por conjuntos son genéricos, 
-aplicables en amplias clases de tipos de modelos y tareas de aprendizaje \cite{6}.
+aplicables en varios tipos de modelos y tareas de aprendizaje automático \cite{6}.
 
 
 \section{Bagging}
@@ -169,8 +168,8 @@ aplicables en amplias clases de tipos de modelos y tareas de aprendizaje \cite{6
 debido a que consite en un método que utiliza el \textit{bootstrap} en conjunto con cualquier regresión o clasificación
 para generar múltiples versiones de un predictor y usarlo para obtener un predictor ``agregado'' \cite{22}; Cada modelo en el conjunto es utilizado para generar una predicción de una observación en particular 
 y luego se promedian entre ellas para obtener una predicción \textit{bagged} del modelo .
-Éste método fue introducido y propuesto por Leo Breiman y es una de las técnicas
-de conjunto más nuevas. El pseudocódigo de éste método es el siguiente:
+Este método fue introducido y propuesto por Leo Breiman y es una de las técnicas
+de conjunto más nuevas. El pseudocódigo de este método es el siguiente:
 
 \begin{algorithm}
     \caption{Bagging}
@@ -190,16 +189,15 @@ patrones de generalización con pequeños cambios a los datos de entrenamiento. 
 Una de las ventajas de esta metodología es la reducción de varianza de la predicción a través del processo de agregación. Además, para aquellos modelos que producen una predicción inestable,
 o de alta varianza como lo son los árboles de regresión hace que éstos sean más estables \cite{18} y por tanto, más precisos.
 
-La desventaja más clara de éste método resulta ser el alto costo computacional y requerimientos de memoria que éste conlleva ya que éste aumenta a medida que el número de muestras
-de \textit{bootstrap} aumentan. Éste problema es fácilmente solucionable si se posee acceso a cómputo paralelo debido a que el \textit{bagging} es fácilmente paralelizable \cite{18}.
+La desventaja más clara del método resulta ser el alto costo computacional, ya que este aumentará a medida que el número de muestras
+de \textit{bootstrap} aumenten. Éste problema es solucionable si se posee acceso a cómputo paralelo debido a que el \textit{bagging} es fácilmente paralelizable \cite{18}.
 %
 %
 %
 %
 \section{Modelo del bosque aleatorio}
-Los bosques aleatorios son un \textit{ensemble} de predictores de árboles de modo que cada árbol depende de los valores de un vector aleatorio muestreado de forma independiente (\textit{bootstrap sample}) y con la misma distribución para todos los árboles del bosque. 
-El error de generalización para los bosques converge estable asintóticamente a un límite a medida que aumenta el número de árboles en el bosque.
-El error de generalización de un bosque de clasificadores de árboles depende, entre otras cosas, de la correlación entre ellos. Usar una selección aleatoria de características para dividir cada nodo produce
+Los bosques aleatorios son un \textit{ensemble} de predictores de árboles de modo que cada árbol depende de los valores de un vector aleatorio muestreado de forma independiente (\textit{bootstrap sample}) y con la misma distribución para cada uno de ellos. 
+El error de generalización para los bosques converge estable asintóticamente a un límite a medida que aumenta el número de árboles en el bosque, además, depende entre otras cosas, de la correlación entre ellos. Usar una selección aleatoria de características para dividir cada nodo produce
 tasas de error que se comparan favorablemente con otros modelos como Adaboost, pero son más sólidas con respecto al ruido, error de estimaciones internas,
 fuerza y correlación, y se utilizan para mostrar la respuesta al aumento del número de características utilizadas
 en la división. Las estimaciones internas también se utilizan para medir la importancia de la variable \cite{25}.
@@ -237,7 +235,7 @@ El modelo en cuestión se resume en el siguiente pseudocódigo:
 %
 \section{Interpolación bilinear}
 La interpolación bilinear es una extensión de la interpolación lineal en una variable con el objetivo de interpolar funciones de dos variables en una malla regular, por ejemplo coordenadas geográficas o imágenes.
-La idea principal es realizar una interpolación lineal en una dirección y luego en la otra. Aunque las operaciones en cada dirección son lineales, la interpolación bilinear es no lineal. La interpolación bilinear tiene la ventaja de producir interpolaciones más suaves que otras. 
+La idea principal es realizar una interpolación lineal en una dirección y luego en la otra. Aunque las operaciones en cada dirección son lineales, la interpolación bilinear es no lineal. 
 
 Si se tiene la observación en los 4 vecinos más cercanos de la grilla a un determinado punto $(n_1, n_2)$, digamos 
 $f(n_{10}$,$n_{20})$, $f(n_{11},n_{21})$, $f(n_{12},n_{22})$, $f(n_{13},n_{23})$, entonces en la coordenada $(n_1, n_2)$ se define la 
@@ -275,10 +273,10 @@ Por lo tanto $g(n_1,n_2)$ está definido para ser una combinación linear de los
 %
 \section{Series de tiempo}
 Una serie de tiempo consite en un conjunto de observaciones $x_t$, cada una es registrada en un tiempo fijo $t$.
-Una serie de tiempo a \textbf{tiempo discreto} es en la cual el conjunto de tiempos $T_0$ en donde se llevan a cabo las observaciones
-es un conjunto discreto, por ejemplo, cuando las observaciones se realizan en intervalos de tiempos fijos (mediciones diarias, mensuales, anuales, etc.). 
+Una serie de tiempo a \textbf{tiempo discreto} es cuando el intervalo de tiempos $T_0$ en donde se llevan a cabo las observaciones
+es discreto, por ejemplo, cuando se realizan en intervalos de tiempos fijos (mediciones diarias, mensuales, anuales, etc.). 
 En cambio, las series de tiempo a \textbf{tiempo continuo} son obtenidas cuando las observaciones recopiladas se encuentran medidas sobre un intervalo
-contínuo de tiempo, por ejemplo $T_0=[0,1]$ \cite{21}. Una serie de tiempo representa la relación entre dos variables. El tiempo es una de esas variables 
+contínuo de tiempo, por ejemplo $T_0=[0,1]$ \cite{21}. Una serie de tiempo representa la relación entre dos variables, el tiempo es la primera 
 y la segunda es cualquier variable cuantitativa. No es necesario que la relación muestre siempre incremento en el cambio de la variable con referencia al tiempo. 
 
 Los usos más comunes para realizar estudios de series de tiempo son variados, entre ellos se encuentran la predicción de comportamientos
@@ -288,27 +286,26 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
 
     \subsection{Componentes de las series de tiempo}
     
-    Las diversas razones o fuerzas que afectan los valores de una observación en una serie de tiempo son los componentes de una serie de tiempo. 
-    Las cuatro categorías de los componentes de las series de tiempo son la \textbf{tendencia}, la \textbf{variación estacional}, la \textbf{variación cíclica} 
+    Las diversas razones o fuerzas que afectan los valores de una observación en una serie de tiempo son sus componentes. 
+    Las cuatro categorías de las componentes de las series de tiempo son la \textbf{tendencia}, la \textbf{variación estacional}, la \textbf{variación cíclica} 
     y los \textbf{movimientos irregulares} o también llamados residuos.
 
     \subsubsection{Tendencia}
     Muestra la tendencia general de los datos a aumentar o disminuir durante un largo período de tiempo. Una tendencia es de media suave, general y 
     a largo plazo. No siempre es necesario que el aumento o la disminución sea en la misma dirección a lo largo del período de tiempo dado.
     Se observa que las tendencias pueden aumentar, disminuir o mantenerse estables en diferentes tramos de tiempo. Pero la tendencia general debe ser al alza, a la baja o estable. 
-    Usualmente se refiere a un ``cambio de dirección en la tendencia`` cuando el componente varía de una tendencia incremental a una decreciente o vicebersa \cite{20}.
+    Usualmente se refiere a un ``cambio de dirección en la tendencia'' cuando el componente varía de una tendencia incremental a una decreciente o viceversa \cite{20}.
 
     \subsubsection{Estacionalidad y Cíclica}
     
     La \textbf{estacionalidad} son las fuerzas rítmicas que operan de manera regular y periódica en un lapso de menos de un año. Tienen el mismo o casi el mismo patrón durante un período de 12 meses. 
     Además, siempre es obtenida a partir de un periodo fijo y conocido de tiempo \cite{20}, ya sea cada hora, día, semana, trimestre o mes.
     
-    Estas variaciones entran en juego debido a las fuerzas naturales oa las convenciones hechas por el hombre. Las diversas estaciones o condiciones climáticas juegan un papel 
-    importante en las variaciones estacionales. Como la producción de cultivos depende de las estaciones, la venta de sombrillas e impermeables en época de lluvias, 
-    y la venta de ventiladores eléctricos y aire acondicionado se dispara en temporadas de verano.
+    Estas variaciones entran en juego debido a las fuerzas naturales o por convenciones hechas por el hombre. Las diversas estaciones o condiciones climáticas juegan un papel 
+    importante en las variaciones estacionales. 
 
-    Las variaciones en una serie de tiempo que operan en un lapso de más de un año son las \textbf{variaciones cíclicas}. Este movimiento oscilatorio tiene un período de oscilación de más de un año.
-    Un período completo es un ciclo. Este movimiento cíclico a veces se denomina ''ciclo económico".
+    Las variaciones en una serie de tiempo que operan en un lapso de más de un año son las \textbf{variaciones cíclicas}. Este movimiento oscilatorio tiene un período de más de un año que se conoce como ciclo.
+    Este movimiento a veces se denomina ``ciclo económico''.
 
     Es un ciclo de cuatro fases que comprende las fases de prosperidad, recesión, depresión y recuperación. La variación cíclica puede ser regular no periódica.
 
@@ -318,12 +315,12 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
     Estas fluctuaciones son imprevistas, incontrolables, impredecibles y erráticas. Estas fuerzas son terremotos, guerras, inundaciones, hambrunas y cualquier otro desastre.
 
     \subsection{Descomposición de series de tiempo}
-    Los datos en series de tiempo pueden exhibir una gran variedad de patrones y es útil categorizar ciertos patrones 
-    y comportamientos que se puedan apreciar en ellas. Otras veces es útil intentar dividir la serie de tiempo en varios componentes,
+    Los datos en series de tiempo pueden exhibir una gran variedad de patrones y es útil categorizarlos y estudiar
+    comportamientos que se puedan apreciar en ellas. Otras veces es útil intentar dividir la serie de tiempo en varios componentes,
     cada uno representando uno de los patrones subyacentes \cite{20}.
 
-    La forma más sencilla y popular de descomponer una serie de tiempo es pensar que la serie de tiempo $y_t$ se encuentra compuesta por 
-    3 componentes: el componente estacional, la componente tendencial-cíclica (que contiene a la tendencia y variaciones cíclicas) y la componente residual que resulta ser
+    La forma más sencilla y popular de descomponer una serie de tiempo es pensar que la serie $y_t$ se encuentra compuesta por 
+    3 componentes: la componente estacional, la componente tendencial-cíclica y la componente residual que resulta ser
     todo lo restante para completar la serie \cite{20}.
 
     Si se asume que la serie de tiempo se puede descomponer de forma aditiva, entonces:
@@ -331,8 +328,8 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
         y_t = S_t + T_t + E_t
      \end{equation}
         
-     En la ecuación,  $y_t$ es la data en el instante $t$, $S_t$ es la componente estacional en el instante $t$, $T_t$ es la componente tendencial cíclica en el tiempo $t$
-     y $E_t$ es la serie de tiempo residual o también llamado \textit{irregular} \cite{20}.
+     En la ecuación,  $y_t$ es la observación o variable cuantitativa en el instante $t$, $S_t$ es la componente estacional, $T_t$ es la componente tendencial cíclica
+     y $E_t$ es la serie de tiempo residual o también llamado \textit{irregular} \cite{20}, todas ellas observadas en el mismo instante $t$.
 
      De manera alternativa, una descomposición multiplicativa de la serie de tiempo puede escribirse como:
      \begin{equation}
@@ -357,16 +354,16 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
 
      \subsection{Comparación de series de tiempo}
      En la práctica, es frecuente enfrentar situaciones
-     en las que se requiere comparar dos o mas series temporales, o analizar un gran
+     en las que se requiere comparar dos o más series temporales, o analizar un gran
      número de estas series para separarlas en grupos tan homogéneos como sea posible \cite{27}.
      Normalmente, se generan bases de datos temporales que luego se estudian para identificar concordancias y disimilitudes.    
 
-     Una de las medidas convencionales de proximidad es la distancia euclídea. Si bien estas medidas son muy utilizadas, ignoran la interdependencia entre
-     las mediciones de una serie temporal y basan la similitud entre dos series únicamente en la proximidad entre valores observados de ambas en los mismos instantes de
+     Una de las medidas convencionales de proximidad es la distancia euclídea. Si bien esta medida es muy utilizada, ignora la interdependencia entre
+     las mediciones de una serie temporal y basa la similitud entre dos series únicamente en la proximidad entre valores observados en los mismos instantes de
      tiempo \cite{27}.
      \subsubsection{Índice de correlación de Pearson}
-     La correlación temporal, o índice de correlación de Pearson, es un índice que tiene por objetivo poder medir de algún modo la similitud en las tasas de crecimiento de dos series en períodos de
-     tiempo de la forma $[t_i; t_{i+1}]$, se define como:
+     La correlación temporal, o índice de correlación de Pearson, es un índice que tiene por objetivo medir la similitud lineal en las tasas de crecimiento de dos series en períodos de
+     tiempo de la forma $[t_i; t_{i+1}]$. Se define como:
      \begin{equation}\label{eqn:cort}
         CorrT(S_1,S_2) = \frac{\sum_{j=1}^p\sum_{i=1}^p(u_i-u_j)(v_i-v_j)} {\sqrt{\sum_{i=1}^p(u_i-u_j)^2}\sqrt{\sum_{i=1}^p(v_i-v_j)^2}}
      \end{equation}
@@ -374,14 +371,14 @@ rendimiento real con el esperado, comparar comportamientos entre variables para 
      En la ecuación \ref{eqn:cort}, $S_1$ y $S_2$ son las series temporales a comparar las cuales poseen observaciones $ u_1,\dots,u_p $ y $ v_1,\dots,v_p$ respectivamente.
 
      El coeficiente de correlación temporal oscila en el intervalo $[-1,1]$. Si el coeficiente posee un valor de 1 quiere decir que en cualquier período de tiempo $[t_i,t_{i+1}]$ las series
-     que se están comparando han aumentado o disminuído de manera simultánea con la misma tasa de creciemiento. En cambio, si el valor del índice alcanza el valor de -1 quiere decir que en cualquier periodo, si una de ellas ha
+     que se están comparando han aumentado o disminuído de manera simultánea con la misma tasa de creciemiento. En cambio, si alcanza el valor de -1 quiere decir que en cualquier periodo, si una de ellas ha
      aumentado, la otra ha disminuído o viceversa. Finalmente, si alcanza el valor de 0 significa que las tasas de crecimiento o decrecimiento son estocásticamente linealmente independientes \cite{27}.
 
      \subsubsection{Anomalías porcentuales}
-     Una manera de poder realizar comparaciones en series de tiempo es mediante el cálculo de anomalías porcentuales. La gran ventaja que posee ésta es que el recorrido de la serie de tiempo
+     Una manera de poder realizar comparaciones en series de tiempo es mediante el cálculo de anomalías porcentuales. La gran ventaja que posee esta, es que el recorrido de la serie de tiempo
      se escala en valores porcentuales para determinar qué tanto varía una serie de tiempo respecto a su media. La fórmula para calcular las anomalías porcentuales es la siguiente:
 
     \begin{equation}\label{pct_anomalies}
         pct_t = 100 \cdot\frac{x_t-\mu}{\mu}
     \end{equation}
-    Aquí, $x_t$ es cada componente temporal de la serie de tiempo y $\mu$ representa el promedio de toda la serie. 
+    Aquí, $x_t$ corresponde a cada componente temporal de la serie de tiempo y $\mu$ representa el promedio de toda la serie. 

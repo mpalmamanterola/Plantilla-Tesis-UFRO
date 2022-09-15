@@ -32,12 +32,12 @@ Gracias a este par de satélites es posible detectar las variaciones de la fuerz
 mediante el traspaso de información del primer satélite hacia el segundo, captando la diferencia de 
 masas que existen en el terreno. Debido a estas diferencias gravitatorias se provoca un aumento o 
 disminución de la distancia relativa entre un satélite y el otro logrando captar diferencias de hasta 
-$1\mu m$, estas mediciones se conocen como \textit{TerrestriaL Water Storage (TWS)}
+$1\mu m$, estas mediciones se conocen como \textit{Terrestrial Water Storage (TWS)}.
 El gran objetivo de GRACE, es poder captar el movimiento de las aguas alrededor del globo para 
 contrarrestar riesgos como sequías, inundaciones, desprendimiento de suelos o socavones.
 
 \subsection{Almacenamiento de agua terrestre}
-El Almacenamiento de agua terrestre o TWS (por sus siglas en inglés \textit{Terresttial Water Storage}), es definido como una estimación integrada del agua almacenada sobre y debajo de la superficie terrestre, 
+El Almacenamiento de agua terrestre o TWS, es definido como una estimación integrada del agua almacenada sobre y debajo de la superficie terrestre, 
 incluyendo el agua de dosel (\textit{canopy water}), ríos y lagos, humedad de suelo (\textit{soil moisture}) y aguas subterráneas \cite{tws}. Es calculado de la siguiente manera:
 \begin{equation}
     \text{TWS Anomaly}_t = \frac{TWS_t-\bar{X}}{\delta}
@@ -46,7 +46,7 @@ donde $TWS_t$ es el valor de TWS en el mes $t$, $\bar{X}$ es el valor promedio a
 los datos temporales disponibles \cite{tws}.
 
 En base a las anomalías se pueden definir ciertos rangos de comportamientos de las mediciones que se detallan en la figura \ref{logo1}, en ella se puede observar que para la anomalía TWS, si ésta se encuentra en el intervalo $[-2,-1[$
-implica que  el contenido terrestre de agua está más seco de lo normal. Por el contrario si la observación se encuentra en el intervalo $[1,-1[$ representa que el contenido de agua ha aumentado y finalmente si se encuentra entre
+implica que  el contenido terrestre de agua está más seco de lo normal. Por otra parte, si la observación se encuentra en el intervalo $[1,-1[$ representa que el contenido de agua ha aumentado y finalmente si se encuentra entre
 $[-1,1[$ representa ``normalidad'' en el contenido de agua, es decir, la cantidad de agua presente no ha variado considerablemente.
 
 \begin{figure}[H]
@@ -77,10 +77,10 @@ bajo en carbono \cite{cr2}.
 %
 %
 \section{Dirección General de Aguas}
-La Dirección General de Aguas es el organismo del Estado de Chile que se encarga de gestionar, verificar y difundir la infromación 
-hídrica del país, en especial, respecto a su cantidad y calidad, las personas naturales o jurídicas que están autorizadas a utilizarlas,
+La Dirección General de Aguas es el organismo del Estado de Chile que se encarga de gestionar, verificar y difundir la información 
+hídrica del país, en especial, respecto a su cantidad y calidad, además de las personas naturales o jurídicas que están autorizadas a utilizarlas,
 las obras hidráulicas existentes y la seguridad de las mismas con el objetivo de contribuir a una mayor competitividad 
-del mercado y el resguardo de la certeza jurídica e hídrica para el desarrollo sustentable del país \cite{dga}.
+del mercado y velar por el resguardo de la certeza jurídica e hídrica para el desarrollo sustentable del país \cite{dga}.
 
 %
 %
@@ -89,10 +89,10 @@ del mercado y el resguardo de la certeza jurídica e hídrica para el desarrollo
 \section{Climate Data Operator}
 El software \textit{Climate Data Operator (CDO)} es una colección de operadores para procesamiento y predicción estándar de datos climatológicos.
 Los operadores incluyen funciones estadísticas y aritméticas simples, selección de datos, herramientas de submuestreo e interpolación espacial.
-\textit{CDO} fue desarrollado para tener el mismo conjunto de funciones de procesamiento para archivos con extensión GRIB y NetCDF. Las mayores características
-de CDO son, entre otras, los más de 700 operadores disponibles, su diseño modular y fácilmente extensible a nuevos operadores, la interfaz de linea de comando UNIX muy simple,
+\textit{CDO} fue desarrollado para tener el mismo conjunto de funciones de procesamiento para archivos con extensión GRIB y NetCDF. Las mayores características son
+los más de 700 operadores disponibles, su diseño modular y fácilmente extensible a nuevos operadores, la interfaz de linea de comando UNIX muy simple,
 el conjunto de datos en cuestión puede ser procesado mediante varios operadores sin la necesidad de almacenar los resultados provisionales en archivos y finalmente, un rápido procesamiento
-de conjuntos de datos muy grandes \cite{16}.
+de conjuntos de datos muy grandes \cite{16}, entre otras.
 %\newpage
 %
 %

@@ -1,7 +1,7 @@
 \chapter{Resultados y Discusión}
 \label{C4}
-Los resultados debieron ser analizados de dos formas: Una de ellas consiste en la medición del error de cada modelo en base al conjunto de test, éstos errores son la 
-raíz del error cuadrático medio \ref{eqn:mae}, en inglés \textit{Root Mean Squared Error (RMSE)} y el error medio absoluto (\textit{MAE}), ésto significa una validación en la resolución nativa de 
+Los resultados debieron ser analizados de dos formas: Una de ellas consiste en la medición del error de cada modelo instanciado en el conjunto de test, estos errores son la 
+raíz del error cuadrático medio \ref{eqn:mse}, en inglés \textit{Root Mean Squared Error (RMSE)} y el error medio absoluto (\textit{MAE}) \ref{eqn:mae}, ésto significa una validación en la resolución nativa de 
 GRACE, es decir 1$^\circ$. La segunda manera es la validación en la alta resolución, es decir, posterior a realizar la predicción a 0.25$^\circ$; Está claro que no se posee
 un conjunto para validar los datos en este escenario debido a que sería un \textit{Downscalling} ya hecho. Por este motivo se deben optar por otras maneras de corroborar la información
 para que ésta sea fiable, aquí es donde las series de tiempo se ajustan a lo que buscamos validar.
@@ -15,7 +15,7 @@ se calcula el error medio absoluto y \textit{RMSE} para el conjunto entero de te
     \item Para el modelo que \textbf{minimiza el error medio absoluto}, la métrica \textit{MAE} es de 0,00615 aproximadamente y el \textit{RMSE} se obtiene un valor de 7,25$ \times 10^{-5}$.
 \end{itemize}
 
-Para ambos modelos, las variables explicativas más importantes para el modelo fueron \texttt{time}, \texttt{lat}, \texttt{lon}, humedad de suelo (\texttt{sm}) y la evaporación por transpiración de la vegetación (\texttt{e}), en ese orden. Claramente el porcentaje de importancia
+Para ambos modelos, las variables explicativas más importantes fueron \texttt{time}, \texttt{lat}, \texttt{lon}, humedad de suelo (\texttt{sm}) y la evaporación por transpiración de la vegetación (\texttt{e}), en ese orden. Claramente el porcentaje de importancia
 varía pero el orden se mantiene. Por lo tanto, se puede afirmar que los modelos se encuentran afectos al rendimiento mayoritariamente en base al criterio de minimización escogido.
 
 La siguiente validación en base a la resolución nativa de GRACE es con respecto a las macrozonas del país, es decir, aquellos datos que fueron estratificados y luego separados en entrenamiento y testeo (figura \ref{traintest}).
@@ -38,7 +38,7 @@ En cada macrozona se calculan las métricas de error correspondiente en el conju
     \end{table}
 
 Para comparar cada modelo en base a las métricas de evaluación, conviene realizar un gráfico, en este caso se realiza uno por cada métrica debido a que el orden de los errores
-difieren para dejar una única gráfica. 
+difieren. 
 
 \begin{figure}[H]
     \centering
@@ -57,7 +57,7 @@ difieren para dejar una única gráfica.
 \end{figure}
 
 Es evidente que el modelo el cual minimiza el error cuadrático medio, además de reducir la varianza en la predicción, mejora la predicción misma otorgando un menor error tanto
-general como en cada macrozona del país, mostrando la superioridad de la minimización del error cuadrático medio por sobre el error medio absoluto. Es por esta razon, que el modelo escogido para 
+general como en cada macrozona del país, mostrando la superioridad de la minimización del error cuadrático medio por sobre el error medio absoluto. Es por esta razón, que el modelo escogido para 
 predecir valores de \textit{lwe\_thickness} provenientes de GRACE a una mayor resolución será el modelo que mejores métricas de evaluación presente.
 %
 %
@@ -67,13 +67,13 @@ predecir valores de \textit{lwe\_thickness} provenientes de GRACE a una mayor re
 Es necesario señalar que los resultados que se presentan a continuación son válidos para el territorio continental chileno, debido a la naturaleza de las bases de datos, específicamente de ERA5-Land y precipitación, es 
 por este motivo que las observaciones presentes fuera del territorio continental chileno no deben utilizarse para estudios posteriores.
 
-Como se menciona en la metodología del paper base \cite{11}, luego de obtener el TWS final a éste se le deben substraer aquellas variables hidrológicas superficiales para así
+Como se menciona en la metodología del paper base \cite{11}, luego de obtener el TWS final a este se le deben substraer aquellas variables hidrológicas superficiales para así
 obtener el contenido de aguas subterráneas, no obstante, no se puede asegurar que realizando la substracción de variables hidrológicas superficiales se consiga el valor del almacenamiento de aguas subterráneas, o 
-\textit{Ground Water Storage}, ésto debido a muchos otros factores que se ignoran a la hora de realizar ese procedimiento, es por esta razón que se decide por omitir este paso y proceder a la validación con mediciones \textit{in situ} o mediciones en terreno con datos de pozos de bombeo que 
+\textit{Ground Water Storage}, esto debido a muchos otros factores que se ignoran a la hora de realizar el procedimiento, es por esta razón que se decide omitir este paso y proceder a la validación con mediciones \textit{in situ} o mediciones en terreno con datos de pozos de bombeo que 
 se detalla más adelante.
 
 Luego de la adición de los residuos interpolados, son 156 las grillas de datos obtenidas desde abril del año 2002 hasta junio del año 2017. A continuación se muestran los datos con reducción de escala para
-uno de los primeros períodos de tiempo, específicamente septiembre del año 2002, a la mitad del período y para finales del mismo, es decir, abril del año 2017.
+uno de los primeros períodos de tiempo, específicamente septiembre del año 2002, a mitad del período y para finales del mismo, es decir, abril del año 2017.
 
 \begin{figure}[H]
     \centering
@@ -95,7 +95,7 @@ uno de los primeros períodos de tiempo, específicamente septiembre del año 20
 \end{figure}
 
 A simple vista, se logra apreciar que los mapas de calor son coincidentes en cuanto a los valores de las anomalías se refiere, es decir, el modelo es capaz de capturar correctamente
-las zonas en las cuales existe un déficit o superhábit hidrológico en base a las mediciones originales y las variables hidrológicas. Esto aunque parezca concluyente, aún no es suficiente para dterminar si el \textit{Downscalling}
+las zonas en las cuales existe un déficit o superhábit hidrológico en base a las mediciones originales y las variables hidrológicas. Aunque esto parezca concluyente, aún no es suficiente para dterminar si el \textit{Downscalling}
 ha sido exitoso, es por esta razón que aún queda la validación de datos de GRACE a alta resolución pendiente.
 
 \begin{figure}[H]
@@ -120,8 +120,8 @@ utilizando la librería \texttt{seaborn} es poisble obtener dichas densidades, e
     \label{distcomp}
 \end{figure}
 
-Es evidente que el valor de las densiades (eje $y$) difieren en demasía debido al mayor volumen de datos presente en los datos a alta resolución, de todas maneras, ambas distribuciones
-se asemejan y mantienen un coportamiento normal. Ahora si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y el rango donde se mueve las anomalías a alta y baja resolución podremos tener una idea más clara 
+Es evidente que el valor de las densiades (eje $y$) difieren en demasía debido al mayor volumen de datos presente en las grillas a alta resolución, de todas maneras, ambas distribuciones
+se asemejan y mantienen un coportamiento normal. Ahora, si calculamos ciertos estadísticos útiles, tales como media, desviación estándar y el rango donde se mueve las anomalías a alta y baja resolución podremos tener una idea más clara 
 en cuanto a la similitud de distribuciones se trata.
 
 \begin{table}[H] 
@@ -135,9 +135,10 @@ en cuanto a la similitud de distribuciones se trata.
         \textbf{alta (0.25$^{\circ}$)}   & -0.284269 & 0.233349	& 0.001885 & 0.057145\\
         \bottomrule
     \end{tabularx}
+    \label{distcomp}
 \end{table}
 
-De aquí se puede deducir que el \textit{Downscalling} ha sido realizado de manera correcta, manteniendo la distribución de los datos originales, disminuyendo ligeramente el rango en el que éstos se encuentran,
+De la tabla \ref{distcomp}, se puede deducir que el \textit{Downscalling} ha sido realizado de manera correcta, manteniendo la distribución de los datos originales, disminuyendo ligeramente el rango en el que éstos se encuentran,
 aunque con la media desplazada más lejana del origen y con una pequeña disminución en la variabilidad.
 
 
@@ -154,7 +155,7 @@ aunque con la media desplazada más lejana del origen y con una pequeña disminu
 Debido a la extensa hidrografía presente en el territorio chileno y de los limitados datos de observaciones de pozos, la validación mediante mediciones \textit{in situ} se centrará
 en la región de Coquimbo en el periodo donde se puedan comparar las tendencias de GRACE con las observaciones de pozos, es decir, desde abril del año 2002 hasta enero del año 2016. 
 
-En primera instancia se realiza un estudio general de datos promediados regionales, 
+En primera instancia, se realiza un estudio general de datos promediados regionales, 
 posteriormente se escoge un píxel de baja resolución el cual contiene las observaciones de pozos remuestradas para finalmente estudiar aquellos píxeles a alta resolución que contengan zonas agrícolas \cite{LC}, las cuales necesitan agua para 
 poder realizar el regadío. Este es un factor que se tendrá presente a la hora de realizar el estudio de tendencias para GRACE escalado y las observaciones de pozos.
 
@@ -167,8 +168,8 @@ poder realizar el regadío. Este es un factor que se tendrá presente a la hora 
 \end{figure}
 
 \subsection{Validación con series de tiempo}
-El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las anomalías porcentuales \ref{pct_anomalies} de las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
-\textbf{precipitación} promedio y finalmente las \textbf{observaciones de pozos} individuales de la región en color gris y su promedio mensual.
+El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las anomalías porcentuales (ecuación \ref{pct_anomalies}) de las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
+\textbf{precipitación} promedio y finalmente las \textbf{observaciones de pozos} individuales de la región graficadas en color gris y su promedio mensual.
 
 \begin{figure}[H]
     \centering
@@ -179,10 +180,10 @@ El estudio tendencial de las series de tiempo comienza de forma general, es deci
 \end{figure}
 En la serie temporal se puede apreciar que las tendencias de GRACE original y GRACE escalado son muy similares aunque no del todo; Se puede observar que los cambios porcentuales difieren, sobre todo desde el año 2010 hasta principios de año 2013. Para la precipitación,
 es esperable encontrarse con la estacionalidad que presenta para los periodos invernales en el cono sur del globo, además, comienza con una tendencia en descenso y finaliza con un aumento notorio desde principios del 2013, al igual que las anomalías de TWS. Para los datos promediados de pozos, 
-se puede observar la tendencia señala un vaciado constante de los depósitos de aguas subterráneas con un aumento considerable al mediados del año 2015, tendencia la cual se puede explicar con el aumento tendencial del contenido de 
+se puede observar que la tendencia señala un vaciado constante de los depósitos de aguas subterráneas con un aumento considerable al mediados del año 2015, tendencia la cual se puede explicar con la disminución tendencial del contenido de 
 agua terrestre para la región, aún así, la región en general presenta un déficit anual en las aguas subterráneas que es consistente con la localización de las observaciones \textit{in situ} dentro o muy cercanas a las zonas agrícolas. 
 
-En base a la figura \ref{szcoq} es posible identificar aquellas zonas en las cuales existen actividades que requieren un constante y a la vez considerable suministro de agua. Es posible identificar la zona donde existe una alta cantidad de pozos, zonas agrícolas y comparar
+En base a la figura \ref{szcoq} es posible identificar aquellas zonas en las cuales existen actividades que requieren un constante y a la vez considerable suministro de agua. Es posible observar las zonas donde existe una alta cantidad de pozos, zonas agrícolas y comparar
 tendencialmente las series de tiempo; Para cumplir ese objetivo, se debe identificar el píxel a baja resolución y los píxeles a alta resolución que se encuentren contenidos.
 
 \begin{figure}[H]
@@ -213,12 +214,12 @@ que poseen las zonas agrícolas sobre las mediciones de pozos y comparar el comp
     \label{tspixel1}
 \end{figure}
 
-En cuanto al primer pixel a alta resolución \ref{tspixel0}, a pesar de que la tendencia de precipitación desde el año 2013 presenta un aumento, no se logra apreciar el impacto que esta tiene sobre las observaciones de GRACE
-ya que para el período en cuestión, las anomalías de GRACE dan a entender la disminución en el contenido de agua terrestre, información que es corroborable con las observaciones de pozos, donde en el píxel a baja resolución se tiene una 
+En cuanto al primer pixel a alta resolución (fig. \ref{tspixel0}), a pesar de que la tendencia de precipitación desde el año 2013 presenta un aumento, no se logra apreciar el impacto que esta tiene sobre las observaciones de GRACE
+ya que para el período en cuestión, las anomalías dan a entender la disminución en el contenido de agua terrestre, información que es corroborable con las observaciones de pozos, donde en el píxel a baja resolución se tiene una 
 tendencia de vaciado del pozo inclusive cuando en el periodo inicial, es decir, desde el 2002 hasta el 2004 tanto TWS como la profundidad de pozos muestran un aumento en la cantidad de agua. Un comportamiento más inusual sucede con el pozo a alta resolución,
-el cual presenta un nivel tendencial constante hasta el comienzo del período de sequía de GRACE (2012) donde el nivel del pozo tiende a disminuir rápidamente hasta el año 2015, donde el nivel aumenta aproximadamente en un $120\%$ en tan solo un año. 
+el cual presenta un nivel tendencial constante hasta el comienzo del período de sequía de GRACE (2012) donde el nivel del pozo tiende a disminuir rápidamente hasta el año 2015, para finalmente aumentar en un $120\%$ aproximadamente en tan solo un año. 
 
-Al analizar la figura \ref{tspixel1} la gran diferencia recae en las observaciones de pozos, donde éstas presentan una tendencia negativa desde el año 2011, lo que se traduce en una disminución en el nivel de agua, tendencia que se puede
+Al analizar la figura \ref{tspixel1} la gran diferencia recae en las observaciones de pozos, donde estas presentan una tendencia negativa desde el año 2011, lo que se traduce en una disminución en el nivel de agua, tendencia que se puede
 explicar por la sequía presente desde el año 2002 que experimenta GRACE.
 
 Finalmente, en ambas figuras se puede apreciar que las tendencias entre GRACE a 1° se mantienen en cualquiera de los pixel a 0.25°, por lo que el \textit{Downscalling} además de asemejarse en distribución, también lo hace 
@@ -226,10 +227,10 @@ en la media temporal de las observaciones.
 
 
 \subsection{Correlación Temporal}
-En cuanto al territorio continental chileno se trata, el coeficiente de correlación para los datos promediados mensuales entre la resolución original y la resolución objetivo fue De
-\textbf{0.6544517} valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y vicebersa.
+En cuanto al territorio continental chileno se trata, el coeficiente de correlación definido en la ecuación \ref{eqn:cort} para los datos promediados mensuales entre la resolución original y la resolución objetivo fue de
+\textbf{0.6544517} valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y viceversa.
 
-Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo, se calcula el índice de correlación temporal definido en la ecuación \ref{eqn:cort}
+Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo, se calcula el índice de correlación de Pearson 
 para el promedio de Grace original a baja resolución y los datos con aumento de resolución, ambos normalizados mediante la normalización min-max. El valor del índice 
 fue de \textbf{0.65441778}, un poco más bajo que el coeficiente naccional pero es más que aceptable para mencionar que los comportamientos tendenciales del \textit{Downscalling} se mantienen
 en base al satélite GRACE original.
@@ -240,7 +241,7 @@ en base al satélite GRACE original.
 %
 
 \section{Inerpolación bilinear y estudio de variabilidad}
-El último componente del estudio del \textit{Downscalling} mediante un método de \textit{ensemble} basado en Árboles de decisión, es la comparación de una interpolación bilinear de los datos de GRACE a la resolución objetivo
+El último componente del estudio del \textit{Downscalling} mediante un método de \textit{ensemble} basado en árboles de decisión es la comparación de una interpolación bilinear de los datos de GRACE a la resolución objetivo
 con el aumento de resolución realizada mediante el método de Random Forest. Para realizar la interpolación se opta por utilizar el software CDO y como un estudio \textit{a priori} del \textit{Downscalling} se miden los tiempos de remuestreo
 espacial de CDO y la predicción realizada por el modelo predictivo en la máquina virtual \texttt{ e2-custom-6-2176}, los tiempos de ejecución fueron de 0.37 y de 4.96 segundos respectivamente.
 
@@ -253,9 +254,11 @@ espacial de CDO y la predicción realizada por el modelo predictivo en la máqui
     \label{interp02}
 \end{figure}
 
-Posterior a realizar la interpolación bilinear, los productos grillados obtenidos mediante CDO y el modelo predictivo son poromedidados por cada píxel en el territorio para así obtener una única grilla que representa los comportamientos temporales promedio, para la interpolación bilinear se 
-obtuvo una varianza de 1,7963$\times 10^{-4}$ y para la regresión 1,3850$\times 10^{-4}$. Luego,
-se calculan las diferencias absolutas por píxel entre ambas grillas y así poder obtener el $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ de los píxeles se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
+Posterior a realizar la interpolación bilinear, los productos grillados obtenidos mediante CDO y el modelo predictivo son promediados por cada píxel en el territorio para así obtener una única grilla que representa los comportamientos temporales promedio. Para la interpolación bilinear se 
+obtuvo una varianza de 1,7963$\times 10^{-4}$ y para la regresión 1,3850$\times 10^{-4}$. 
+
+Posterior al cálculo de las varianzas,
+se calculan las diferencias absolutas por píxel entre ambas grillas y posteriormente seleccionar $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ de los píxeles se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
 Es posible aislar la zona donde se encuentra el mayor error y poder realizar una comparativa de las dinámicas presentes.
 
 \begin{figure}[H]
@@ -280,6 +283,7 @@ considerables y así estudiar las varianzas de cada variable explicativa, la int
         \bottomrule
     \end{tabularx}
 \end{table}
+\newpage
 
 Es claro que en el parche en cuestión, las anomalías de TWS a baja resolución que entrega el modelo \textit{Random Forest} entrega mucha más variabilidad en la predicción que la interpolación bilinear, pero fuera de ésta zona
 la variabilidad del modelo predictivo como de la interpolación bilinear se mantienen cercanas.
@@ -324,7 +328,7 @@ una idea de qué tanto afecta la varianza de cada variable a la predicción.
     \end{tabularx}
 \end{table}
 
-Es claro que existe mayor varianza en las variables explicativas en donde las predicciones entre la interpolación bilinear y la regresión mediante \textit{Random Forest} en el parche de píxeles donde existe mayor diferencia. Éstas grandes diferencias
+Se aprecia que existe mayor varianza en las variables explicativas en en el parche de píxeles donde existe mayor diferencia. Estas grandes diferencias
 pueden ser explicadas por este aumento en la varianza de las componentes hidrológicas del modelo.
 %
 %
@@ -333,9 +337,9 @@ pueden ser explicadas por este aumento en la varianza de las componentes hidrol�
 \section{Discusión}
 
 En base a la gráfica \ref{dsf17} se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
-tienden a la baja en la zona norte, la cual es una zona con alta demanda hídrica pero en general bastante árida, y a la alza en la zona austral, donde existe más precipitación, humedad y menor temperatura, comportamientos que se pueden apreciar a una baja resolución pero no resultan ser del todo interpretables.
+tienden a la baja en la zona norte, la cual es una zona con alta demanda hídrica pero en general bastante árida, y a la alza en la zona austral, donde existe más precipitación, humedad y menor temperatura.
 
-Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde existen cultivos agrícolas de cualquier índole existe una tendencia de vaciado de pozos, ésto claro por el
+Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde se presentan cultivos agrícolas de cualquier índole, existe una tendencia de vaciado de pozos, esto como consecuencia del
 uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
 
 Aunque se pueden encontrar ciertas zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relación a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
