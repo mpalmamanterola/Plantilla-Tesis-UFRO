@@ -2,16 +2,16 @@
 Las aguas subterráneas tienen una relación muy cercana con la sociedad humana y está siendo altamente utilizada por las personas gracias a su
 alta calidad y cantidad, el problema radica cuando éstas no se monitorean y son saqueadas de forma persistente por las industrias. El nivel de agua
 subterránea continúa disminuyendo debido a la sobrexplotación, es por esta razón que es necesario monitorear el comportamiento de 
-los almacenes con el objetivo de resguardar tanto la calidad como la cantidad de estos. Si bien es posible realizar monitoreos de cuencas de bombeo, no es 
+los almacenes con el objetivo de resguardar tanto la calidad como la cantidad de estos. Si bien es posible realizar monitoreos de pozos de bombeo, no es 
 factible abastecer de mediciones en todo el territorio nacional, es costoso y tardío. Con esta problemática es necesario buscar nuevas alternativas para el estudio de 
 aguas subterráneas, una de ellas destaca por sobre las demás: El satélite GRACE, un satélite que logra captar el cambio en los niveles de aguas mediante diferencias gravitacionales con una precisión inigualable,
 el único inconveniente recae en su baja resolución espacial por lo que la información que entrega es muy
 generalizada. En base a esto se adopta una metodología para aplicar un aumento de resolución espacial de GRACE para obtener productos grillados mensuales a alta resolución con el 
 objetivo de obtener comportamientos de manera más granular facilitando el estudio. El aumento de resolución es mediante un algoritmo de \textit{Machine Learning} que funciona bien estos casos 
-debido a la dinámica rectangular de los datos, éste es el modelo \textit{Random Forest} que, mediante variables hidrológicas explicativas a alta resolución logra predecir de buena manera 
+debido a la dinámica rectangular de los datos, éste es el modelo \textit{Random Forest} que, mediante variables hidrológicas explicativas a alta resolución logra predecir 
 las dinámicas de GRACE. Así, obteniendo los productos grillados es posible validar tendencialmente
 los comportamientos a alta resolución mediante observaciones \textit{in situ}, GRACE a alta resolución y la precipitación promedio.
-Finalmente, en cuanto a la correlación entre las series de tiempo, se concluye que las tendencias a alta y baja resolución para todo el territorio son coincidentes al igual que en una región en particular.
+Finalmente, en cuanto a las zonas donde existe una alta varianza en el aumento de resolución, se concluye que dicho aumento en la variabilidad es heredado de las variables explicativas utilizadas para la predicción.
 \vskip 0.2in
 \noindent
 {\bf Palabras Claves:} Aumento de resolución; Bosque Aleatorio; Satélite GRACE; Contenido de agua terrestre; Series de tiempo.
