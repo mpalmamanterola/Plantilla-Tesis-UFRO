@@ -138,7 +138,7 @@ en cuanto a la similitud de distribuciones se trata.
     \label{distcomp}
 \end{table}
 
-De la tabla \ref{distcomp}, se puede deducir que el \textit{Downscalling} ha sido realizado de manera correcta, manteniendo la distribución de los datos originales, disminuyendo ligeramente el rango en el que éstos se encuentran,
+De la tabla \ref{distcomp}, se puede deducir que el \textit{Downscalling} ha sido realizado de manera correcta, manteniendo la distribución de los datos originales, aumentando ligeramente el rango en el que éstos se encuentran,
 aunque con la media desplazada más lejana del origen y con una pequeña disminución en la variabilidad.
 
 
@@ -169,7 +169,7 @@ poder realizar el regadío. Este es un factor que se tendrá presente a la hora 
 
 \subsection{Validación con series de tiempo}
 El estudio tendencial de las series de tiempo comienza de forma general, es decir, conociendo y estudiando las anomalías porcentuales (ecuación \ref{pct_anomalies}) de las series temporales regionales para todo el período de tiempo, para este estudio se consideran 3 variables: En primer lugar las \textbf{anomalías de TWS} de alta y baja resolución promedio, en segundo lugar la 
-\textbf{precipitación} promedio y finalmente las \textbf{observaciones de pozos} individuales de la región graficadas en color gris y su promedio mensual.
+\textbf{precipitación} y finalmente las \textbf{observaciones de pozos} individuales de la región graficadas en color gris y su promedio mensual.
 
 \begin{figure}[H]
     \centering
@@ -227,7 +227,7 @@ en la media temporal de las observaciones.
 
 
 \subsection{Correlación Temporal}
-En cuanto al territorio continental chileno se trata, el coeficiente de correlación definido en la ecuación \ref{eqn:cort} para los datos promediados mensuales entre la resolución original y la resolución objetivo fue de
+En cuanto al territorio continental chileno se trata, el coeficiente de correlación definido en la ecuación \ref{eqn:cort} para los datos promediados mensuales entre la resolución original (GRACE a 1°) y la resolución objetivo (\textit{Downscalling} a 0.25°) fue de
 \textbf{0.6544517} valor cercano a 1, lo cual indica que las tendencias poseen comportamientos similares y cuando una de ellas aumenta, la otra también y viceversa.
 
 Finalmente, para el analisis tendencial general de la cuarta región de Coquimbo, se calcula el índice de correlación de Pearson 
@@ -339,22 +339,22 @@ pueden ser explicadas por este aumento en la varianza de las componentes hidrol�
 En base a la gráfica \ref{dsf17} se puede pensar que la estratificación de los datos para entrenar el modelo en la sección 3.4 resulta ser adecuada de acuerdo a las características geográficas del país, donde las anomalías
 tienden a la baja en la zona norte, la cual es una zona con alta demanda hídrica pero en general bastante árida, y a la alza en la zona austral, donde existe más precipitación, humedad y menor temperatura.
 
-Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde se presentan cultivos agrícolas de cualquier índole, existe una tendencia de vaciado de pozos, esto como consecuencia del
-uso constante requerido de aguas para realizar regadío. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
+Si bien las tendencias de GRACE y de las observaciones de pozos contienen cierta correlación lineal, es claro que las zonas en donde se presentan cultivos agrícolas de cualquier índole, existe una tendencia de vaciado de pozos. Además, en zonas donde existe una alta densidad de pozos de bombeo la extracción de agua tiende a ser más consistente y reiterada.
 
 Aunque se pueden encontrar ciertas zonas donde existe una alta varianza en el modelo predictivo de \textit{Random Forest} en relación a la interpolación lineal, si analizamos el marco general, el modelo logra reducir la varianza sin la necesidad de establecer relaciones lineales entre los píxeles vecinos, si no que gracias a
-la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución y cuando éstas presentan una alta variabilidad, es 
-posible señalar que esa varianza influye en la predicción como una información adicional al modelo. CDO sin duda que es un software muy 
+la adición de información de variables hidrológicas que logren representar los comportamientos de las aguas subterráneas, se puede decir de forma casi segura que éstas tienen una incidencia en la predicción modificando el comportamiento de la distribución de GRACE a alta resolución, y cuando éstas presentan una alta variabilidad, es 
+posible que esa varianza influya en la predicción de forma favorable, por ejemplo, lograr captar comportamientos insulares del territorio y/o realizar estudios del comportamiento de las aguas subterráneas en el océano, dinámicas que no deberían poseer una relación lineal con las zonas terrestres. CDO sin duda que es un software muy 
 bien optimizado que logra realizar operaciones sobre datos grillados de manera práctica y rápida, no obstante, la información adicional que se proporciona 
 al \textit{Downscalling} mediante el modelo \textit{Random Forest} no es replicable en CDO, es por esto que es mejor utilizarlo como una herramienta para utilizar en algoritmos más sofisticados. 
 
 Aunque se hayan podido capturar de manera correcta las anomalías de GRACE a alta resolución, no sería problema agregar variables explicativas adicionales al modelo que puedan tener incidencia en los niveles de agua, por ejemplo las observaciones de pozos, aunque éstas no sean regulares en el espacio, se puede
-agregar en zonas donde exista una grilla lo suficientemente regular y realizar un aumento de resolución local. Otra variable a considerar puede ser la actividad sismológica del territorio, por ejemplo la profundidad del sismo y su magnitud, es probable que se logren obtener resultados aún más concretos considerando la 
+agregar en zonas donde exista una grilla lo suficientemente regular y realizar un aumento de resolución local. Otra variable a considerar puede ser la actividad sismológica del territorio, ya que se ha estudiado que el aumento o disminución en el nivel de aguas subterráneas puede ser considerada como consecuencia de sismos o terremotos \cite{30}, es por esto
+que se puede optar por adicionar la profundidad del sismo y su magnitud a la predicción y así se logren obtener resultados más concretos considerando la 
 alta actividad sísimica del territorio. Finalmente, adicionar información acerca de la geología presente en el territorio puede dar información de los movimientos o filtraciones que puede poseer alguna capa en especial. 
 
 Existen anomalías en la serie de tiempo de GRACE original que el modelo \textit{Random Forest} no logra capturar, por ejemplo a inicios del período (año 2002), principios del año 2010 y mediados del 2015. Es sabido que Chile es un país con alto índice de sismos, no es una coincidencia que éstas grandes diferencias entre las anomalías ocurran 
 en períodos donde han existido actividad sismológica en la cuarta región, como lo son el terremoto de Coquimbo el 18 de junio del 2002 con una magnitud de 6.6, el famoso terremoto ocurrido el 27 de febrero del 2010 que afectó a varias regiones con magnitud de 8.8 y finalmente el terremoto en Coquimbo el 16 de septiembre del 2015 con magnitud 8.4,
-es por esta razón que se propone introducir una variable explicativa sismológica para entrenar y predecir las anomalías de GRACE. No se debe descartar que ésta información adicional pueda generar mayor correlación lineal entre las series de tiempo.
+es por esta razón que se propone introducir una variable explicativa sismológica para entrenar y predecir las anomalías de GRACE.
 
 Random Forest no es uno de los modelos predictivos más contemporáneo, si bien otorga buena generalización, es posible mejorar los resultados con un modelo basado en árboles más actual, como por ejemplo \texttt{XGBoost} el cual, además de ajustar árboles,
 también ajusta los hiperparámetros de forma óptima a través de múltiples herramientas, como la \textbf{paralelización}, el \textit{\textbf{tree pruning}} e inclusive
