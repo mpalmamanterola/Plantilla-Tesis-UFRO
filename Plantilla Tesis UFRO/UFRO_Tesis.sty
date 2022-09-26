@@ -74,6 +74,7 @@ con el estilo de documento 'report'}}{}
 \def\profcorrA#1{\gdef\@profcorrA{#1}}
 \def\profcorrB#1{\gdef\@profcorrB{#1}}
 \def\profcorrC#1{\gdef\@profcorrC{#1}}
+\def\profcorrD#1{\gdef\@profcorrD{#1}}
 \def\twosupervisors{\two@supervisorstrue}
 \def\ack#1{\gdef\@ack{#1}\acktrue}
 \def\resumenesp#1{\gdef\@resumenesp{#1}\resumenesptrue}
@@ -293,7 +294,7 @@ con el estilo de documento 'report'}}{}
 		\textbf{COMISI\'ON EXAMINADORA}
 		\vskip 1.5in
 		\signature{\@profguia \\ Profesor Gu\'ia} 
-    	\vskip 1.5in
+    	\vskip 1in
     	\hfill
 	    \begin{multicols}{2}  
 			\signature{\@profcorrA \\ Acad\'emico Evaluador}	
@@ -301,6 +302,14 @@ con el estilo de documento 'report'}}{}
     		\signature{\@profcorrB \\ Acad\'emico Evaluador}  
 			\vskip 0.5in      
 		\end{multicols} 
+		\vskip 1in
+    	\hfill
+	    \begin{multicols}{2}  
+			\signature{\@profcorrC \\ Evaluador Externo}	
+			\vskip 0.2in   
+    		\signature{\@profcorrD \\ Evaluador Externo}  
+			\vskip 0.5in      
+		\end{multicols}
 		\end{center}
 		%\vskip 0.5in
 		\vfill
