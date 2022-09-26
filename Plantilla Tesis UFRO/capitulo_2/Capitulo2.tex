@@ -121,7 +121,7 @@ Estos modelos poseen ciertas falencias, dos de ellas en particular bien estudiad
 \begin{enumerate}
     \item La \textbf{inestabiliad} del modelo, es decir, ligeros cambios en las variables explicativas 
           pueden llevar a grandes cambios en la estructura del árbol.
-    \item El \textbf{Rendimiento predictivo menor} que el optimal, esto debido a que el modelo define estructuras rectangulares y si 
+    \item El \textbf{rendimiento predictivo menor} que el optimal, esto debido a que el modelo define estructuras rectangulares y si 
           la relación entre las variables explicativas y la variable respuesta no puede ser definida adecuadamente por
           subespacios rectangulares de los predictores, entonces el modelo tendrá un mayor error de predicción.
 \end{enumerate} 
@@ -188,10 +188,10 @@ de conjunto más nuevas. El pseudocódigo de este método es el siguiente:
 patrones de generalización con pequeños cambios a los datos de entrenamiento. Por lo tanto, el \textit{bagging} no tiende a funcionar bien con modelos lineales \cite{19}.
 
 Una de las ventajas de esta metodología es la reducción de varianza de la predicción a través del processo de agregación. Además, para aquellos modelos que producen una predicción inestable,
-o de alta varianza como lo son los árboles de regresión hace que éstos sean más estables \cite{18} y por tanto, más precisos.
+o de alta varianza como lo son los árboles de regresión hace que estos sean más estables \cite{18} y por tanto, más precisos.
 
 La desventaja más clara del método resulta ser el alto costo computacional, ya que este aumentará a medida que el número de muestras
-de \textit{bootstrap} aumenten. Éste problema es solucionable si se posee acceso a cómputo paralelo debido a que el \textit{bagging} es fácilmente paralelizable \cite{18}.
+de \textit{bootstrap} aumenten. Este problema es solucionable si se posee acceso a cómputo paralelo debido a que el \textit{bagging} es fácilmente paralelizable \cite{18}.
 %
 %
 %
@@ -199,7 +199,7 @@ de \textit{bootstrap} aumenten. Éste problema es solucionable si se posee acces
 \section{Modelo del bosque aleatorio}
 Los bosques aleatorios son un \textit{ensemble} de predictores de árboles de modo que cada árbol depende de los valores de un vector aleatorio muestreado de forma independiente (\textit{bootstrap sample}) y con la misma distribución para cada uno de ellos. 
 El error de generalización para los bosques converge estable asintóticamente a un límite a medida que aumenta el número de árboles en el bosque, además, depende entre otras cosas, de la correlación entre ellos. Usar una selección aleatoria de características para dividir cada nodo produce
-tasas de error que se comparan favorablemente con otros modelos como Adaboost, pero son más sólidas con respecto al ruido, error de estimaciones internas,
+tasas de error que se comparan favorablemente con otros modelos como \textit{Adaboost}, pero son más sólidas con respecto al ruido, error de estimaciones internas,
 fuerza y correlación, y se utilizan para mostrar la respuesta al aumento del número de características utilizadas
 en la división. Las estimaciones internas también se utilizan para medir la importancia de la variable \cite{25}.
 

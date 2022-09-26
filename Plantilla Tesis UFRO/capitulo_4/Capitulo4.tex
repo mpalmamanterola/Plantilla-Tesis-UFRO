@@ -110,7 +110,7 @@ ha sido exitoso, es por esta razón que aún queda la validación de datos de GR
 
 
 Finalmente, podemos comparar las distribuciones de la resolución nativa de GRACE con el \textit{Downscalling} posterior a la adición de residuos,
-utilizando la librería \texttt{seaborn} es poisble obtener dichas densidades, en base a ello se obtienen las gráficas presentes en la figura \ref{distcomp}.
+utilizando la librería \texttt{seaborn} es posible obtener dichas densidades, en base a ello se obtienen las gráficas presentes en la figura \ref{distcomp}.
 \begin{figure}[H]
     \centering
           \subfigure[Distribución TWS a 1$^{\circ}$]{\includegraphics[scale=0.6]{images/distGRACE1deg.png}}
@@ -258,7 +258,7 @@ Posterior a realizar la interpolación bilinear, los productos grillados obtenid
 obtuvo una varianza de 1,7963$\times 10^{-4}$ y para la regresión 1,3850$\times 10^{-4}$. 
 
 Posterior al cálculo de las varianzas,
-se calculan las diferencias absolutas por píxel entre ambas grillas y posteriormente seleccionar $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ de los píxeles se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
+se calculan las diferencias absolutas por píxel entre ambas grillas y posteriormente seleccionar $50\%$ de los píxeles que poseen mayor diferencia. Del total de píxeles de la grilla, un $6.7\%$ se encuentran con una mayor diferencia entre el algoritmo predictivo y la interpolación bilinear.
 Es posible aislar la zona donde se encuentra el mayor error y poder realizar una comparativa de las dinámicas presentes.
 
 \begin{figure}[H]
@@ -285,7 +285,7 @@ considerables y así estudiar las varianzas de cada variable explicativa, la int
 \end{table}
 \newpage
 
-Es claro que en el parche en cuestión, las anomalías de TWS a baja resolución que entrega el modelo \textit{Random Forest} entrega mucha más variabilidad en la predicción que la interpolación bilinear, pero fuera de ésta zona
+Es claro que en el parche en cuestión, las anomalías de TWS a baja resolución que entrega el modelo \textit{Random Forest} entrega mucha más variabilidad en la predicción que la interpolación bilinear, pero fuera de esta zona
 la variabilidad del modelo predictivo como de la interpolación bilinear se mantienen cercanas.
 
 \begin{figure}[H]
@@ -312,7 +312,7 @@ los píxeles oceánicos poseen un valor más bajo en la anomalía de TWS indican
 Finalmente, un estudio comparativo de la variabilidad de las variables explicativas en los parches de altas y bajas diferencias promedio nos puede entregar 
 una idea de qué tanto afecta la varianza de cada variable a la predicción. 
 \begin{table}[H] 
-    \caption[Varianzas de las variables explicativas de RF]{Varianzas de las 6 variables explicativas para los parches con altas diferencias y bajas diferencias promedio entre interpolación mediante CDO y predicción del modelo \textit{Random Forest}}
+    \caption[Varianzas de las variables explicativas de RF]{Varianzas de las 6 variables explicativas para los parches con altas diferencias y bajas diferencias promedio entre interpolación mediante CDO y predicción del modelo \textit{Random Forest}.}
     \newcolumntype{C}{>{\centering\arraybackslash}X}
     \begin{tabularx}{0.9\textwidth}{CCC}
     \toprule

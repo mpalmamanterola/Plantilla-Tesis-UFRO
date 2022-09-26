@@ -55,7 +55,7 @@ la forma en la que los autores realizan la reducción de escala a una resolució
 para obtener datos georreferenciados a una resolución de 0.25$^{\circ}~(\sim 27 \text{.} 75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
 \textit{GRACE} para el \textit{Terrestrial Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas (\textit{canopy water}, \textit{soil moisture}, 
 \textit{snow water equivalent} y \textit{runoff}), \textit{GLEAM} para datos 
-de vapor de agua emanado por plantas, el suelo, etc y \textit{TRAMM} para datos de precipitación.
+de vapor de agua emanado por plantas, el suelo, etc, conocida como \textit{evapotranspiration} y \textit{TRAMM} para datos de precipitación.
 
 La premisa del procedimiento se basa en que las variables explicativas se encuentran a una resolución mucho mayor que los datos recopilados por GRACE,
 por lo que en base al comportamiento de cada una de ellas es posible determinar las dinmámicas de la reserva de agua terrestre en puntos donde el satélite no 
@@ -96,8 +96,8 @@ propuesta en la sección 3.1, para esto se recurren a diferentes fuentes de data
 o de mejor calidad que las que se proponen.
 
 En base a las variables explicativas presentes en \cite{11}, se proceden a investigar múltiples fuentes de datos, las cuales difieren de las utilizadas en el paper de referencia. 
-Las bases de datos seleccionadas fueron (CR)$^2$-met para los datos de precipitación, ERA5-Land para las 5 variables explicativas restantes,
-observaciones de pozos provienientes de la DGA y finalmente los datos de GRACE obtenidos en un sitio web de la NASA.
+Las bases de datos seleccionadas fueron \textbf{(CR)$^2$-met} para los datos de precipitación, \textbf{ERA5-Land} para las 5 variables explicativas restantes,
+observaciones de pozos provienientes de la \textbf{DGA} y finalmente los datos de GRACE obtenidos de \textbf{OPeNDAP}.
 
 El período de tiempo que considera el estudio comienza el mes de abril del año 2002 y culmina en febrero del año 2017 en instantes de tiempo en los cuales existan mediciones en cada una
 de las variables.
@@ -350,7 +350,7 @@ Para la construcción del modelo se crearon 2 predictores, uno de ellos minimiza
     \subsection{Interpolación de Residuos}
 
     Posterior a instanciar cada uno los modelos y seleccionar el que mejor métricas de validación entregue en la resolución nativa, corresponde calcular la diferencia entre los valores reales y los valores predichos, es decir, los datos residuales.
-    Luego de obtener dichos datos es necesario remuestrearlos a la resolución objetivo, ésto mediante interpolación bilinear.
+    Luego de obtener dichos datos es necesario remuestrearlos a la resolución objetivo, esto mediante interpolación bilinear.
  
     Mediante dos funciones creadas en Python y la clase \texttt{interpolate.interp2d} de la librería \texttt{scipy} es posible interpolar los datos a partir de sus 4 vecinos más cercanos resolviendo el sistema de ecuaciones
     de la ecuación \ref{interp2d}, estas funciones son:
