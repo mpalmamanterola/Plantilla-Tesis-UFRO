@@ -109,7 +109,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     Los datos satelitales georrefereenciados de GRACE se encuentran empaquetados mensualmente durante todo el período de estudio
     para cualquier coordenada geográfica del globo. Por tanto el primer desafío ocurre al momento de extraer los datos de interés que son los  
     del territorio chileno, el cual resulta ser un proceso heurístico exhaustivo debido a la configuración de coordenadas (latitud, longitud) del sitio web,
-    ya que la longitud se encontraba entre el intervalo $[0,180]$ cuando normalmente ésta se encuentra entre los valores $[-90,90]$. Luego de múltiples intentos
+    ya que la longitud se encontraba entre el intervalo $[0,180]$ cuando normalmente esta se encuentra entre los valores $[-90,90]$. Luego de múltiples intentos
     se consigue dar con las coordenadas que localizan al territorio como se muestra en la figura 3.2(a).
     
     \begin{figure}[H]
@@ -143,9 +143,9 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \toprule
         \textbf{Intervalo}	& \textbf{Categoría}	&\textbf{Método de cálculo}\\
             \midrule
-            \textbf{$\left[-0\text{.}375,~-0\text{.}057\right[$}    & Más seco que el periodo anterior       & $\left[v_{min},~ \mu - \sigma\right[$\\
-            \textbf{$[-0\text{.}057,~0\text{.}0618]$}	            & Cercano a condiciones normales         & $[\mu - \sigma,~ \mu +\sigma]$ \\
-            \textbf{$\left]0\text{.}0618,~0\text{.}484\right] $}    & Más húmedo que el perídodo anterior    & $\left]\mu +\sigma,~v_{max}\right]$\\
+            \textbf{$\left[-0\text{.}375,~-0\text{.}057\right[$}    & Más seco que el periodo anterior.       & $\left[v_{min},~ \mu - \sigma\right[$\\
+            \textbf{$[-0\text{.}057,~0\text{.}0618]$}	            & Cercano a condiciones normales.         & $[\mu - \sigma,~ \mu +\sigma]$ \\
+            \textbf{$\left]0\text{.}0618,~0\text{.}484\right] $}    & Más húmedo que el perídodo anterior.    & $\left]\mu +\sigma,~v_{max}\right]$\\
             \bottomrule
         \end{tabularx}
     \end{table}
@@ -194,9 +194,9 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     Las observaciones de pozos de bombeo fueron otorgadas por 2 bases de datos diferentes de la DGA. Ambas bases de datos constaban de una serie de variables útiles para muchos estudios.
     Particularmente para el trabajo se utilizaron los códigos llamados \textbf{ESTID} \cite{gwl}, los cuales constan de códigos únicos que poseen una coordenada geográfica asociada localizada dentro
     del territorio chileno, la \textbf{fecha de la medición}, las cuales se encontraban distanciadas diariamente desde enero del 2000, hasta enero del año 2016 con valores faltantes y finalmente el valor de la \textbf{profundidad del pozo},
-    la cual se encontraba en metros y representa la distancia desde la superficie terrestre hasta la superficie acuática de la cuenca, es decir, mientras mayor sea la prfundidad de un pozo, menos contenido de agua éste presenta.
+    la cual se encontraba en metros y representa la distancia desde la superficie terrestre hasta la superficie acuática de la cuenca, es decir, mientras mayor sea la prfundidad de un pozo, menos contenido de agua este presenta.
 
-    Ambas bases de datos debieron corroborarse ya que éstas poseían códigos ESTID comunes y aquellos que diferían en medición se optaba por descartarse debido a la inconsistencia presente.
+    Ambas bases de datos debieron corroborarse ya que estas poseían códigos ESTID comunes y aquellos que diferían en medición se optaba por descartarse debido a la inconsistencia presente.
     Finalmente el número de códigos que fueron sujeto a estudio fue de 1036. 
 
     \begin{figure}[H]
@@ -206,7 +206,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \label{pozosDGA}
     \end{figure}
 
-    El objetivo de éstos datos recae en validar el contenido de agua terrestre (TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
+    El objetivo de estos datos recae en validar el contenido de agua terrestre (TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
     Como se muestra en la figura \ref{pozosDGA}, los datos provenientes de la DGA consideran solamente la zona norte y centro del país por lo que el estudio posterior de validación del
     \textit{downscalling} deberá estudidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
 
@@ -257,7 +257,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
         \end{tabularx}
     \end{table}
 
-    Si bien las cotas de los datos para Python se ven mucho más restringidas, éste análisis no nos entrega información de qué tan cercanas son cada una de las interpolaciones entre sí. Claramente CDO será el punto de comparación debido a que
+    Si bien las cotas de los datos para Python se ven mucho más restringidas, este análisis no nos entrega información de qué tan cercanas son cada una de las interpolaciones entre sí. Claramente CDO será el punto de comparación debido a que
     la función para la cual el software fue diseñado, es operar en grillas de datos, el objetivo ahora es calcular qué tan lejos se encuentra la interpolación de Python con la de CDO.
     Así, se proceden a calcular los errores ya conocidos, \textit{MAE} y \textit{RMSE}. Obteniendo un valor de error medio absoluto de $1.93317\times 10^{-6}$ y un error cuadrático medio de $5.262181\times 10^{-10}$. Por lo tanto, 
     la interpolación realizada en Python resulta ser válida en base a la interpolación que se realiza utilizando CDO.
