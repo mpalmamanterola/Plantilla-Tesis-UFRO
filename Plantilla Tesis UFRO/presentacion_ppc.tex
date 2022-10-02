@@ -1,0 +1,210 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{outlines}
+\usepackage{bookmark}
+\usepackage{amsmath,amssymb,lmodern}
+
+\usetheme{Warsaw}
+\usecolortheme{default}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title[Aumento de resolución a través del modelo \textit{Random Forest}] %optional
+{Aumento de resolución espacial de datos satelitales}
+
+\subtitle{a través del modelo de Bosque Aleatorio}
+
+\author[] % (optional)
+{Matías Palma Manterola}
+
+\institute[UFRO] % (optional)
+{
+Universidad de La Frontera
+}
+
+\date[] % (optional)
+{Octubre, 2022}
+
+\logo{\includegraphics[height=1.3cm]{images/ufro.jpg}}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Tabla de Contenidos}
+
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%------------------------------------------------------------
+
+
+\begin{document}
+
+%The next statement creates the title page.
+  \frame{\titlepage}
+
+  \section{Introducción}
+
+  \subsection*{Contexto y descripción del problema}
+
+  \begin{frame}
+    \frametitle{Contexto y descripción del problema}
+
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 {Almacén de aguas subterráneas.}
+            \2 Calidad.
+            \2 Cantidad.
+            \2 Ampliamente distribuidas.
+          \1{Sobrexplotación.}
+            \2 Disminución del nivel.
+          \1 {Monitoreo de cuencas.}
+          \1 {Satélite GRACE.}
+            \2 Estimación del agua total presente.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \begin{center}
+          \includegraphics[width=0.9\textwidth]{images/sequía.png}
+        \end{center}
+      \end{column}
+
+    \end{columns}
+
+  \end{frame}
+
+  \subsection*{GRACE}
+
+  \begin{frame}
+    \frametitle{Satélite GRACE}
+
+    \begin{columns}
+
+      \begin{column}{0.6\textwidth}
+        \begin{outline}
+          \1 \textit{Gravity Recovery And Climate Experiment.}
+          \1 Satélites que orbitan sobre la Tierra.
+            \2 200 Km de distancia entre ellos.
+          \1 Captar movimientos de las aguas.
+          \2 Tiene como objetivo contrarrestar:
+            \3 Sequías. 
+            \3 Inundaciones.
+            \3 Socavones.
+          \1 Mediciones a baja resolución.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \begin{center}
+          \includegraphics[width=0.95\textwidth]{images/GRACE.jpg}
+        \end{center}
+      \end{column}
+
+    \end{columns}
+
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Anomalías \textit{TWS}}
+
+    \begin{outline}
+      \1 \textit{Terrestrial Water Storage}
+      \1 Agua almacenada sobre y debajo de la superficie.
+        \2 Agua de dosel.
+        \2 Ríos y lagos.
+        \2 Humedad de suelo.
+        \2 Aguas subterráneas.
+    \end{outline}
+
+    \begin{block}{Anomalía TWS}
+      $$ TWS_t = \frac{TWS_t - \mu}{\delta},~~~~ \mu, \delta \in \mathbb{R}$$
+    \end{block}
+
+  \end{frame}
+
+  \subsection*{Objetivos}
+
+  \begin{frame}
+    \frametitle{Objetivo general y específicos}
+
+    \large\textbf{Objetivo general}
+    \begin{outline}
+      \1 Implementar un aumento de resolución a datos satelitales proporcionados por GRACE a través de un modelo
+      predictivo para obtener productos grillados en Chile a alta resolución.
+    \end{outline}
+
+    \large\textbf{Objetivos específicos} 
+    \begin{outline}
+      \1 Definir la metodología.
+      \1 Recolectar datos necesarios.
+      \1 Preprocesar los datos.
+      \1 Implementar y entrenar el modelo predictivo.
+      \1 Validar predicciones en base a observaciones \textit{in situ}.
+    \end{outline}
+
+  \end{frame}
+
+  \section{Fundamentos Teóricos}
+
+  \subsection*{Modelo del bosque aleatorio}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \subsection*{Indice de Correlación de Pearson}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \section{Metodología}
+  \subsection*{Metodología propuesta}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \subsection*{Recolección y preprocesamiento de datos}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \subsection*{Entrenamiento y testeo}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \section{Resultados}
+
+  \subsection*{Métricas de validación}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \subsection*{Productos finales}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \subsection*{Validación de datos}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+  \section{Conclusiones}
+
+  \begin{frame}
+    \frametitle{}
+  \end{frame}
+
+\end{document}
