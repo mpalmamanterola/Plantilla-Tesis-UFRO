@@ -1,7 +1,11 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
 \usepackage{outlines}
 \usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage[font=tiny]{caption}
+\setbeamertemplate{caption}[numbered]
 \usepackage{amsmath,amssymb,lmodern}
 
 \usetheme{Warsaw}
@@ -99,9 +103,12 @@ Universidad de La Frontera
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \begin{center}
-          \includegraphics[width=0.9\textwidth]{images/GRACE.jpg}
-        \end{center}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/GRACE.jpg}
+          \end{center}
+          \caption{\tiny{Misión GRACE lanzada el año 2002.}}
+        \end{figure}
       \end{column}
 
     \end{columns}
@@ -146,9 +153,12 @@ Universidad de La Frontera
       \end{column}
       
       \begin{column}{0.6\textwidth}
-        \begin{center}
-          \includegraphics[width=\textwidth]{images/downscaling_example.png}
-        \end{center}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=\textwidth]{images/downscaling_example.png}
+          \end{center}
+          \caption{Reducción de escala.}
+        \end{figure}
       \end{column}
     \end{columns}
   \end{frame}
@@ -207,19 +217,64 @@ Universidad de La Frontera
   \subsection*{Metodología propuesta}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{Downscaling of GRACE-Derived Groundwater Storage
+    Based on the Random Forest Model}
+
+    \begin{figure}
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{images/metodologia_Chen_etal2019.png}
+      \end{center}
+  \end{figure}
+    
   \end{frame}
 
   \subsection*{Recolección y preprocesamiento de datos}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{GRACE TWS}
+
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{ERA5-Land}
+
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{(CR)$^2$-met}
+
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Dirección General de Aguas}
   \end{frame}
 
   \subsection*{Entrenamiento y testeo}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{Conjunto de entrenamiento y de prueba}
+
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 Alta variabilidad climatológica en el territorio.
+          \1 Estratificación de datos.
+            \2 Disminución de sesgo.
+            \2 Predicciones coherentes respecto a la naturaleza de las variables.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[height=0.7\textheight]{images/macrozonas.png}
+          \end{center}
+          \caption{Macrozonas de Chile.}
+        \end{figure}
+      \end{column}
+
+    \end{columns}
   \end{frame}
 
   \section{Resultados}
