@@ -11,7 +11,7 @@
 %This block of code defines the information to appear in the
 %Title page
 \title[Aumento de resolución a través del modelo \textit{Random Forest}] %optional
-{Aumento de resolución espacial de datos satelitales}
+{Reducción de escala de datos satelitales}
 
 \subtitle{a través del modelo de Bosque Aleatorio}
 
@@ -153,17 +153,27 @@ Universidad de La Frontera
   \subsection*{Modelo del bosque aleatorio}
 
   \begin{frame}
-    \frametitle{\texit{Random Forest}}
+    \frametitle{\textit{Random Forest}}
 
     \begin{outline}
-      \1 Conjunto de árboles de decisión
+      \1 
     \end{outline}
   \end{frame}
 
   \subsection*{Indice de Correlación de Pearson}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{Indice de Correlación de Pearson}
+
+    \begin{outline}
+      \1 Busca cuantificar la similitud lineal en las tasas de crecimiento.
+    \end{outline}
+
+    \begin{block}{Indice de Correlación}
+      Sean $ S_1 $ y $ S_2 $ dos series temporales con observaciones $ u_1,\cdots, u_p $ y $ v_1,\cdots,v_p $, respectivamente, entonces
+      $$ R^2(S_1,S_2) = \frac{\sum_{j=1}^p\sum_{i=1}^p(u_i-u_j)(v_i-v_j)} {\sqrt{\sum_{i=1}^p(u_i-u_j)^2}\sqrt{\sum_{i=1}^p(v_i-v_j)^2}} \in [-1,1]$$
+    \end{block}
+
   \end{frame}
 
   \section{Metodología}
