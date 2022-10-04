@@ -217,12 +217,11 @@ Universidad de La Frontera
   \subsection*{Metodología propuesta}
 
   \begin{frame}
-    \frametitle{Downscaling of GRACE-Derived Groundwater Storage
-    Based on the Random Forest Model}
+    \frametitle{Downscaling of GRACE-Derived Groundwater Storage Based on the Random Forest Model}
 
     \begin{figure}
       \begin{center}
-        \includegraphics[width=0.5\textwidth]{images/metodologia_Chen_etal2019.png}
+        \includegraphics[height=0.835\textheight]{images/metodologia_Chen_etal2019.png}
       \end{center}
   \end{figure}
     
@@ -231,22 +230,87 @@ Universidad de La Frontera
   \subsection*{Recolección y preprocesamiento de datos}
 
   \begin{frame}
-    \frametitle{GRACE TWS}
+    \frametitle{Dominio espacio-temporal}
 
+    \begin{outline}
+      \1 Territorio continental chileno.
+        \2 Longitud desde 63.5°E hasta 79.5°E.
+        \2 Latitud 16.5°S hasta 69.5°S
+      \1 Aumento de resolución de productos grillados desde abril del año 2002 hasta febrero del año 2017.
+    \end{outline}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{GRACE TWS}
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 Anomalías TWS.
+          \1 Datos globales mensuales.
+          \1 Resolución a 1° ($\sim 110$ Km).
+          \1 \texttt{lwe\_thickness}: grosor de agua líquida equivalente.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.8\textheight]{images/GRACE_init.png}
+      \end{column}
+
+    \end{columns}
   \end{frame}
 
   \begin{frame}
     \frametitle{ERA5-Land}
+    \begin{outline}
+      \1 Representala evolución de variables terrestres.
+        \2 Humedad de suelo.
+        \2 Nieve equivalente en agua.
+        \2 Evapotranspiración.
+        \2 Agua de dosel.
+        \2 Escorrentía.
+      \1 Combina datos de modelos con observaciones.
+      \1 Datos globales mensuales
+      \1 Resolución de 0.1° ($\sim$ 9 Km)
+    \end{outline}
 
   \end{frame}
 
   \begin{frame}
     \frametitle{(CR)$^2$-met}
 
+    \begin{outline}
+      \1 Información meteorológica
+        \2 Precipitación.
+        \2 Temperatura.
+      \1 Datos muestreados diariamente para el territorio continental.
+      \1 Modelos estadísticos para traducir diversos componentes.  
+      \1 Resolución de 0.05° ($\sim$ 5 Km)
+    \end{outline}
+
   \end{frame}
 
   \begin{frame}
     \frametitle{Dirección General de Aguas}
+
+    \begin{columns}
+    
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 Observaciones de pozos de bombeo.
+          \1 Mediciones diarias para la zona centro y norte del país.
+          \1 Mide profundidad (m) del pozo.
+            \2 Mayor profundidad implica menor cantidad de agua disponible.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.78\textheight]{images/Observacion_pozos.jpeg}
+      \end{column}
+
+    \end{columns}
   \end{frame}
 
   \subsection*{Entrenamiento y testeo}
