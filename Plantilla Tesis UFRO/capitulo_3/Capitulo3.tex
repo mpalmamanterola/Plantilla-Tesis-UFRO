@@ -17,7 +17,7 @@ más constantemente con una capacidad menor pero que sea capaz de soportar el ni
 2 físicos y aproximadamente 21 GB de RAM. Ambas máquinas virtuales utilizan un disco persistente balanceado de 100GB. 
 
 Luego de haber generado los entornos en los cuales se procesarán y guardarán los datos, se crea el repositorio en \textit{GitHub} en 
-donde se irá guardando y archivando el código generado para realizar el \textit{Downscalling}. La ventaja de utilizar \textit{git} es que proporciona un espacio seguro y con respaldo ante cualquier eventualidad.
+donde se irá guardando y archivando el código generado para realizar el \textit{Downscaling}. La ventaja de utilizar \textit{git} es que proporciona un espacio seguro y con respaldo ante cualquier eventualidad.
 
 \begin{figure}[H]\label{sshconec}
     \centering
@@ -234,7 +234,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
 
     
     El rescalamiento espacial se realiza sobre datos con una alta resolución espacial, en este caso las variables explicativas de ERA5-L y precipitación, luego, mediante interpolación bilinear a través de una rutina en \textit{bash} de CDO se consigue
-    la resolución objetivo (0.25$^\circ$) de\textit{Downscalling} y la resolución original de GRACE (1$^\circ$). Es claro que hay muchas maneras de formar las grillas de datos los cuales se encuentren a una resolución de 
+    la resolución objetivo (0.25$^\circ$) de\textit{Downscaling} y la resolución original de GRACE (1$^\circ$). Es claro que hay muchas maneras de formar las grillas de datos los cuales se encuentren a una resolución de 
     1$^\circ$ y que éstas no necesariamente tienen que ser las mismas entre ellas, es por esto que se fija la grilla a baja resolución y alta resolución antes de realizar el remuestreo
     para que todos los datos se encuentren remuestrados por una misma grilla. Lo más sencillo es extraer los datos de GRACE y de ellos obtener las coordenadas georreferenciadas a resolución de 1$^\circ$ y así se disminuye la cantidad de
     variables a remuestrar.
