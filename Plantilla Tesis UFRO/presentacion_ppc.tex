@@ -373,6 +373,16 @@ Universidad de La Frontera
   
   \begin{frame}
     \frametitle{Implementación del modelo}
+
+    \centering
+    \begin{figure}
+      \includegraphics[width=\textwidth]{images/RF_regressor.png}
+      \caption{Minimización de error cuadrático medio.}
+
+     \includegraphics[width=\textwidth]{images/RF_regressor_mae.png}
+     \caption{Minimización de error medio absoluto.}
+
+    \end{figure}
   \end{frame}
 
   \section{Resultados}
@@ -471,8 +481,61 @@ Universidad de La Frontera
   \subsection*{Validación de datos}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{Zona de validación}
+
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/Wells_with_landcover_coq.jpeg}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/Pixel1_and_pixels025_to_validate.png}
+      \end{column}
+
+    \end{columns}
   \end{frame}
+
+  \begin{frame}
+    \frametitle{Series de tiempo}
+    
+    \centering
+    \includegraphics[width=\textwidth]{images/Anomalies_coq_reg.png}
+  
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Series de tiempo}
+    
+    \centering
+    \includegraphics[width=\textwidth]{images/Anomalies_pixel-7125S-3075W_0.png}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Series de tiempo}
+    
+    \centering
+    \includegraphics[width=\textwidth]{images/Anomalies_pixel-7125S-3075W_1.png}
+  \end{frame}
+
+\subsection*{Estudio de variabilidad}
+
+\begin{frame}
+  \frametitle{Interpolación bilinear y Bosque aleatorio}
+
+  \begin{outline}
+    \1 Diferencias absolutas entre promedio de píxeles.
+      \2 Selección de píxeles con una diferencia mayor al 50\%.
+        \3 6.7\% del total de píxeles.
+    \1 Aislamiento de la zona en cuestión.
+  \end{outline}
+
+  \centering
+  \includegraphics[scale=0.66]{images/area_with_high_differences_cdorf.png}
+
+\end{frame}
 
   \section{Conclusiones}
 
