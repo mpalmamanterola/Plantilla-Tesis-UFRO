@@ -189,6 +189,44 @@ Universidad de La Frontera
 
   \section{Fundamentos Teóricos}
 
+  \subsection*{Píxeles y productos grillados}
+
+  \begin{frame}
+    \frametitle{Productos grillados}
+
+    \begin{block}{Píxel}
+      \begin{outline}
+        \1 Unidad básica de una imágen.
+        \1 Cada píxel contiene canales de información
+          \2 RGB.
+          \2 Números reales ($\mathbb{R}$).
+          \2 Eiquetas de clase.
+      \end{outline}
+    \end{block}
+
+    \begin{block}{Ráster}
+      \begin{outline}
+        \1 Conjunto de píxeles ordenados.
+          \2 Filas.
+          \2 Columnas.
+        \1 El valor del pixel se asocia al centroide del mismo.
+      \end{outline}
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Remuestreo espacial}
+    \begin{outline}
+      \1 Aumentar o disminuir resolución de datos.
+        \2 Herramientas sencillas como interpolación.
+          \3 Bilinear.
+          \3 Bicúbica.
+          \3 Spline.
+      \1 Mantener la distribución original.
+
+    \end{outline}
+  \end{frame}
+
   \subsection*{Modelo del bosque aleatorio}
 
   \begin{frame}
@@ -284,17 +322,28 @@ Universidad de La Frontera
 
   \begin{frame}
     \frametitle{ERA5-Land}
-    \begin{outline}
-      \1 Representa la evolución de variables terrestres.
-        \2 Humedad de suelo.
-        \2 Nieve equivalente en agua.
-        \2 Evapotranspiración.
-        \2 Agua de dosel.
-        \2 Escorrentía.
-      \1 Combina datos de modelos con observaciones.
-      \1 Datos globales mensuales
-      \1 Resolución de 0.1° ($\sim$ 9 Km)
-    \end{outline}
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 Representa la evolución de variables terrestres.
+            \2 Humedad de suelo.
+            \2 Nieve equivalente en agua.
+            \2 Evapotranspiración.
+            \2 Agua de dosel.
+            \2 Escorrentía.
+          \1 Combina datos de modelos con observaciones.
+          \1 Datos globales mensuales
+          \1 Resolución de 0.1° ($\sim$ 9 Km)
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/era5.jpg}
+      \end{column}
+    \end{columns}
+
 
   \end{frame}
 
@@ -334,13 +383,6 @@ Universidad de La Frontera
     \end{columns}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Remuestreo espacial}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Remuestreo temporal}
-  \end{frame}
 
   \subsection*{Entrenamiento y testeo}
 
@@ -574,7 +616,16 @@ Universidad de La Frontera
   \section{Conclusiones}
 
   \begin{frame}
-    \frametitle{}
+    \frametitle{Conclusiones}
+
+    \begin{outline}
+      \1 La metodología adoptada logra entregar predecir de forma válida los resultados.
+      \1 Las variables explicativas son datos homogéneos y fiables de centros especializados.
+      \1 La validación de resultados mostró una alta variabilidad en zonas donde las variables explicativas también la presentaban.
+      \1 Con los productos grillados obtenidos es posible estudiar con más detalle y de manera más granular el comportamiento
+      de las aguas subterráneas en Chile.
+      
+    \end{outline}
   \end{frame}
 
 \end{document}
