@@ -9,7 +9,8 @@
 \usepackage[export]{adjustbox}
 \setbeamertemplate{caption}[numbered]
 \usepackage{amsmath,amssymb,lmodern}
-
+\usepackage{hyperref} 
+\usepackage{xcolor}
 \usetheme{Warsaw}
 \usecolortheme{default}
 
@@ -17,22 +18,24 @@
 %This block of code defines the information to appear in the
 %Title page
 \title[Aumento de resolución a través del modelo \textit{Random Forest}] %optional
-{Reducción de escala de datos satelitales}
+{Aumento de resolución de datos}
 
-\subtitle{a través del modelo de Bosque Aleatorio}
+\subtitle{a través de métodos de Machine Learning  }
 
 \author[] % (optional)
 {Matías Palma Manterola}
 
 \institute[UFRO] % (optional)
 {
-Universidad de La Frontera
+  Universidad de La Frontera
 }
 
 \date[] % (optional)
-{Octubre, 2022}
+{\today}
 
-\logo{\includegraphics[height=1.3cm]{images/ufro.jpg}}
+
+
+\logo{\includegraphics[height=1cm]{images/ufro.png}}
 
 \AtBeginSection[]
 {
@@ -214,18 +217,6 @@ Universidad de La Frontera
     \end{block}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Remuestreo espacial}
-    \begin{outline}
-      \1 Aumentar o disminuir resolución de datos.
-        \2 Herramientas sencillas como interpolación.
-          \3 Bilinear.
-          \3 Bicúbica.
-          \3 Spline.
-      \1 Mantener la distribución original.
-
-    \end{outline}
-  \end{frame}
 
   \subsection*{Modelo del bosque aleatorio}
 
@@ -237,10 +228,7 @@ Universidad de La Frontera
       \1 Segmentación recursiva del espacio de predicción en regiones regulares.
         \2 Media. 
         \2 Moda.
-      \1 Posee ciertas desventajas
-        \2 Inestabilidad.
-        \2 Rendimiento predictivo menor al optimal.
-      \1 Minimiza la suma de cuadrados de cada región.
+      \1 Minimiza la suma de cuadrados de cada región (regresión).
     \end{outline}
   \end{frame}
 
@@ -251,8 +239,6 @@ Universidad de La Frontera
       \1 Conjunto de árboles de decisión.
         \2 \textit{Bootstrap sample}.
       \1 Contrarresta la inestabilidad de los árboles.
-      \1 Mejor generalización en la predicción.
-      \1 Menos susceptible al sobreajuste.
     \end{outline}
   \end{frame}
 
@@ -276,11 +262,12 @@ Universidad de La Frontera
   \subsection*{Metodología propuesta}
 
   \begin{frame}
-    \frametitle{Downscaling of GRACE-Derived Groundwater Storage Based on the Random Forest Model}
+    \frametitle{Metodología adoptada}
 
     \begin{figure}
       \begin{center}
         \includegraphics[height=0.835\textheight]{images/metodologia_Chen_etal2019.png}
+        \caption{Metodología utilizada en (Chen \textit{et al.}, 2019), pág. 7}
       \end{center}
   \end{figure}
     
@@ -291,12 +278,27 @@ Universidad de La Frontera
   \begin{frame}
     \frametitle{Dominio espacio-temporal}
 
-    \begin{outline}
-      \1 Territorio continental chileno.
-        \2 Longitud desde 63.5°E hasta 79.5°E.
-        \2 Latitud 16.5°S hasta 69.5°S
-      \1 Aumento de resolución de productos grillados desde abril del año 2002 hasta febrero del año 2017.
-    \end{outline}
+    \begin{columns}
+
+      \begin{column}{0.5\textwidth}
+        \begin{outline}
+          \1 Territorio continental chileno.
+            \2 Longitud desde 66.5°E hasta 77.5°E.
+            \2 Latitud 16.5°S hasta 56.75°S
+          \1 Aumento de resolución de productos grillados desde abril del año 2002 hasta febrero del año 2017.
+        \end{outline}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[height=0.7\textheight]{images/limites_regionales.png}
+          \caption{Datos de grace para abril del año 2002 en el territorio continental chileno.}
+        \end{figure}
+      \end{column}
+
+    \end{columns}
+
   \end{frame}
 
   \begin{frame}
@@ -313,8 +315,13 @@ Universidad de La Frontera
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height=0.7\textheight]{images/GRACE_init.png}
+        \begin{figure}
+          \centering
+          \includegraphics[height=0.75\textheight]{images/grace_crudo.png}
+          \caption{Datos obtenidos desde la base de datos 
+            \href{https://podaac-opendap.jpl.nasa.gov/opendap/allData/tellus/L3/grace/land_mass/RL06/v04/CSR/}
+            {\textcolor{blue}{\underline{OP$e$NDAP}}.}}
+        \end{figure}
       \end{column}
 
     \end{columns}
@@ -339,12 +346,16 @@ Universidad de La Frontera
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/era5.jpg}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{images/era5.jpg}
+          \caption{Temperatura promedio mensual obtenida de la base de datos 
+          \href{https://cds.climate.copernicus.eu/cdsapp\#!/dataset/reanalysis-era5-land-monthly-means?tab=form/}
+          {\textcolor{blue}{\underline{Copernicus}}.}}
+        \end{figure}
       \end{column}
+
     \end{columns}
-
-
   \end{frame}
 
   \begin{frame}
@@ -362,8 +373,12 @@ Universidad de La Frontera
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height= 0.7\textheight]{images/cr2met.png}
+        \begin{figure}
+          \centering
+          \includegraphics[height= 0.6\textheight]{images/cr2met.png}
+          \caption{Precipitación acumulada anual promedio provenientes de la base de datos 
+            \href{https://www.cr2.cl/datos-productos-grillados/}{\textcolor{blue}{\underline{(CR)$^2$-met}}.}}
+        \end{figure}
       \end{column}
     \end{columns}
 
@@ -384,8 +399,11 @@ Universidad de La Frontera
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height=0.78\textheight]{images/Observacion_pozos.jpeg}
+        \begin{figure}
+          \centering
+          \includegraphics[height=0.65\textheight]{images/Observacion_pozos.jpeg}
+          \caption{Observaciones de pozos provenientes de la DGA proporcionados por (CR)$^2$.}
+        \end{figure}
       \end{column}
 
     \end{columns}
@@ -418,23 +436,7 @@ Universidad de La Frontera
       \end{column}
 
     \end{columns}
-  \end{frame}
-
-  \subsection*{Implementación del modelo}
-  
-  \begin{frame}
-    \frametitle{Implementación del modelo}
-
-    \centering
-    \begin{figure}
-      \includegraphics[width=\textwidth]{images/RF_regressor.png}
-      \caption{Minimización de error cuadrático medio.}
-
-     \includegraphics[width=\textwidth]{images/RF_regressor_mae.png}
-     \caption{Minimización de error medio absoluto.}
-
-    \end{figure}
-  \end{frame}
+  \end{frame}  
 
   \section{Resultados}
 
@@ -446,9 +448,9 @@ Universidad de La Frontera
     \begin{center}
       \begin{tabular}{| c | c | c |}
         \hline
-        Modelo RF& MAE & RMSE\\ \hline
-        Minimización mse &  $5.69\times 10^{-3}$ & $6.23 \times 10^{-5}$\\
-        Minimización mae &  $6.15\times 10^{-3}$ & $7.25 \times 10^{-5}$\\
+        Modelo/Métrica de eval. & \parbox{7em}{\centering Error medio \\asboluto (MAE)} & \parbox{7em}{\centering Raíz del error \\ cuadrático medio (RMSE)}\\ \hline
+        Mín. error cuadrático medio &  \textcolor{olive}{$5.69\times 10^{-3}$} & \textcolor{olive}{$6.23 \times 10^{-5}$}\\
+        Mín. error medio absoluto & \textcolor{gray}{$6.15\times 10^{-3}$} & \textcolor{gray}{$7.25 \times 10^{-5}$}\\
         \hline
       \end{tabular}
       
@@ -533,20 +535,12 @@ Universidad de La Frontera
 
   \begin{frame}
     \frametitle{Zona de validación}
+    \begin{figure}
+      \centering
+      \includegraphics[height=0.8\textheight]{images/Wells_with_landcover_coq.jpeg}
+      \caption{Región de Coquimbo con observaciones de pozos y zonas agrícolas.}
+    \end{figure}
 
-    \begin{columns}
-
-      \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/Wells_with_landcover_coq.jpeg}
-      \end{column}
-
-      \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/Pixel1_and_pixels025_to_validate.png}
-      \end{column}
-
-    \end{columns}
   \end{frame}
 
   \begin{frame}
@@ -582,10 +576,21 @@ Universidad de La Frontera
           \3 6.7\% del total de píxeles.
       \1 Aislamiento de la zona en cuestión.
     \end{outline}
+  \end{frame}
 
-    \centering
-    \includegraphics[scale=0.66]{images/area_with_high_differences_cdorf.png}
+  \begin{frame}
+    \begin{columns}
 
+      \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/area_with_high_differences_cdorf.png}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        Incluir el parche de bajas diferencias
+      \end{column}
+
+    \end{columns}
   \end{frame}
 
   \begin{frame}
@@ -610,10 +615,10 @@ Universidad de La Frontera
       \hline
       \textbf{Variable}	& \textbf{Altas diferencias}	& \textbf{Bajas diferencias} \\
       \hline
-      \textbf{Runoff}		                 & 1.11489$\times 10^{-5}$    & 1.5682 $\times 10^{-5}$  \\
       \textbf{Soil moisture}		         & 0.0973583                  & 0.1291611\\
-      \textbf{Precipitation}		         & 6.109682                   & 5.185894\\
       \textbf{Evapotranspiration}	       & 7.9032 $\times 10^{-7}$    & 8.68624 $\times 10^{-7}$\\
+      \textbf{Runoff}		                 & 1.11489$\times 10^{-5}$    & 1.5682 $\times 10^{-5}$  \\
+      \textbf{Precipitation}		         & 6.109682                   & 5.185894\\
       \textbf{Canopy water}		           & 9.409  $\times 10^{-9}$    & 8.836  $\times 10^{-9}$\\
       \textbf{Snow water equivalent}	   & 15.23432                   & 9.04167 \\
       \hline
@@ -621,6 +626,7 @@ Universidad de La Frontera
       \hline
     \end{tabular}
   \end{frame}
+
   \section{Conclusiones}
 
   \begin{frame}
