@@ -482,53 +482,46 @@
     \frametitle{}
 
     \begin{columns}
-
       \begin{column}{0.5\textwidth}
-        \includegraphics[height=\textheight, right]{images/Before_Downscalling_v0-09-02.jpeg}
+
+        \begin{figure}
+
+        \begin{columns}
+          \begin{column}{0.5\textwidth}
+            \includegraphics[height=0.75\textheight, right]{images/Before_Downscalling_v0-09-02.jpeg}
+          \end{column}
+
+          \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[height=0.75\textheight, left]{images/Downscalling_v0-09-02.jpeg}
+          \end{column}
+        \end{columns}
+
+        \caption{Productos grillados a alta y baja resolución para el mes de septiembre del año 2002.}
+        \end{figure}
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height=\textheight, left]{images/Downscalling_v0-09-02.jpeg}
-      \end{column}
 
+        \begin{figure}
+
+          \begin{columns}
+
+            \begin{column}{0.5\textwidth}
+              \includegraphics[height=0.75\textheight, right]{images/GRACE_mapv1-04-17.jpeg}
+            \end{column}
+
+            \begin{column}{0.5\textwidth}
+              \centering
+              \includegraphics[height=0.75\textheight, left]{images/Downscalling_mapv1-04-17.jpeg}
+            \end{column}
+
+          \end{columns}
+
+          \caption{Productos grillados a alta y baja resolución para el mes de abril del año 2017.}
+        \end{figure}
+      \end{column}
     \end{columns}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{}
-
-    \begin{columns}
-
-      \begin{column}{0.5\textwidth}
-        \includegraphics[height=\textheight, right]{images/Before_Downscalling_v0-06-14.jpeg}
-      \end{column}
-
-      \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height=\textheight, left]{images/Downscalling_v0-06-14.jpeg}
-      \end{column}
-
-    \end{columns}
-  \end{frame}
-
-  
-  \begin{frame}
-    \frametitle{}
-
-    \begin{columns}
-
-      \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[height=\textheight, right]{images/GRACE_mapv1-04-17.jpeg}
-      \end{column}
-
-      \begin{column}{0.5\textwidth}
-        \includegraphics[height=\textheight, left]{images/Downscalling_mapv1-04-17.jpeg}
-      \end{column}
-
-    \end{columns}
-
   \end{frame}
 
   \subsection*{Validación de datos}
@@ -552,18 +545,21 @@
   \end{frame}
 
   \begin{frame}
-    \frametitle{Series de tiempo}
-    
-    \centering
-    \includegraphics[width=\textwidth]{images/Anomalies_pixel-7125S-3075W_0.png}
+    \begin{figure}
+      \centering
+      \includegraphics[height=0.9\textheight]{images/Pixel1_and_pixel025.png}
+      \caption{Píxel a alta y baja resolución para validar en zpnas agrícolas con observaciones de Pozos.}
+    \end{figure}
   \end{frame}
 
   \begin{frame}
     \frametitle{Series de tiempo}
     
     \centering
-    \includegraphics[width=\textwidth]{images/Anomalies_pixel-7125S-3075W_1.png}
+    \includegraphics[width=\textwidth]{images/Anomalies_pixel-7125S-3075W_0.png}
   \end{frame}
+
+
 
   \subsection*{Estudio de variabilidad}
 
@@ -582,12 +578,19 @@
     \begin{columns}
 
       \begin{column}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/area_with_high_differences_cdorf.png}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{images/altasdiferencias.png}
+          \caption{Parche a alta resolución donde la interpolación bilinear y la regresión usando \textit{Random Forest} difieren en sobremanera.}
+        \end{figure}
       \end{column}
 
       \begin{column}{0.5\textwidth}
-        Incluir el parche de bajas diferencias
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{images/bajasdiferencias.png}
+          \caption{Parche a alta resolución donde la interpolación bilinear y la regresión usando \textit{Random Forest} no difieren en demasía.}
+        \end{figure}
       \end{column}
 
     \end{columns}
