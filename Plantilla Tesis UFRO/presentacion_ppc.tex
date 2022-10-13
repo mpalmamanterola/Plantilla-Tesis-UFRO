@@ -31,7 +31,7 @@
 }
 
 \date[] % (optional)
-{\today}
+{17 de octubre de 2022}
 
 
 
@@ -68,7 +68,7 @@
             \2 Calidad.
             \2 Cantidad.
             \2 Ampliamente distribuidas.
-          \1{Sobrexplotación.}
+          \1{Sobreexplotación.}
             \2 Disminución del nivel.
           \1 {Monitoreo de cuencas.}
           \1 {Satélite GRACE.}
@@ -223,24 +223,25 @@
   \begin{frame}
     \frametitle{Árboles de decisión}
 
-    \begin{outline}
-      \1  Algoritmo de aprendizaje automático del tipo supervisado.
-      \1 Segmentación recursiva del espacio de predicción en regiones regulares.
-        \2 Media. 
-        \2 Moda.
-      \1 Minimiza la suma de cuadrados de cada región (regresión).
-    \end{outline}
+    \begin{block}{Árboles de decisión}
+      \begin{outline}
+        \1  Algoritmo de aprendizaje automático del tipo supervisado.
+        \1 Segmentación recursiva del espacio de predicción en regiones regulares.
+        \1 Minimiza la suma de cuadrados de cada región (regresión).
+      \end{outline}
+    \end{block}
+
+    \begin{block}{\textit{Random Forest}}
+      
+      \begin{outline}
+        \1 Conjunto de árboles de decisión.
+          \2 \textit{Bootstrap sample}.
+          \2  Selección aleatoria de características.
+        \1 Contrarresta la inestabilidad de los árboles.
+      \end{outline}
+    \end{block}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{\textit{Random Forest}}
-
-    \begin{outline}
-      \1 Conjunto de árboles de decisión.
-        \2 \textit{Bootstrap sample}.
-      \1 Contrarresta la inestabilidad de los árboles.
-    \end{outline}
-  \end{frame}
 
   \subsection*{Indice de Correlación de Pearson}
 
@@ -653,7 +654,7 @@
     \frametitle{Conclusiones}
 
     \begin{outline}
-      \1 La metodología adoptada logra entregar predecir de forma válida los resultados.
+      \1 La metodología adoptada logra predecir de forma válida los resultados.
       \1 Las variables explicativas son datos homogéneos y fiables de centros especializados.
       \1 La validación de resultados mostró una alta variabilidad en zonas donde las variables explicativas también la presentaban.
       \1 Con los productos grillados obtenidos es posible estudiar con más detalle y de manera más granular el comportamiento
