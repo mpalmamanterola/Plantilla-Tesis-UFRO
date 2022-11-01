@@ -51,7 +51,7 @@ de la VM de forma rápida, lo cual aumenta su eficiencia a la hora de trabajar c
 \end{figure}
 
 En base a \cite{11}, se procede a replicar la metodología propuesta en la figura 3.1, donde se detalla
-la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ} (\sim 111 \text{ Km})$
+la forma en la que los autores realizan la reducción de escala a una resolución inicial de $1^{\circ}~(\sim 111 \text{ Km})$
 para obtener datos georreferenciados a una resolución de 0.25$^{\circ}~(\sim 27 \text{.} 75 \text{ Km})$ en base a 4 diferentes fuentes de datos los cuales se encuentran a una alta resolución: 
 \textit{GRACE} para el \textit{Terrestrial Water Sotrage}, \textit{GLDAS} para 4 diferentes variables hidrológicas (\textit{canopy water}, \textit{soil moisture}, 
 \textit{snow water equivalent} y \textit{runoff}), \textit{GLEAM} para datos 
@@ -97,7 +97,7 @@ o de mejor calidad que las que se proponen.
 
 En base a las variables explicativas presentes en \cite{11}, se proceden a investigar múltiples fuentes de datos, las cuales difieren de las utilizadas en el paper de referencia. 
 Las bases de datos seleccionadas fueron \textbf{(CR)$^2$-met} para los datos de precipitación, \textbf{ERA5-Land} para las 5 variables explicativas restantes,
-observaciones de pozos provienientes de la \textbf{DGA} y finalmente los datos de GRACE obtenidos de \textbf{OPeNDAP}.
+observaciones de pozos provienientes de la \textbf{DGA} y finalmente los datos de GRACE obtenidos de \textbf{OP$e$NDAP}.
 
 El período de tiempo que considera el estudio comienza el mes de abril del año 2002 y culmina en febrero del año 2017 en instantes de tiempo en los cuales existan mediciones en cada una
 de las variables.
@@ -156,7 +156,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     datos de modelos con observaciones de todo el mundo en un conjunto de datos globalmente completo y consistente utilizando las leyes de la física. 
     Además, produce datos que se remontan varias décadas atrás en el tiempo, proporcionando una descripción precisa del clima del pasado \cite{ERA5-L}.
 
-    El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ} (\sim 9$ Km), 
+    El conjunto de datos son del tipo cuadriculado, con cuadrícula regular de latitud y longitud a una resolución de 0.1$^{\circ}~(\sim 9$ Km), 
     para el proyecto en cuestión, de todo el territorio continental chileno.
 
     Las variables utilizadas como explicativas del modelo \textit{Random Forest} fueron la humedad del suelo (\textit{soil moisture}), nieve equivalente en agua (\textit{snow water equivalent}),
@@ -208,7 +208,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
 
     El objetivo de estos datos recae en validar el contenido de agua terrestre (TWS) a una alta resolución, es decir, corroborar las predicciones del modelo mediante el estudio de tendencias y estacionalidades a través de series de tiempo. 
     Como se muestra en la figura \ref{pozosDGA}, los datos provenientes de la DGA consideran solamente la zona norte y centro del país por lo que el estudio posterior de validación del
-    \textit{downscalling} deberá estudidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
+    \textit{downscaling} deberá estudidarse dentro de alguna de las zonas en las que existan mediciones en terreno.
 
     La primera intervención realizada a esta nueva base de datos unificada consistió en relacionar estos datos que se encuentran repartidos de manera no uniforme en el territorio. Es por esto que luego de aplicarle el remuestreo temporal detallado más adelante, el siguiente paso fue transformar los datos con un código ESTID asociado,
     a datos grillados. Donde las grillas serán la resolución original (1$^{\circ}$) y la grilla de alta resolución (0.25$^{\circ}$). Es claro que habrán pixeles de la grilla en donde 
@@ -226,7 +226,7 @@ En cuanto a los límites espaciales, el estudio es realizado en el parche que ti
     \begin{figure}[H]
         \centering
               \subfigure[Densidad a 0.25$^{\circ}$]{\includegraphics[scale=0.4]{images/wells_density025.png}}
-              \subfigure[Densidad a 1$^{\circ}$]{\includegraphics[scale=0.4]{images/wells_density1.png }}\goodgap
+              \subfigure[Densidad a 1$^{\circ}$]{\includegraphics[scale=0.405]{images/wells_density1.png }}\goodgap
               \vskip -0.1in
         \caption[Cantidad de pozos en cada grilla]{Gráfico de cantidad de pozos por píxel para grilla nativa y de alta resolución para el mes de enero del año 2005.}
         \label{pixeldepth}
