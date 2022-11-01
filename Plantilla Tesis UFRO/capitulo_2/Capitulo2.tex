@@ -106,13 +106,13 @@ clasificación o predicción se puede ver como una división de los datos en un 
 cada uno se ajusta un modelo tomando una decisión de acuerdo a una serie de consultas, el modelo
 aprende la respuesta a una serie de interrogantes para inferir la etiqueta de clase de los
 ejemplos (clasificación) o también la predicción de números reales (regresión). En otras palabras, 
-Los modelos basados en árboles involucran \textit{estratificación} o \textit{segmentación} del 
+los modelos basados en árboles involucran \textit{estratificación} o \textit{segmentación} del 
 espacio de predicción dentro de un número de regiones simples, donde la predicción se lleva a cabo 
 en base a la media o la moda de las observaciones de entrenamiento de la región a la que pertenece \cite{14}, según las necesidades.
 
 Los métodos basados en reglas y los métodos basados en árboles son herramientas populares debido a varias razones,
-una de ellas es debido a su construcción lógica \cite{18}, la cual permite manejar eficientemente muchos tipos de predictores
-, por ejemplo predictores continuos (regresión) o categóricos sin la necesidad de procesar datos. Además,
+una de ellas es debido a su construcción lógica \cite{18}, la cual permite manejar eficientemente muchos tipos de predictores, 
+por ejemplo predictores continuos (regresión) o categóricos sin la necesidad de procesar datos. Además,
 estos modelos logran lidiar de forma eficiente los valores faltantes e implicitamente llevan a cabo una selección de características,
 lo cual resulta importante para problemas de modelación de la vida real.
 
@@ -168,7 +168,7 @@ aplicables en varios tipos de modelos y tareas de aprendizaje automático \cite{
 \textit{Bagging}, es una palabra compuesta por los términos en inglés \textit{\textbf{B}ootstrap \textbf{agg}regat\textbf{ing}}, 
 debido a que consite en un método que utiliza el \textit{bootstrap} en conjunto con cualquier regresión o clasificación
 para generar múltiples versiones de un predictor y usarlo para obtener un predictor ``agregado'' \cite{22}; Cada modelo en el conjunto es utilizado para generar una predicción de una observación en particular 
-y luego se promedian entre ellas para obtener una predicción \textit{bagged} del modelo .
+y luego se promedian entre ellas para obtener una predicción \textit{bagged} del modelo.
 Este método fue introducido y propuesto por Leo Breiman y es una de las técnicas
 de conjunto más nuevas. El pseudocódigo de este método es el siguiente:
 
